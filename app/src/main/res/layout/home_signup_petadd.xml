@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f06464">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="이용자 등록"
+        android:textColor="#ffffff"
+        android:textSize="30dp"
+        android:textAlignment="center"/>
+
+    <ImageView
+        android:id="@+id/image_up"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:background="#ffffff"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="30dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="반려동물 이름"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="80dp"/>
+
+    <EditText
+        android:layout_width="120dp"
+        android:layout_height="30dp"
+        android:text="1~6자"
+        android:textSize="20dp"
+        android:textColor="#ffa6a6a6"
+        android:background="#ffffff"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="115dp"
+        android:textAlignment="center"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="반려동물 무게"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="160dp"/>
+
+    <EditText
+        android:layout_width="120dp"
+        android:layout_height="30dp"
+        android:text="선택"
+        android:textSize="20dp"
+        android:textColor="#ffa6a6a6"
+        android:background="#ffffff"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="200dp"
+        android:textAlignment="center"/>
+
+    <ImageButton
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:background="#ffffff"
+        android:layout_marginTop="200dp"
+        android:layout_marginLeft="330dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="특이사항(선택입력)"
+        android:textColor="#000000"
+        android:layout_marginTop="260dp"
+        android:layout_marginLeft="30dp"/>
+
+    <EditText
+        android:layout_width="340dp"
+        android:layout_height="140dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="300dp"
+        android:background="#ffffff"/>
+
+
+    <Button
+        android:id="@+id/input_btn"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:text="확인"
+        android:textColor="#000000"
+        android:background="#ffa7a7"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="460dp"/>
+
+
+    <Button
+        android:id="@+id/cancel_btn"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:text="취소"
+        android:textColor="#000000"
+        android:background="#ffa7a7"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="460dp"/>
+
+    <Button
+        android:id="@+id/petadd_btn"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:text="펫추가"
+        android:textColor="#000000"
+        android:background="#ffa7a7"
+        android:layout_marginLeft="255dp"
+        android:layout_marginTop="460dp"/>
+
+
+
+
+
+
+
+</RelativeLayout>
+
+

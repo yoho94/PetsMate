@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f06464">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="로그인"
+        android:textColor="#ffffff"
+        android:textSize="30dp"
+        android:textAlignment="center"/>
+
+    <EditText
+        android:id="@+id/id_input"
+        android:layout_width="310dp"
+        android:layout_height="40dp"
+        android:text="아이디"
+        android:layout_centerHorizontal="true"
+        android:textColor="#a6a6a6"
+        android:background="#ffffff"
+        android:layout_marginTop="120dp"
+        android:textAlignment="center"/>
+
+    <EditText
+        android:id="@+id/pw_input"
+        android:layout_width="310dp"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:text="패스워드"
+        android:textColor="#a6a6a6"
+        android:background="#ffffff"
+        android:layout_marginTop="165dp"
+        android:textAlignment="center"/>
+
+    <Button
+        android:id="@+id/login_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="로그인"
+        android:textColor="#000000"
+        android:textSize="25dp"
+        android:background="#FFA7A7"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="250dp"/>
+
+    <Button
+        android:id="@+id/idserch_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="ID/PW 찾기"
+        android:textColor="#000000"
+        android:textSize="25dp"
+        android:background="#FFA7A7"
+        android:layout_marginLeft="185dp"
+        android:layout_marginTop="250dp"/>
+
+
+
+
+
+</RelativeLayout>
+
+

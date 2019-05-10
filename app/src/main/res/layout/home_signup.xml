@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f06464">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="이용자 등록"
+        android:textColor="#ffffff"
+        android:textSize="30dp"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="아이디"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="60dp"/>
+
+    <EditText
+        android:id="@+id/mid_input"
+        android:layout_width="250dp"
+        android:layout_height="30dp"
+        android:text="4~12자"
+        android:textColor="#bdbdbd"
+        android:textSize="20dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="100dp"
+        android:background="#ffffff"
+        android:textAlignment="center" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="패스워드"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="100dp"/>
+
+    <EditText
+        android:id="@+id/mpw_input"
+        android:layout_width="250dp"
+        android:layout_height="30dp"
+        android:text="8~12자"
+        android:textColor="#bdbdbd"
+        android:textSize="20dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="100dp"
+        android:background="#ffffff"
+        android:textAlignment="center" />
+
+    <EditText
+        android:id="@+id/mpw2_input"
+        android:layout_width="250dp"
+        android:layout_height="30dp"
+        android:text="패스워드 재확인"
+        android:textColor="#bdbdbd"
+        android:textSize="20dp"
+        android:layout_marginTop="140dp"
+        android:layout_marginLeft="100dp"
+        android:background="#ffffff"
+        android:textAlignment="center" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="이름"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="220dp"/>
+
+    <EditText
+        android:id="@+id/mname_input"
+        android:layout_width="250dp"
+        android:layout_height="30dp"
+        android:text="2~12자"
+        android:textColor="#bdbdbd"
+        android:textSize="20dp"
+        android:layout_marginTop="220dp"
+        android:layout_marginLeft="100dp"
+        android:background="#ffffff"
+        android:textAlignment="center" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="번호 인증"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="260dp"/>
+
+    <EditText
+        android:id="@+id/mphon_input"
+        android:layout_width="250dp"
+        android:layout_height="30dp"
+        android:text="휴대폰 번호 입력"
+        android:textColor="#bdbdbd"
+        android:textSize="20dp"
+        android:layout_marginTop="260dp"
+        android:layout_marginLeft="100dp"
+        android:background="#ffffff"
+        android:textAlignment="center" />
+
+    <EditText
+        android:id="@+id/mpcheck_input"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:text="****"
+        android:textColor="#bdbdbd"
+        android:textSize="20dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginLeft="100dp"
+        android:background="#ffffff"
+        android:textAlignment="center" />
+
+    <Button
+        android:id="@+id/mpcheck_btn"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:text="인증"
+        android:textColor="#000000"
+        android:background="#ffa7a7"
+        android:layout_marginLeft="270dp"
+        android:layout_marginTop="300dp"/>
+
+    <Button
+        android:id="@+id/minput_btn"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:text="확인"
+        android:textColor="#000000"
+        android:background="#ffa7a7"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="420dp"/>
+
+
+    <Button
+        android:id="@+id/mcancel_btn"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:text="취소"
+        android:textColor="#000000"
+        android:background="#ffa7a7"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="420dp"/>
+
+    <Button
+        android:id="@+id/mpetadd_btn"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:text="펫추가"
+        android:textColor="#000000"
+        android:background="#ffa7a7"
+        android:layout_marginLeft="255dp"
+        android:layout_marginTop="420dp"/>
+
+</RelativeLayout>
+
