@@ -17,14 +17,15 @@
         android:textSize="30dp"/>
 
     <Button
+        android:id="@+id/user_join"
         android:layout_width="240dp"
         android:layout_height="60dp"
         android:layout_marginLeft="80dp"
-        android:background="#ffffff"
         android:layout_marginTop="240dp"
-        android:id="@+id/user_join"
+        android:background="#ffffff"
+        android:onClick="onSignupClick"
         android:text="이용자 등록"
-        android:textSize="30dp"/>
+        android:textSize="30dp" />
 
     <Button
         android:layout_width="240dp"
