@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    // 액티비티 띄우기
     public void onSignupClick(View v) {
         Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
         startActivity(intent);
