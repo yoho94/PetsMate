@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+//          TEST
 //        EditText test = (EditText) findViewById(R.id.id_input); 로그인의 ID 입력 창
 //        String id = test.getText().toString(); // 그것을 String로 바꿈 !
     }
