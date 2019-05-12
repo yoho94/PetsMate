@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <Button
+
+        android:id="@+id/button1"
+        android:layout_marginBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="알림"
+        android:textSize="30dp"
+        android:background="#FFF55F5F"
+        android:drawableLeft="@drawable/bell"
+        />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_marginBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="폰트"
+        android:textSize="30dp"
+        android:background="#FFF55F5F"
+        android:drawableLeft="@drawable/letter"
+
+        />
+    <Button
+        android:id="@+id/button3"
+        android:layout_marginBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="개인정보"
+        android:textSize="30dp"
+        android:background="#FFF55F5F"
+        android:drawableLeft="@drawable/lock"
+
+        />
+    <Button
+        android:id="@+id/button4"
+        android:layout_marginBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="도움말"
+        android:textSize="30dp"
+        android:background="#FFF55F5F"
+        android:drawableLeft="@drawable/help"
+
+        />
+    <Button
+        android:id="@+id/button5"
+        android:layout_marginBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="고객센터"
+        android:textSize="30dp"
+        android:background="#FFF55F5F"
+        android:drawableLeft="@drawable/call"
+
+        />
+    <Button
+        android:id="@+id/button6"
+        android:layout_marginBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="버전정보"
+        android:textSize="30dp"
+        android:background="#FFF55F5F"
+        android:drawableLeft="@drawable/info"
+/>
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:layout_gravity="bottom">
+    <ImageButton
+        android:layout_marginRight="1dp"
+        android:id="@+id/imageButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/btn_car" />
+
+    <ImageButton
+        android:layout_marginRight="1dp"
+        android:id="@+id/imageButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/btn_car" />
+
+    <ImageButton
+        android:layout_marginRight="1dp"
+        android:id="@+id/imageButton3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/btn_car" />
+    <ImageButton
+        android:layout_marginRight="1dp"
+        android:id="@+id/imageButton4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/btn_car" />
+</LinearLayout>
+    </LinearLayout>

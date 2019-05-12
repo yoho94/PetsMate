@@ -31,6 +31,7 @@
         android:layout_marginTop="80dp"/>
 
     <EditText
+        android:id="@+id/petName"
         android:layout_width="120dp"
         android:layout_height="30dp"
         android:text="1~6자"
@@ -52,6 +53,7 @@
         android:layout_marginTop="160dp"/>
 
     <EditText
+        android:id="@+id/petWeight"
         android:layout_width="120dp"
         android:layout_height="30dp"
         android:text="선택"
@@ -79,6 +81,7 @@
         android:layout_marginLeft="30dp"/>
 
     <EditText
+        android:id="@+id/petComment"
         android:layout_width="340dp"
         android:layout_height="140dp"
         android:layout_marginLeft="30dp"

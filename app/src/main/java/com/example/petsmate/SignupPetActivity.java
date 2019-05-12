@@ -15,65 +15,78 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 
-public class SignupActivity extends AppCompatActivity {
+class PetInfo {
+    private String name;
+    private int weight;
+    private String ps;
 
-    boolean isCheck = true; // TODO 추후 false로 변경 후 중복 확인 하기.
-    EditText idEt, passwordEt,password2Et, nameEt, phoneEt;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    public void setPs(String ps) {
+        this.ps = ps;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public String getPs() {
+        return ps;
+    }
+}
+
+public class SignupPetActivity extends AppCompatActivity {
+
+    ArrayList<PetInfo> petInfoArrayList;
+    EditText name, weight, comment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_signup);
+        setContentView(R.layout.home_signup_petadd);
 
-        idEt = (EditText)findViewById(R.id.mid_input);
-        passwordEt = (EditText)findViewById(R.id.mpw_input);
-        password2Et = (EditText)findViewById(R.id.mpw2_input);
-        nameEt = (EditText)findViewById(R.id.mname_input);
-        phoneEt = (EditText)findViewById(R.id.mphon_input);
+        petInfoArrayList = new ArrayList<>();
+
+        name = (EditText) findViewById(R.id.petName);
+        weight = (EditText) findViewById(R.id.petWeight);
+        comment = (EditText) findViewById(R.id.petComment);
     }
 
-    public void onIdCheck(View v) {
-        // TODO DB select 후 항목 있는지 확인 하기.
-        isCheck = true;
-    }
+    // 펫 추가 버튼
+    public void onAddClick(View v) {
+        String nameStr, commentStr, weightStr;
+        int weightInt;
 
-    public void onSignup(View v) {
-        String id, password, password2, name, phone;
-        id = idEt.getText().toString();
-        password = passwordEt.getText().toString();
-        password2 = password2Et.getText().toString();
-        name = nameEt.getText().toString();
-        phone = phoneEt.getText().toString();
+        nameStr = name.getText().toString();
+        weightStr = weight.getText().toString();
+        commentStr = comment.getText().toString();
 
-        if(!password.equals(password2)){
-            Toast.makeText(getApplicationContext(),"비밀번호와 재확인 비밀번호를 다시 확인해주세요.",Toast.LENGTH_SHORT).show();
+        if(nameStr == null || weightStr == null) {
+            Toast.makeText(getApplicationContext(),"이름 혹은 무게의 값이 비어있습니다.",Toast.LENGTH_LONG);
             return;
         }
 
+        weightInt = Integer.parseInt(weightStr); // TODO int 값 아닌 것 try catch 하기.
 
-        if(isCheck) {
-            MyTask myTask = new MyTask();
 
-            try {
-                String result = myTask.execute(id,password,name,phone).get();
-
-                if (result.equals("1")) {
-                    Toast.makeText(getApplicationContext(),"회원가입 완료.",Toast.LENGTH_LONG).show();
-                    finish();
-                } else {
-                    Toast.makeText(getApplicationContext(),"회원가입 실패.",Toast.LENGTH_LONG).show();
-                }
-
-            } catch (Exception e) {
-                Log.i("DB ERROR",e.toString());
-            }
-
-        } else {
-            Toast.makeText(getApplicationContext(),"아이디 중복 검사를 해주세요.",Toast.LENGTH_SHORT).show();
-        }
     }
 
+    // 확인 버튼
+    public void onOkClick(View v) {
+
+    }
 
     class MyTask extends AsyncTask<String, Void, String> {
         String sendMsg, receiveMsg;
