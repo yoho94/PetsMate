@@ -5,16 +5,16 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-        <EditText
-            android:id="@+id/editText1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text"
-            android:hint="출발지 검색"/>
+    <EditText
+        android:id="@+id/reserve_text_startsearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="출발지 검색"
+        android:inputType="text" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/reserve_text_arrival"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -24,18 +24,18 @@
         android:inputType="text" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/reserve_btn_booking"
         android:layout_width="355dp"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/button1"
-        android:layout_alignRight="@+id/button1"
+        android:layout_alignEnd="@+id/reserve_btn_callnow"
+        android:layout_alignRight="@+id/reserve_btn_callnow"
         android:layout_alignParentTop="true"
         android:layout_marginTop="167dp"
         android:background="@drawable/wgborder"
         android:text="예약하기" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/reserve_btn_callnow"
         android:layout_width="356dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -47,7 +47,7 @@
         android:textColor="#FFFFFF" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/reserve_btn_medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -60,7 +60,7 @@
         android:text="중형" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/reserve_btn_mynum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -73,7 +73,7 @@
         android:text="내 번호" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/reserve_btn_oneway"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -86,7 +86,7 @@
         android:text="편도" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/reserve_btn_roundtrip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -99,7 +99,7 @@
         android:text="왕복" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/reserve_btn_anothernum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -112,7 +112,7 @@
         android:text="다른 번호" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/reserve_btn_large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -125,19 +125,10 @@
         android:text="대형" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/reserve_text_phonenum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/textView3"
-        android:layout_alignRight="@+id/textView3"
-        android:layout_centerVertical="true"
-        android:text="차종" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/button5"
+        android:layout_alignTop="@+id/reserve_btn_anothernum"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_marginStart="39dp"
@@ -145,12 +136,24 @@
         android:layout_marginTop="18dp"
         android:text="연락처" />
 
+    <TextView
+        android:id="@+id/reserve_text_carsize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/reserve_btn_anothernum"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="39dp"
+        android:layout_marginLeft="39dp"
+        android:layout_marginTop="-113dp"
+        android:text="차종" />
+
     <EditText
         android:id="@+id/editText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/button3"
-        android:layout_alignRight="@+id/button3"
+        android:layout_alignEnd="@+id/reserve_btn_large"
+        android:layout_alignRight="@+id/reserve_btn_large"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="59dp"
         android:ems="10"

@@ -8,7 +8,7 @@
 
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/reserve_btn_medium"
         android:layout_width="420dp"
         android:layout_height="70dp"
         android:background="#FFF55F5F"
@@ -20,7 +20,7 @@
         tools:layout_editor_absoluteY="0dp" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/reserve_btn_booking"
         android:layout_width="250dp"
         android:layout_height="60dp"
         android:layout_marginTop="30dp"
@@ -28,56 +28,56 @@
         android:text="알림 음"
         android:textColor="#FFFFFFFF"
         android:textSize="40sp"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
-        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/reserve_btn_large"
+        app:layout_constraintTop_toBottomOf="@+id/reserve_btn_medium"
         app:layout_constraintVertical_chainStyle="packed"
         tools:layout_editor_absoluteX="16dp" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/reserve_btn_large"
         android:layout_width="250dp"
         android:layout_height="60dp"
         android:background="#FFF2BDBD"
         android:text="알림 사운드"
         android:textColor="#FFFFFFFF"
         android:textSize="40sp"
-        app:layout_constraintBottom_toTopOf="@+id/button4"
-        app:layout_constraintTop_toBottomOf="@+id/button2"
+        app:layout_constraintBottom_toTopOf="@+id/reserve_btn_mynum"
+        app:layout_constraintTop_toBottomOf="@+id/reserve_btn_booking"
         tools:layout_editor_absoluteX="16dp" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/reserve_btn_mynum"
         android:layout_width="250dp"
         android:layout_height="60dp"
         android:background="#FFF55F5F"
         android:text="진동"
         android:textColor="#FFFFFFFF"
         android:textSize="40sp"
-        app:layout_constraintBottom_toTopOf="@+id/button5"
-        app:layout_constraintTop_toBottomOf="@+id/button3"
+        app:layout_constraintBottom_toTopOf="@+id/reserve_btn_anothernum"
+        app:layout_constraintTop_toBottomOf="@+id/reserve_btn_large"
         tools:layout_editor_absoluteX="16dp" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/reserve_btn_anothernum"
         android:layout_width="250dp"
         android:layout_height="60dp"
         android:background="#FFF2BDBD"
         android:text="무음 시 : 진동"
         android:textColor="#FFFFFFFF"
         android:textSize="40sp"
-        app:layout_constraintBottom_toTopOf="@+id/button6"
-        app:layout_constraintTop_toBottomOf="@+id/button4"
+        app:layout_constraintBottom_toTopOf="@+id/reserve_btn_oneway"
+        app:layout_constraintTop_toBottomOf="@+id/reserve_btn_mynum"
         tools:layout_editor_absoluteX="16dp" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/reserve_btn_oneway"
         android:layout_width="250dp"
         android:layout_height="60dp"
         android:background="#FFF55F5F"
         android:text="무음 시: 소리"
         android:textColor="#FFFFFFFF"
         android:textSize="40sp"
-        app:layout_constraintTop_toBottomOf="@+id/button5"
+        app:layout_constraintTop_toBottomOf="@+id/reserve_btn_anothernum"
         tools:layout_editor_absoluteX="16dp" />
 
     <Switch
@@ -139,7 +139,7 @@
         tools:layout_editor_absoluteY="630dp" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/reserve_btn_roundtrip"
         android:layout_width="420dp"
         android:layout_height="5dp"
         android:background="@color/colorAccent"

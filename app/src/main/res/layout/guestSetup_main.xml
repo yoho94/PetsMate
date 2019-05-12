@@ -9,7 +9,7 @@
 
     <Button
 
-        android:id="@+id/button1"
+        android:id="@+id/reserve_btn_callnow"
         android:layout_marginBottom="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
         />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/reserve_btn_booking"
         android:layout_marginBottom="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
 
         />
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/reserve_btn_large"
         android:layout_marginBottom="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
 
         />
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/reserve_btn_mynum"
         android:layout_marginBottom="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
 
         />
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/reserve_btn_anothernum"
         android:layout_marginBottom="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
 
         />
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/reserve_btn_oneway"
         android:layout_marginBottom="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
