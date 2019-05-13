@@ -8,19 +8,25 @@
     <EditText
         android:id="@+id/reserve_text_startsearch"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
+        android:background="@drawable/wgborder"
         android:ems="10"
         android:hint="출발지 검색"
+        android:textSize="30dp"
+        android:textAlignment="center"
         android:inputType="text" />
 
     <EditText
         android:id="@+id/reserve_text_arrival"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="44dp"
         android:layout_alignParentTop="true"
         android:layout_marginTop="47dp"
+        android:background="@drawable/wgborder"
         android:ems="10"
         android:hint="도착지 검색"
+        android:textSize="30dp"
+        android:textAlignment="center"
         android:inputType="text" />
 
     <Button
@@ -68,7 +74,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="109dp"
         android:layout_marginLeft="109dp"
-        android:layout_marginTop="351dp"
+        android:layout_marginTop="396dp"
         android:background="@drawable/wgborder"
         android:text="내 번호" />
 
@@ -81,7 +87,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="111dp"
         android:layout_marginLeft="111dp"
-        android:layout_marginTop="459dp"
+        android:layout_marginTop="504dp"
         android:background="@drawable/wgborder"
         android:text="편도" />
 
@@ -94,7 +100,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="240dp"
         android:layout_marginLeft="240dp"
-        android:layout_marginTop="456dp"
+        android:layout_marginTop="501dp"
         android:background="@drawable/rbborder"
         android:text="왕복" />
 
@@ -107,7 +113,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="241dp"
         android:layout_marginLeft="241dp"
-        android:layout_marginTop="354dp"
+        android:layout_marginTop="399dp"
         android:background="@drawable/rbborder"
         android:text="다른 번호" />
 
@@ -143,22 +149,62 @@
         android:layout_alignTop="@+id/reserve_btn_anothernum"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginStart="39dp"
-        android:layout_marginLeft="39dp"
-        android:layout_marginTop="-113dp"
-        android:text="차종" />
+        android:layout_marginStart="29dp"
+        android:layout_marginLeft="29dp"
+        android:layout_marginTop="-168dp"
+        android:text="차종"
+        android:textSize="30dp" />
 
-    <EditText
-        android:id="@+id/editText"
+    <TextView
+        android:id="@+id/reserve_text_carsize2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/reserve_btn_anothernum"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="38dp"
+        android:layout_marginLeft="38dp"
+        android:layout_marginTop="-103dp"
+        android:text="펫 선택" />
+
+    <EditText
+        android:id="@+id/reserve_text_inputphonenumber"
+        android:layout_width="wrap_content"
+        android:layout_height="34dp"
         android:layout_alignEnd="@+id/reserve_btn_large"
         android:layout_alignRight="@+id/reserve_btn_large"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="59dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="244dp"
+        android:background="@drawable/wgborder"
         android:ems="10"
         android:hint="(다른 번호 입력)"
-        android:inputType="phone" />
+        android:inputType="phone"
+        android:textAlignment="center" />
+
+    <CheckBox
+        android:id="@+id/checkBox2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/reserve_btn_medium"
+        android:layout_alignRight="@+id/reserve_btn_medium"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="-7dp"
+        android:layout_marginBottom="407dp"
+
+        android:text="꼬미" />
+
+    <CheckBox
+        android:id="@+id/checkBox3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/reserve_btn_large"
+        android:layout_alignRight="@+id/reserve_btn_large"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="-7dp"
+        android:layout_marginBottom="407dp"
+        android:text="초코" />
 
 
 </RelativeLayout>
