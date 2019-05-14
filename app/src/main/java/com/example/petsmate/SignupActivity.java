@@ -1,5 +1,6 @@
 package com.example.petsmate;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -31,6 +32,13 @@ public class SignupActivity extends AppCompatActivity {
         password2Et = (EditText)findViewById(R.id.mpw2_input);
         nameEt = (EditText)findViewById(R.id.mname_input);
         phoneEt = (EditText)findViewById(R.id.mphon_input);
+
+        SignupPetActivity.petInfoArrayList.clear(); // Pet 회원가입 정보 초기화
+    }
+
+    public void onPetAdd(View v) { // 펫 추가 버튼
+        Intent intent = new Intent(getApplicationContext(), SignupPetActivity.class);
+        startActivity(intent);
     }
 
     public void onIdCheck(View v) {
@@ -38,13 +46,13 @@ public class SignupActivity extends AppCompatActivity {
         isCheck = true;
     }
 
-    public void onSignup(View v) {
+    public void onSignup(View v) { // 확인 버튼
         String id, password, password2, name, phone;
         id = idEt.getText().toString();
         password = passwordEt.getText().toString();
         password2 = password2Et.getText().toString();
         name = nameEt.getText().toString();
-        phone = phoneEt.getText().toString();
+        phone = phoneEt.getText().toString(); // TODO 010-1111-2222 을 01011112222로 변경 절차 필요
 
         if(!password.equals(password2)){
             Toast.makeText(getApplicationContext(),"비밀번호와 재확인 비밀번호를 다시 확인해주세요.",Toast.LENGTH_SHORT).show();
@@ -56,12 +64,21 @@ public class SignupActivity extends AppCompatActivity {
             MyTask myTask = new MyTask();
 
             try {
-                String result = myTask.execute(id,password,name,phone).get();
+                String result = myTask.execute(id,password,name,phone).get(); // JSP에 get 방식으로 요청
+
+                for(int i=0; i<SignupPetActivity.petInfoArrayList.size(); i++) {
+
+
+                    String petName = SignupPetActivity.petInfoArrayList.get(i).getName();
+                    String petPs = SignupPetActivity.petInfoArrayList.get(i).getPs();
+                    String petWeight = SignupPetActivity.petInfoArrayList.get(i).getWeight();
+                    String resultPet =  new SignupPetTask().execute(id,petName,petWeight,petPs).get();
+                }
 
                 if (result.equals("1")) {
                     Toast.makeText(getApplicationContext(),"회원가입 완료.",Toast.LENGTH_LONG).show();
                     finish();
-                } else {
+                } else { // TODO DB에 등록은 되고 회원가입 실패가 뜸
                     Toast.makeText(getApplicationContext(),"회원가입 실패.",Toast.LENGTH_LONG).show();
                 }
 

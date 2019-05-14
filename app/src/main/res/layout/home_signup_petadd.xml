@@ -93,11 +93,12 @@
         android:id="@+id/input_btn"
         android:layout_width="80dp"
         android:layout_height="30dp"
-        android:text="확인"
-        android:textColor="#000000"
-        android:background="#ffa7a7"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="460dp"/>
+        android:layout_marginTop="460dp"
+        android:background="#ffa7a7"
+        android:onClick="onOkClick"
+        android:text="확인"
+        android:textColor="#000000" />
 
 
     <Button
@@ -114,11 +115,12 @@
         android:id="@+id/petadd_btn"
         android:layout_width="80dp"
         android:layout_height="30dp"
-        android:text="펫추가"
-        android:textColor="#000000"
-        android:background="#ffa7a7"
         android:layout_marginLeft="255dp"
-        android:layout_marginTop="460dp"/>
+        android:layout_marginTop="460dp"
+        android:background="#ffa7a7"
+        android:onClick="onAddClick"
+        android:text="펫추가"
+        android:textColor="#000000" />
 
 
 
