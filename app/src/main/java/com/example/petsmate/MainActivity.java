@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 //        String id = test.getText().toString(); // 그것을 String로 바꿈 !
     }
 
+
     // 액티비티 띄우기
     public void onSignupClick(View v) {
         Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
