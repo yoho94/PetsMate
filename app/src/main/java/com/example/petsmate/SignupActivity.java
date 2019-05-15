@@ -65,7 +65,7 @@ public class SignupActivity extends AppCompatActivity {
 
             try {
                 String result = myTask.execute(id,password,name,phone).get(); // JSP에 get 방식으로 요청
-
+                Log.i("signup insert result : ", result);
                 for(int i=0; i<SignupPetActivity.petInfoArrayList.size(); i++) {
 
 
@@ -73,6 +73,7 @@ public class SignupActivity extends AppCompatActivity {
                     String petPs = SignupPetActivity.petInfoArrayList.get(i).getPs();
                     String petWeight = SignupPetActivity.petInfoArrayList.get(i).getWeight();
                     String resultPet =  new SignupPetTask().execute(id,petName,petWeight,petPs).get();
+                    Log.i("signupPet"+i+" result : ", result);
                 }
 
                 if (result.equals("1")) {
@@ -83,7 +84,7 @@ public class SignupActivity extends AppCompatActivity {
                 }
 
             } catch (Exception e) {
-                Log.i("DB ERROR",e.toString());
+                Log.i("DB SIGNUP ERROR",e.toString());
             }
 
         } else {

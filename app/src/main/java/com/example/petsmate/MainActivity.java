@@ -20,8 +20,13 @@ public class MainActivity extends AppCompatActivity {
 
 
     // 액티비티 띄우기
-    public void onSignupClick(View v) {
+    public void onSignupClick(View v) { // 회원가입 클릭
         Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
+        startActivity(intent);
+    }
+
+    public void onLoginClick(View v) { // 로그인 클릭
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(intent);
     }
 }
