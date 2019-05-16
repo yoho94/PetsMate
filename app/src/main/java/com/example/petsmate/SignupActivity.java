@@ -65,6 +65,7 @@ public class SignupActivity extends AppCompatActivity {
 
             try {
                 String result = myTask.execute(id,password,name,phone).get(); // JSP에 get 방식으로 요청
+                result = result.trim(); // 앞, 뒤 공백 제거
                 Log.i("signup insert result : ", result);
                 for(int i=0; i<SignupPetActivity.petInfoArrayList.size(); i++) {
 
@@ -73,13 +74,21 @@ public class SignupActivity extends AppCompatActivity {
                     String petPs = SignupPetActivity.petInfoArrayList.get(i).getPs();
                     String petWeight = SignupPetActivity.petInfoArrayList.get(i).getWeight();
                     String resultPet =  new SignupPetTask().execute(id,petName,petWeight,petPs).get();
-                    Log.i("signupPet"+i+" result : ", result);
+                    resultPet = resultPet.trim();
+                    Log.i("signupPet"+i+" result : ", resultPet);
                 }
 
-                if (result.equals("1")) {
-                    Toast.makeText(getApplicationContext(),"회원가입 완료.",Toast.LENGTH_LONG).show();
-                    finish();
-                } else { // TODO DB에 등록은 되고 회원가입 실패가 뜸
+                try {
+                    int resultInt = Integer.parseInt(result);
+
+                    if (resultInt == 1 || result.equals("1")) {
+                        Toast.makeText(getApplicationContext(),"회원가입 완료.",Toast.LENGTH_LONG).show();
+                        finish();
+                    } else {
+                        Toast.makeText(getApplicationContext(),"회원가입 실패.",Toast.LENGTH_LONG).show();
+                    }
+                }catch (Exception e) {
+                    Log.i("signupResultParse", e.toString());
                     Toast.makeText(getApplicationContext(),"회원가입 실패.",Toast.LENGTH_LONG).show();
                 }
 

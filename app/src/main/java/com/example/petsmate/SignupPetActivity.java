@@ -18,9 +18,26 @@ import java.net.URL;
 import java.util.ArrayList;
 
 class PetInfo {
+    private String code;
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
     private String name;
     private String weight;
     private String ps;
+
+    public PetInfo(String code, String name, String weight, String ps) {
+        this.code = code;
+        this.name = name;
+        this.weight = weight;
+        this.ps = ps;
+    }
 
     public PetInfo(String name, String weight, String ps) {
         this.name = name; this.weight = weight; this.ps = ps;
