@@ -65,15 +65,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            >
 
             <Button
                 android:id="@+id/reserve_btn_medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_weight="1"
-                android:layout_margin="30dp"
+                android:layout_margin="10dp"
                 android:background="@drawable/rbborder"
                 android:text="중형" />
 
@@ -81,151 +82,119 @@
                 android:id="@+id/reserve_btn_large"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_weight="1"
+                android:layout_margin="10dp"
                 android:background="@drawable/wgborder"
                 android:text="대형" />
 
         </LinearLayout>
 
+    </TableRow>
 
+
+    <TableRow
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_margin="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/reserve_text_carsize2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="펫 선택" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/reserve_pet_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            >
+
+
+
+        </LinearLayout>
 
     </TableRow>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+
+    <TableRow
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_width="match_parent"
+        android:layout_margin="10dp">
 
         <TextView
-            android:id="@+id/reserve_text_carsize2"
+            android:id="@+id/reserve_text_phonenum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="펫 선택" />
+            android:text="연락처" />
 
-    </LinearLayout>
+        <Button
+            android:id="@+id/reserve_btn_mynum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/wgborder"
+            android:layout_weight="1"
+            android:text="내 번호" />
 
-    <TableRow
-        android:layout_gravity="center"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_marginTop="10dp">
-
-
+        <Button
+            android:id="@+id/reserve_btn_anothernum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/rbborder"
+            android:layout_weight="1"
+            android:text="다른 번호" />
 
     </TableRow>
-
-
-
-    <Button
-        android:id="@+id/reserve_btn_mynum"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="109dp"
-        android:layout_marginLeft="109dp"
-        android:layout_marginTop="396dp"
-        android:background="@drawable/wgborder"
-        android:text="내 번호" />
-
-    <Button
-        android:id="@+id/reserve_btn_oneway"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="111dp"
-        android:layout_marginLeft="111dp"
-        android:layout_marginTop="504dp"
-        android:background="@drawable/wgborder"
-        android:text="편도" />
-
-    <Button
-        android:id="@+id/reserve_btn_roundtrip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="240dp"
-        android:layout_marginLeft="240dp"
-        android:layout_marginTop="501dp"
-        android:background="@drawable/rbborder"
-        android:text="왕복" />
-
-    <Button
-        android:id="@+id/reserve_btn_anothernum"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="241dp"
-        android:layout_marginLeft="241dp"
-        android:layout_marginTop="399dp"
-        android:background="@drawable/rbborder"
-        android:text="다른 번호" />
-
-
-
-    <TextView
-        android:id="@+id/reserve_text_phonenum"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/reserve_btn_anothernum"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="39dp"
-        android:layout_marginLeft="39dp"
-        android:layout_marginTop="18dp"
-        android:text="연락처" />
-
-
-
-
 
     <EditText
         android:id="@+id/reserve_text_inputphonenumber"
         android:layout_width="wrap_content"
         android:layout_height="34dp"
-        android:layout_alignEnd="@+id/reserve_btn_large"
-        android:layout_alignRight="@+id/reserve_btn_large"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginBottom="244dp"
+        android:layout_gravity="center"
         android:background="@drawable/wgborder"
         android:ems="10"
         android:hint="(다른 번호 입력)"
         android:inputType="phone"
         android:textAlignment="center" />
 
-    <CheckBox
-        android:id="@+id/checkBox2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/reserve_btn_medium"
-        android:layout_alignRight="@+id/reserve_btn_medium"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="-7dp"
-        android:layout_marginBottom="407dp"
 
-        android:text="꼬미" />
-
-    <CheckBox
-        android:id="@+id/checkBox3"
-        android:layout_width="wrap_content"
+    <TableRow
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/reserve_btn_large"
-        android:layout_alignRight="@+id/reserve_btn_large"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="-7dp"
-        android:layout_marginBottom="407dp"
-        android:text="초코" />
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:layout_gravity="center">
+
+        <Button
+            android:id="@+id/reserve_btn_oneway"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/wgborder"
+            android:text="편도"
+            android:layout_gravity="center"/>
+
+        <Button
+            android:id="@+id/reserve_btn_roundtrip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/rbborder"
+            android:text="왕복"
+            android:layout_gravity="center"/>
+    </TableRow>
+
 
 
 </LinearLayout>
