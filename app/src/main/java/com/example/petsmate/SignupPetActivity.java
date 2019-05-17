@@ -23,6 +23,17 @@ class PetInfo {
     public String getCode() {
         return code;
     }
+    public int getCodeInt() {
+        int codeInt;
+        try {
+            codeInt= Integer.parseInt(code);
+        }catch (Exception e) {
+            codeInt = -1;
+        }
+
+        return codeInt;
+
+    }
 
     public void setCode(String code) {
         this.code = code;
