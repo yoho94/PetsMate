@@ -119,6 +119,10 @@ class MemberInfo { // 회원의 정보를 저장할 클래스.
     public void setIsLogin(boolean isLogin) {
         this.isLogin = isLogin;
     }
+
+    public void clear() {
+        petInfos.clear();
+    }
 }
 
 public class MainActivity extends AppCompatActivity {

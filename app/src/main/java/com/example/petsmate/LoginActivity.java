@@ -60,6 +60,9 @@ public class LoginActivity extends AppCompatActivity {
                     } else {//TODO 펫 정보 들고와서 저장하기.
                         Toast.makeText(getApplicationContext(), "로그인 성공 !", Toast.LENGTH_SHORT).show();
 
+                        // 회원 정보 초기화
+//                        MainActivity.memberInfo.clear();
+
                         // 회원 정보
                         MainActivity.memberInfo.setName(info[0]);
                         MainActivity.memberInfo.setPhone(info[0]);
@@ -67,14 +70,16 @@ public class LoginActivity extends AppCompatActivity {
                         MainActivity.memberInfo.setIsLogin(true);
 
                         // 펫 정보
-                        String[] petInfo = resultPet.split("\n");
+                        String[] petInfo = resultPet.split("@end");
 
                         for(int i=0; i<petInfo.length; i++) {
+                            String petPs = null;
                             String[] petStr = petInfo[i].split("/");
                             String petCode = petStr[0];
                             String petName = petStr[1];
                             String petWeight = petStr[2];
-                            String petPs = petStr[3];
+                            if(petStr.length == 4)
+                                petPs = petStr[3];
 
                             MainActivity.memberInfo.getPetInfos().add(new PetInfo(petCode,petName,petWeight,petPs));
                         }
