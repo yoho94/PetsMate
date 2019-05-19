@@ -8,7 +8,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:text="이용자 등록"
+        android:text="반려동물 등록"
+        android:textStyle="bold"
         android:textColor="#ffffff"
         android:textSize="30dp"
         android:textAlignment="center"/>
@@ -31,7 +32,6 @@
         android:layout_marginTop="80dp"/>
 
     <EditText
-        android:id="@+id/petName"
         android:layout_width="120dp"
         android:layout_height="30dp"
         android:text="1~6자"
@@ -53,7 +53,6 @@
         android:layout_marginTop="160dp"/>
 
     <EditText
-        android:id="@+id/petWeight"
         android:layout_width="120dp"
         android:layout_height="30dp"
         android:text="선택"
@@ -81,7 +80,6 @@
         android:layout_marginLeft="30dp"/>
 
     <EditText
-        android:id="@+id/petComment"
         android:layout_width="340dp"
         android:layout_height="140dp"
         android:layout_marginLeft="30dp"
@@ -93,12 +91,11 @@
         android:id="@+id/input_btn"
         android:layout_width="80dp"
         android:layout_height="30dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="460dp"
-        android:background="#ffa7a7"
-        android:onClick="onOkClick"
         android:text="확인"
-        android:textColor="#000000" />
+        android:textColor="#000000"
+        android:background="#ffa7a7"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="460dp"/>
 
 
     <Button
@@ -115,19 +112,10 @@
         android:id="@+id/petadd_btn"
         android:layout_width="80dp"
         android:layout_height="30dp"
-        android:layout_marginLeft="255dp"
-        android:layout_marginTop="460dp"
-        android:background="#ffa7a7"
-        android:onClick="onAddClick"
         android:text="펫추가"
-        android:textColor="#000000" />
-
-
-
-
-
-
+        android:textColor="#000000"
+        android:background="#ffa7a7"
+        android:layout_marginLeft="255dp"
+        android:layout_marginTop="460dp"/>
 
 </RelativeLayout>
-
-
