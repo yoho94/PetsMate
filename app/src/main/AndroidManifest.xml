@@ -23,6 +23,7 @@
         <activity android:name=".SignupPetActivity"/>
         <activity android:name=".ReserveMain"/>
         <activity android:name=".LoginActivity"/>
+        <activity android:name=".Idfind"/>
 
     </application>
 

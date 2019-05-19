@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -28,6 +29,16 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.home_login);
         idET = (EditText) findViewById(R.id.id_input);
         pwET = (EditText) findViewById(R.id.pw_input);
+        Button findButton = (Button)findViewById(R.id.idserch_btn);
+
+        findButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),Idfind.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     public void onLogin(View v) {
