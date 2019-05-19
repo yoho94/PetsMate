@@ -58,6 +58,7 @@ public class LoginActivity extends AppCompatActivity {
                 result = result.trim(); // 앞, 뒤 공백 제거
                 resultPet = resultPet.trim();
                 Log.i("Login result : ", result);
+                Log.i("Login petReslut", resultPet);
 
 
 
@@ -72,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "로그인 성공 !", Toast.LENGTH_SHORT).show();
 
                         // 회원 정보 초기화
-//                        MainActivity.memberInfo.clear();
+                        MainActivity.memberInfo.clear();
 
                         // 회원 정보
                         MainActivity.memberInfo.setName(info[0]);
@@ -81,18 +82,20 @@ public class LoginActivity extends AppCompatActivity {
                         MainActivity.memberInfo.setIsLogin(true);
 
                         // 펫 정보
-                        String[] petInfo = resultPet.split("@end");
+                        if(!(resultPet.equals("")) && !(resultPet == null)) {
+                            String[] petInfo = resultPet.split("@end");
 
-                        for(int i=0; i<petInfo.length; i++) {
-                            String petPs = null;
-                            String[] petStr = petInfo[i].split("/");
-                            String petCode = petStr[0];
-                            String petName = petStr[1];
-                            String petWeight = petStr[2];
-                            if(petStr.length == 4)
-                                petPs = petStr[3];
+                            for (int i = 0; i < petInfo.length; i++) {
+                                String petPs = null;
+                                String[] petStr = petInfo[i].split("/");
+                                String petCode = petStr[0];
+                                String petName = petStr[1];
+                                String petWeight = petStr[2];
+                                if (petStr.length == 4)
+                                    petPs = petStr[3];
 
-                            MainActivity.memberInfo.getPetInfos().add(new PetInfo(petCode,petName,petWeight,petPs));
+                                MainActivity.memberInfo.getPetInfos().add(new PetInfo(petCode, petName, petWeight, petPs));
+                            }
                         }
 
                         Intent intent = new Intent(getApplicationContext(), ReserveMain.class);
