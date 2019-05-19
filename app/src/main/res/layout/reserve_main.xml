@@ -107,33 +107,14 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="100dp">
 
-            <TableLayout
-                android:id="@+id/reserve_layout_tablePet"
+            <ListView
+                android:id="@+id/reserve_petListView"
                 android:layout_width="match_parent"
-                android:layout_height="500dp">
+                android:layout_height="match_parent">
 
-                <!--<TableRow-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:gravity="center">-->
-
-                    <!--<CheckBox-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:text="초코"/>-->
-
-                    <!--<CheckBox-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:text="초코"/>-->
-
-                <!--</TableRow>-->
-
-            </TableLayout>
-
-
+            </ListView>
 
         </ScrollView>
     </TableRow>
