@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pets&Mate"
+        android:text="Pets Mate"
         android:textSize="30dp"
         android:textStyle="bold"
         android:textColor="#ffffff"
@@ -51,8 +51,6 @@
         android:layout_marginTop="320dp"
         android:text="기사 등록"
         android:textSize="30dp"/>
-
-
 
 
 </RelativeLayout>
