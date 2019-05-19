@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import java.util.ArrayList;
@@ -128,6 +129,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent intent = getIntent();
+        Button loginButton = (Button)findViewById(R.id.login);
+        Button userjoinButton = (Button)findViewById(R.id.user_join);
+
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+        userjoinButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),SignupActivity.class);
+                startActivity(intent);
+            }
+        });
 
 //          TEST
 //        EditText test = (EditText) findViewById(R.id.id_input); 로그인의 ID 입력 창
@@ -136,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     // 액티비티 띄우기
-    public void onSignupClick(View v) { // 회원가입 클릭
+    public void onSignupClick(View v) { // 이용자등록 클릭
         Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
         startActivity(intent);
     }
@@ -145,5 +164,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(intent);
     }
+
 }
 
