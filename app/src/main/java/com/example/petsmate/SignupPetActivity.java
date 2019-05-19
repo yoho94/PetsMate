@@ -1,10 +1,14 @@
 package com.example.petsmate;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -94,6 +98,34 @@ public class SignupPetActivity extends AppCompatActivity {
         name = (EditText) findViewById(R.id.petName);
         weight = (EditText) findViewById(R.id.petWeight);
         comment = (EditText) findViewById(R.id.petComment);
+
+        Button cancelButton = (Button)findViewById(R.id.cancel_btn);
+
+        cancelButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(SignupPetActivity.this);
+                builder.setMessage("취소하시겠습니까?");
+                builder.setTitle("취소 알림창").setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        finish();
+                    }
+
+                }).setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                AlertDialog alert = builder.create();
+                alert.setTitle("종료알림창");
+                alert.show();
+            }
+        });//취소 버튼 누르면 알림창뜨는거.
+
+
+
     }
 
     // 펫 추가 버튼
