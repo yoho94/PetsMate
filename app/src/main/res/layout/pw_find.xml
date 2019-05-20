@@ -25,7 +25,7 @@
         android:layout_marginTop="130dp"/>
 
     <EditText
-        android:id="@+id/findName"
+        android:id="@+id/pwfind_name_ET"
         android:layout_width="190dp"
         android:layout_height="30dp"
         android:textSize="25dp"
@@ -46,7 +46,7 @@
         android:layout_marginTop="180dp"/>
 
     <EditText
-        android:id="@+id/findid_et"
+        android:id="@+id/pwfind_id_ET"
         android:layout_width="190dp"
         android:layout_height="30dp"
         android:textSize="25dp"
@@ -68,7 +68,7 @@
         android:layout_marginTop="230dp"/>
 
     <EditText
-        android:id="@+id/findPhone"
+        android:id="@+id/pwfind_phone_ET"
         android:layout_width="190dp"
         android:layout_height="30dp"
         android:hint="휴대전화번호"
@@ -81,7 +81,7 @@
         android:textAlignment="center"/>
 
     <Button
-        android:id="@+id/findnext_btn"
+        android:id="@+id/fwnext_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"

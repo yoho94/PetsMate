@@ -136,6 +136,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Button loginButton = (Button)findViewById(R.id.login);
         Button userjoinButton = (Button)findViewById(R.id.user_join);
+        Button driverjoinButton=(Button)findViewById(R.id.driver_join);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,6 +149,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),SignupActivity.class);
+                startActivity(intent);
+            }
+        });
+        driverjoinButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),DriverSignupActivity.class);
                 startActivity(intent);
             }
         });

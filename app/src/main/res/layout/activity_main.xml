@@ -45,11 +45,11 @@
         android:textSize="30dp" />
 
     <Button
+        android:id="@+id/driver_join"
         android:layout_width="240dp"
         android:layout_height="60dp"
         android:layout_centerHorizontal="true"
         android:background="#ffffff"
-        android:id="@+id/driver_join"
         android:layout_marginTop="320dp"
         android:text="기사 등록"
         android:textSize="30dp"/>
