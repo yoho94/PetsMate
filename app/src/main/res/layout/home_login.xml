@@ -31,6 +31,7 @@
         android:layout_height="40dp"
         android:layout_centerHorizontal="true"
         android:hint="패스워드"
+        android:password="true"
         android:textColor="#000000"
         android:background="#ffffff"
         android:layout_marginTop="165dp"
@@ -60,11 +61,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:text=" ID/PW 찾기 "
+            android:text=" ID 찾기 "
             android:textColor="#000000"
             android:textSize="25dp"
             android:background="#FFA7A7"
             android:layout_margin="10dp"/>
+
+        <Button
+            android:id="@+id/pwserch_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="PW 찾기"
+            android:textColor="#000000"
+            android:textSize="25dp"
+            android:background="#FFA7A7"
+            android:layout_margin="10dp"
+            android:padding="2dp"/>
 
     </LinearLayout>
 

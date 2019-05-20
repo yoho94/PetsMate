@@ -30,11 +30,20 @@ public class LoginActivity extends AppCompatActivity {
         idET = (EditText) findViewById(R.id.id_input);
         pwET = (EditText) findViewById(R.id.pw_input);
         Button findButton = (Button)findViewById(R.id.idserch_btn);
+        Button pwfindBT=(Button)findViewById(R.id.pwserch_btn);
 
         findButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),Idfind.class);
+                startActivity(intent);
+            }
+        });
+
+        pwfindBT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),PwfindActivity.class);
                 startActivity(intent);
             }
         });

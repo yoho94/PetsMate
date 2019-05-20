@@ -25,6 +25,7 @@
         <activity android:name=".ReserveMain"/>
         <activity android:name=".LoginActivity"/>
         <activity android:name=".Idfind"/>
+        <activity android:name=".PwfindActivity"/>
 
     </application>
 
