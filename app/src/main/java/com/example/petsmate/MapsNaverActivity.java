@@ -3,7 +3,6 @@ package com.example.petsmate;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.MapView;
 import com.naver.maps.map.NaverMap;
