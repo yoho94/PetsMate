@@ -235,6 +235,26 @@
 
 
 
+            <Button
+                android:id="@+id/reserve_btn_callnow1"
+                android:layout_width="356dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/wgborder"
+                android:text="기사지정" />
+
+            <Button
+                android:id="@+id/reserve_btn_booking1"
+                android:layout_width="356dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/rbborder"
+                android:text="완료하기"
+                android:textColor="#FFFFFF"/>
+
     </LinearLayout>
 
 </com.example.petsmate.CustomScrollView>
