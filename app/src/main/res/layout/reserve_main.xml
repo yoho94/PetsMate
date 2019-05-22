@@ -48,7 +48,7 @@
 
         <Button
             android:id="@+id/reserve_btn_booking"
-            android:layout_width="355dp"
+            android:layout_width="356dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
@@ -82,7 +82,8 @@
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:background="@drawable/rbborder"
-                    android:text="중형" />
+                    android:text="중형"
+                    android:textColor="#FFFFFF" />
 
                 <Button
                     android:id="@+id/reserve_btn_large"
@@ -112,21 +113,48 @@
 
 
             <!--<ScrollView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="100dp"-->
-                <!--android:fillViewport="true">-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="100dp"-->
+            <!--android:fillViewport="true">-->
 
-                <ListView
-                    android:id="@+id/reserve_petListView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="100dp"
-                    android:choiceMode="multipleChoice">
+            <ListView
+                android:id="@+id/reserve_petListView"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:background="@drawable/wgborder"
+                android:choiceMode="multipleChoice">
 
-                </ListView>
-
+            </ListView>
             <!--</ScrollView>-->
         </TableRow>
 
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+            <Button
+                android:id="@+id/reserve_pluspet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="60dp"
+                android:layout_marginLeft="39dp"
+                android:background="@drawable/peachborder"
+                android:layout_weight="1"
+                android:text="미등록 펫 추가"
+                android:textColor="#000000" />
+
+            <Button
+                android:id="@+id/reserve_pluspetnum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/peachborder"
+                android:text="미등록 펫(n)"
+                android:textColor="#000000" />
+        </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
@@ -146,8 +174,9 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:background="@drawable/wgborder"
-                android:text="내 번호" />
+                android:background="@drawable/rbborder"
+                android:text="내 번호"
+                android:textColor="#FFFFFF" />
 
             <Button
                 android:id="@+id/reserve_btn_anothernum"
@@ -155,7 +184,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:background="@drawable/rbborder"
+                android:background="@drawable/wgborder"
                 android:text="다른 번호" />
 
         </TableRow>
@@ -166,35 +195,65 @@
             android:layout_height="34dp"
             android:layout_gravity="center"
             android:background="@drawable/wgborder"
-            android:ems="10"
+            android:ems="12"
             android:hint="(다른 번호 입력)"
             android:inputType="phone"
             android:textAlignment="center" />
 
 
         <TableRow
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:layout_margin="10dp">
+
+            <TextView
+                android:id="@+id/reserve_text_road"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="  경로  " />
 
             <Button
                 android:id="@+id/reserve_btn_oneway"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:background="@drawable/wgborder"
-                android:text="편도" />
+                android:layout_weight="1"
+                android:background="@drawable/rbborder"
+                android:text="편도"
+                android:textColor="#FFFFFF" />
 
             <Button
                 android:id="@+id/reserve_btn_roundtrip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:background="@drawable/rbborder"
+                android:layout_weight="1"
+                android:background="@drawable/wgborder"
                 android:text="왕복" />
         </TableRow>
 
+
+
+            <Button
+                android:id="@+id/reserve_btn_callnow1"
+                android:layout_width="356dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/wgborder"
+                android:text="기사지정" />
+
+            <Button
+                android:id="@+id/reserve_btn_booking1"
+                android:layout_width="356dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/rbborder"
+                android:text="완료하기"
+                android:textColor="#FFFFFF"/>
 
     </LinearLayout>
 
