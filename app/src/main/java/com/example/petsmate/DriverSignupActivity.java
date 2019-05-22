@@ -43,9 +43,9 @@ public class DriverSignupActivity extends AppCompatActivity {
 
     ImageView driverIv, carIv1, carIv2;
     String driverImagePath, carImagePath1, carImagePath2, uploadURL;
-    boolean[] upLoadCheck = {false,false,false};
+    boolean[] upLoadCheck = {false, false, false};
 
-    EditText idEt, passwordEt, password2Et, nameEt, phoneEt;
+    EditText idEt, passwordEt, password2Et, nameEt, phoneEt, carNumberEt;
     boolean isCheck = true;
 
     @Override
@@ -54,9 +54,9 @@ public class DriverSignupActivity extends AppCompatActivity {
         setContentView(R.layout.driver_signup);
         Intent intent = getIntent();
 
-        Button drcancelButton=(Button)findViewById(R.id.dr_cancel_BTN);
+        Button drcancelButton = (Button) findViewById(R.id.dr_cancel_BTN);
 
-        drcancelButton.setOnClickListener(new View.OnClickListener(){
+        drcancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(DriverSignupActivity.this);
@@ -88,6 +88,7 @@ public class DriverSignupActivity extends AppCompatActivity {
         driverIv = (ImageView) findViewById(R.id.dr_image_up);
         carIv1 = (ImageView) findViewById(R.id.car_image_up);
         carIv2 = (ImageView) findViewById(R.id.car2_image_up);
+        carNumberEt = (EditText) findViewById(R.id.dr_car_number);
 
         uploadURL = "http://34.66.28.111:8080/DB/driverImageUpLoad.jsp";
 
@@ -147,6 +148,19 @@ public class DriverSignupActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        try {
+            File file = new File(getRealPathFromURI(data.getData()));
+
+            long size = file.length(); // 파일의 크기
+            int max = 10 * 1024 * 1024; // 업로드 최대 크기
+
+            if (size >= max) {
+                Toast.makeText(getApplicationContext(), "10MB 이하의 이미지를 선택하세요.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        } catch (Exception e) {
+            Log.i("fileSizeCheck", e.toString());
+        }
         if (requestCode == 1) {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
@@ -170,7 +184,7 @@ public class DriverSignupActivity extends AppCompatActivity {
                     new Thread() {
                         @Override
                         public void run() {
-                            DoFileUpload(uploadURL,driverImagePath);
+                            DoFileUpload(uploadURL, driverImagePath);
                         }
                     }.start();
 
@@ -182,7 +196,7 @@ public class DriverSignupActivity extends AppCompatActivity {
                 }
             }
         } else if (requestCode == 2) {
-            if(resultCode == RESULT_OK) {
+            if (resultCode == RESULT_OK) {
                 try {
                     // 선택한 이미지에서 비트맵 생성
                     InputStream in = getContentResolver().openInputStream(data.getData());
@@ -203,7 +217,7 @@ public class DriverSignupActivity extends AppCompatActivity {
                     new Thread() {
                         @Override
                         public void run() {
-                            DoFileUpload(uploadURL,carImagePath1);
+                            DoFileUpload(uploadURL, carImagePath1);
                         }
                     }.start();
 
@@ -215,7 +229,7 @@ public class DriverSignupActivity extends AppCompatActivity {
                 }
             }
         } else if (requestCode == 3) {
-            if(resultCode == RESULT_OK) {
+            if (resultCode == RESULT_OK) {
                 try {
                     // 선택한 이미지에서 비트맵 생성
                     InputStream in = getContentResolver().openInputStream(data.getData());
@@ -236,7 +250,7 @@ public class DriverSignupActivity extends AppCompatActivity {
                     new Thread() {
                         @Override
                         public void run() {
-                            DoFileUpload(uploadURL,carImagePath2);
+                            DoFileUpload(uploadURL, carImagePath2);
                         }
                     }.start();
 
@@ -255,35 +269,73 @@ public class DriverSignupActivity extends AppCompatActivity {
         isCheck = true;
     }
 
-    // TODO 이미지 서버에 저장 필요
+    public String getFileName(String Path) {
+        String[] str = Path.split("/");
+        String name = str[str.length - 1];
+        return name;
+    }
+
     public void onSignup(View v) { // 확인 버튼
-        String id, password, password2, name, phone;
+        String id, password, password2, name, phone, carNumber, carFileName1, carFileName2, driverFileName;
         id = idEt.getText().toString();
         password = passwordEt.getText().toString();
         password2 = password2Et.getText().toString();
         name = nameEt.getText().toString();
         phone = phoneEt.getText().toString(); // TODO 010-1111-2222 을 01011112222로 변경 절차 필요
+        carNumber = carNumberEt.getText().toString();
 
         if (!password.equals(password2)) {
             Toast.makeText(getApplicationContext(), "비밀번호와 재확인 비밀번호를 다시 확인해주세요.", Toast.LENGTH_SHORT).show();
             return;
         }
 
+        for (int i = 0; i < upLoadCheck.length; i++)
+            if (!upLoadCheck[i]) {
+                Toast.makeText(getApplicationContext(), "이미지를 3장 전부 올려주세요.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+        carFileName1 = getFileName(carImagePath1);
+        carFileName2 = getFileName(carImagePath2);
+        driverFileName = getFileName(driverImagePath);
+
 
         if (isCheck) {
             MyTask myTask = new MyTask();
 
             try {
-                String result = myTask.execute(id, password, name, phone).get(); // JSP에 get 방식으로 요청
+                String result = myTask.execute(id, password, name, phone, carNumber).get(); // JSP에 get 방식으로 요청
                 result = result.trim(); // 앞, 뒤 공백 제거
-                Log.i("signup insert result : ", result);
+                Log.i("driver insert result : ", result);
 
                 try {
                     int resultInt = Integer.parseInt(result);
 
                     if (resultInt == 1 || result.equals("1")) {
-                        Toast.makeText(getApplicationContext(), "회원가입 완료.", Toast.LENGTH_LONG).show();
-                        finish();
+                        Log.i("driverSignup", "DB 저장 완료");
+
+                        ImageModify imageModify = new ImageModify();
+                        String imageModifyResult = imageModify.execute(id, carFileName1, carFileName2, driverFileName).get();
+                        imageModifyResult = imageModifyResult.trim();
+
+                        String[] arrayIMR = imageModifyResult.split("@@");
+                        for(int i=0; i<arrayIMR.length; i++) {
+                            Log.i("arrayIMR",arrayIMR[i]);
+                        }
+
+                        DriverImage driverImage = new DriverImage();
+                        String driverImageResult = driverImage.execute(id, arrayIMR[0], arrayIMR[1], arrayIMR[2]).get();
+                        driverImageResult = driverImageResult.trim();
+
+                        Log.i("DIR", driverImageResult);
+
+
+                        if(driverImageResult.equals("1")) {
+                            Toast.makeText(getApplicationContext(), "회원가입 완료.", Toast.LENGTH_LONG).show();
+                            finish();
+                        } else {
+                            Toast.makeText(getApplicationContext(), "????", Toast.LENGTH_LONG).show();
+                        }
                     } else {
                         Toast.makeText(getApplicationContext(), "회원가입 실패.", Toast.LENGTH_LONG).show();
                     }
@@ -311,7 +363,7 @@ public class DriverSignupActivity extends AppCompatActivity {
                 String str;
 
                 // 접속할 서버 주소 (이클립스에서 android.jsp 실행시 웹브라우저 주소)
-                URL url = new URL("http://34.66.28.111:8080/DB/signUp.jsp");
+                URL url = new URL("http://34.66.28.111:8080/DB/driverSignUp.jsp");
 
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
@@ -320,7 +372,105 @@ public class DriverSignupActivity extends AppCompatActivity {
 
                 // 전송할 데이터. GET 방식으로 작성
 //                sendMsg = "id=" + strings[0] + "&pw=" + strings[1];
-                sendMsg = String.format("id=%s&password=%s&name=%s&phone=%s", strings[0], strings[1], strings[2], strings[3]);
+                sendMsg = String.format("id=%s&password=%s&name=%s&phone=%s&carNumber=%s", strings[0], strings[1], strings[2], strings[3], strings[4]);
+
+                osw.write(sendMsg);
+                osw.flush();
+
+                //jsp와 통신 성공 시 수행
+                if (conn.getResponseCode() == conn.HTTP_OK) {
+                    InputStreamReader tmp = new InputStreamReader(conn.getInputStream(), "UTF-8");
+                    BufferedReader reader = new BufferedReader(tmp);
+                    StringBuffer buffer = new StringBuffer();
+
+                    // jsp에서 보낸 값을 받는 부분
+                    while ((str = reader.readLine()) != null) {
+                        buffer.append(str);
+                    }
+                    receiveMsg = buffer.toString();
+                } else {
+                    // 통신 실패
+                }
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            //jsp로부터 받은 리턴 값
+            return receiveMsg;
+        }
+    }
+
+    class ImageModify extends AsyncTask<String, Void, String> {
+        String sendMsg, receiveMsg;
+
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                String str;
+
+                // 접속할 서버 주소 (이클립스에서 android.jsp 실행시 웹브라우저 주소)
+                URL url = new URL("http://34.66.28.111:8080/DB/driverImageModify.jsp");
+
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                conn.setRequestMethod("POST");
+                OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
+
+                // 전송할 데이터. GET 방식으로 작성
+//                sendMsg = "id=" + strings[0] + "&pw=" + strings[1];
+                sendMsg = String.format("id=%s&carImage1=%s&carImage2=%s&driverImage=%s", strings[0], strings[1], strings[2], strings[3]);
+
+                osw.write(sendMsg);
+                osw.flush();
+
+                //jsp와 통신 성공 시 수행
+                if (conn.getResponseCode() == conn.HTTP_OK) {
+                    InputStreamReader tmp = new InputStreamReader(conn.getInputStream(), "UTF-8");
+                    BufferedReader reader = new BufferedReader(tmp);
+                    StringBuffer buffer = new StringBuffer();
+
+                    // jsp에서 보낸 값을 받는 부분
+                    while ((str = reader.readLine()) != null) {
+                        buffer.append(str);
+                    }
+                    receiveMsg = buffer.toString();
+                } else {
+                    // 통신 실패
+                }
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            //jsp로부터 받은 리턴 값
+            return receiveMsg;
+        }
+
+
+    }
+
+    class DriverImage extends AsyncTask<String, Void, String> {
+        String sendMsg, receiveMsg;
+
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                String str;
+
+                // 접속할 서버 주소 (이클립스에서 android.jsp 실행시 웹브라우저 주소)
+                URL url = new URL("http://34.66.28.111:8080/DB/driverImage.jsp");
+
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                conn.setRequestMethod("POST");
+                OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
+
+                // 전송할 데이터. GET 방식으로 작성
+//                sendMsg = "id=" + strings[0] + "&pw=" + strings[1];
+                sendMsg = String.format("id=%s&carImage1=%s&carImage2=%s&driverImage=%s", strings[0], strings[1], strings[2], strings[3]);
 
                 osw.write(sendMsg);
                 osw.flush();
@@ -397,9 +547,7 @@ public class DriverSignupActivity extends AppCompatActivity {
     }
 
 
-
     public void HttpFileUpload(String urlString, String params, String fileName) {
-
 
 
         String lineEnd = "\r\n";
@@ -455,7 +603,6 @@ public class DriverSignupActivity extends AppCompatActivity {
                 dos.writeBytes(lineEnd);
 
 
-
                 int bytesAvailable = mFileInputStream.available();
 
                 int maxBufferSize = 1024 * 1024;
@@ -463,11 +610,9 @@ public class DriverSignupActivity extends AppCompatActivity {
                 int bufferSize = Math.min(bytesAvailable, maxBufferSize);
 
 
-
                 byte[] buffer = new byte[bufferSize];
 
                 int bytesRead = mFileInputStream.read(buffer, 0, bufferSize);
-
 
 
                 // read image
@@ -483,7 +628,6 @@ public class DriverSignupActivity extends AppCompatActivity {
                     bytesRead = mFileInputStream.read(buffer, 0, bufferSize);
 
                 }
-
 
 
                 dos.writeBytes(lineEnd);
@@ -525,7 +669,6 @@ public class DriverSignupActivity extends AppCompatActivity {
         }
 
     }
-
 
 
     class ImageUploadTask extends AsyncTask<Void, Void, Void> {
