@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E91E63">
+    android:background="@color/colorAccent">
 
 
     <Button
@@ -11,7 +11,7 @@
         android:layout_width="420dp"
         android:layout_height="70dp"
         android:background="#FFF55F5F"
-        android:text="설정 > 버전 정보(구 버전)"
+        android:text="설정 > 버전 정보(최신 버전)"
         android:textColor="#FFFFFFFF"
         android:textSize="30sp" />
 
@@ -45,6 +45,6 @@
 
         android:layout_marginRight="100dp"
         android:layout_marginBottom="100dp"
-        android:text="업데이트" />
+        android:text="확인" />
 
 </RelativeLayout>
