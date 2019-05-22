@@ -149,10 +149,10 @@
             android:id="@+id/dr_image_up"
             android:layout_width="160dp"
             android:layout_height="160dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="360dp"
             android:background="#ffffff"
-            android:onClick="onDriverImage" />
+            android:layout_marginTop="360dp"
+            android:layout_marginLeft="30dp"
+            />
         
         <TextView
             android:layout_width="wrap_content"
@@ -196,20 +196,20 @@
             android:id="@+id/car_image_up"
             android:layout_width="160dp"
             android:layout_height="160dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="550dp"
             android:background="#ffffff"
-            android:onClick="onCarImage1" />
+            android:layout_marginTop="550dp"
+            android:layout_marginLeft="30dp"
+            />
 
         <ImageView
             android:id="@+id/car2_image_up"
             android:layout_width="160dp"
             android:layout_height="160dp"
-            android:layout_marginLeft="220dp"
-            android:layout_marginTop="550dp"
-            android:layout_marginRight="30dp"
             android:background="#ffffff"
-            android:onClick="onCarImage2" />
+            android:layout_marginTop="550dp"
+            android:layout_marginLeft="220dp"
+            android:layout_marginRight="30dp"
+            />
 
         <TextView
         android:layout_width="300dp"

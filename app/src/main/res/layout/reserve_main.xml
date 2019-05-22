@@ -13,6 +13,12 @@
         android:orientation="vertical"
         tools:context=".MainActivity">
 
+        <fragment
+            android:id="@+id/reserve_map_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:name="com.naver.maps.map.MapFragment" />
+
         <EditText
             android:id="@+id/reserve_text_startsearch"
             android:layout_width="match_parent"

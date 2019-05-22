@@ -25,6 +25,11 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        if(MainActivity.memberInfo.getIsLogin()) { // 로그인시 로그인창 안보고 바로 넘어가기
+            Intent intent = new Intent(getApplicationContext(), ReserveMain.class);
+            startActivity(intent);
+            finish();
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_login);
         idET = (EditText) findViewById(R.id.id_input);
