@@ -149,10 +149,10 @@
             android:id="@+id/dr_image_up"
             android:layout_width="160dp"
             android:layout_height="160dp"
-            android:background="#ffffff"
-            android:layout_marginTop="360dp"
             android:layout_marginLeft="30dp"
-            />
+            android:layout_marginTop="360dp"
+            android:background="#ffffff"
+            android:onClick="onDriverImage" />
         
         <TextView
             android:layout_width="wrap_content"
@@ -176,11 +176,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="차종"
-            android:textStyle="bold"
-            android:textSize="15dp"
             android:layout_marginLeft="220dp"
-            android:layout_marginTop="425dp"/>
+            android:layout_marginTop="425dp"
+            android:text="차종"
+            android:textSize="15dp"
+            android:textStyle="bold" />
 
         <EditText
             android:layout_width="90dp"
@@ -196,20 +196,20 @@
             android:id="@+id/car_image_up"
             android:layout_width="160dp"
             android:layout_height="160dp"
-            android:background="#ffffff"
-            android:layout_marginTop="550dp"
             android:layout_marginLeft="30dp"
-            />
+            android:layout_marginTop="550dp"
+            android:background="#ffffff"
+            android:onClick="onCarImage1" />
 
         <ImageView
             android:id="@+id/car2_image_up"
             android:layout_width="160dp"
             android:layout_height="160dp"
-            android:background="#ffffff"
-            android:layout_marginTop="550dp"
             android:layout_marginLeft="220dp"
+            android:layout_marginTop="550dp"
             android:layout_marginRight="30dp"
-            />
+            android:background="#ffffff"
+            android:onClick="onCarImage2" />
 
         <TextView
         android:layout_width="300dp"
