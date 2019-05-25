@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
 import android.view.Display;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -17,10 +18,16 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
-public class CallSearchDialog {
+public class CallSearchDialog implements View.OnLongClickListener{
 
+    Place searchPlace;
     private Context context;
     private ArrayList<Place> places;
+    private  EditText editText;
+    ArrayList<TextView> placeNames = new ArrayList<>();
+    ArrayList<TextView> distances = new ArrayList<>();
+    ArrayList<TextView> phoneNumbers = new ArrayList<>();
+    Dialog dlg;
 
     public CallSearchDialog(Context context, ArrayList<Place> places) {
         this.context = context;
@@ -28,10 +35,12 @@ public class CallSearchDialog {
     }
 
     // 호출할 다이얼로그 함수를 정의한다.
-    public void callFunction() {
+    public void callFunction(EditText editText, Place searchPlace) {
+        this.searchPlace = searchPlace;
+        this.editText = editText;
 
-        // 커스텀 다이얼로그를 정의하기위해 Dialog클래스를 생성한다.
-        final Dialog dlg = new Dialog(context);
+       // 커스텀 다이얼로그를 정의하기위해 Dialog클래스를 생성한다.
+        dlg = new Dialog(context);
 
         // 액티비티의 타이틀바를 숨긴다.
         dlg.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -46,9 +55,6 @@ public class CallSearchDialog {
         params.height =(int) (metrics.heightPixels * 0.8);
         dlg.getWindow().setAttributes(params);
 
-        ArrayList<TextView> placeNames = new ArrayList<>();
-        ArrayList<TextView> distances = new ArrayList<>();
-        ArrayList<TextView> phoneNumbers = new ArrayList<>();
 
         placeNames.add((TextView) dlg.findViewById(R.id.place_name1));
         placeNames.add((TextView) dlg.findViewById(R.id.place_name2));
@@ -76,6 +82,10 @@ public class CallSearchDialog {
 
             double distance = Double.parseDouble(place.getDistance()) / 1000;
 
+            placeNames.get(i).setOnLongClickListener(this);
+            distances.get(i).setOnLongClickListener(this);
+            phoneNumbers.get(i).setOnLongClickListener(this);
+
 
 
 
@@ -90,5 +100,37 @@ public class CallSearchDialog {
 
         // 커스텀 다이얼로그를 노출한다.
         dlg.show();
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        TextView clickET = (TextView) v;
+
+        for(int i=0; i<places.size(); i++) {
+            Place place = places.get(i);
+            if(placeNames.get(i) == clickET || phoneNumbers.get(i) == clickET || distances.get(i) == clickET) {
+                String placeName = placeNames.get(i).getText().toString();
+                String distancesStr = distances.get(i).getText().toString();
+                int addressPos = distancesStr.lastIndexOf('|');
+                String address = distancesStr.substring(addressPos+1).trim();
+
+                editText.setText(address);
+
+                searchPlace.setDistance(place.getDistance());
+                searchPlace.setJibunAdress(place.getJibunAdress());
+                searchPlace.setLat(place.getLat());
+                searchPlace.setLon(place.getLon());
+                searchPlace.setName(place.getName());
+                searchPlace.setPhoneNumber(place.getPhoneNumber());
+                searchPlace.setRoadAddress(place.getRoadAddress());
+                searchPlace.setX(place.getX());
+                searchPlace.setY(place.getY());
+
+                dlg.dismiss();
+                return false;
+            }
+        }
+
+        return false;
     }
 }

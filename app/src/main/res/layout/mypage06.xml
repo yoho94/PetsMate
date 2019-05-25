@@ -3,8 +3,7 @@
     android:id="@+id/mLayout"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:backgroud="#FFFAD5C8">
+    android:layout_height="fill_parent">
 
     <Button
         android:id="@+id/button1"

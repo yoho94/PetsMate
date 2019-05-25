@@ -145,3 +145,5 @@
         android:background="@color/colorAccent"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="621dp" />
+
+</android.support.constraint.ConstraintLayout>
