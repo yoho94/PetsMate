@@ -19,6 +19,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.CameraUpdate;
@@ -52,7 +53,7 @@ public class MapsNaverActivity extends AppCompatActivity implements OnMapReadyCa
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1000;
     private FusedLocationSource locationSource;
     private ArrayList<CallTable> callTables;
-    boolean isFirst = true;
+    private ArrayList<Marker> markers;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,7 +61,7 @@ public class MapsNaverActivity extends AppCompatActivity implements OnMapReadyCa
         setContentView(R.layout.activity_maps_naver);
 
         callTables = new ArrayList<>();
-
+        markers = new ArrayList<>();
 
         final Handler handler = new Handler(Looper.getMainLooper());
         new Thread() {
@@ -131,6 +132,11 @@ public class MapsNaverActivity extends AppCompatActivity implements OnMapReadyCa
     }
 
     private void setCallMaker() {
+
+        for(int i=0; i<markers.size(); i++) { // 기존의 마커 삭제
+            markers.get(i).setMap(null);
+        }
+        markers.clear();
         for (int i = 0; i < callTables.size(); i++) {
             CallTable callTable = callTables.get(i);
 
@@ -141,13 +147,64 @@ public class MapsNaverActivity extends AppCompatActivity implements OnMapReadyCa
 
                 marker.setIcon(MarkerIcons.BLACK); // 마커 아이콘을 블랙으로
                 marker.setIconTintColor(Color.rgb((int) (Math.random() * 255), (int) (Math.random() * 255), (int) (Math.random() * 255)));  // 마커 색상 랜덤
-                marker.setAlpha(0.5f); // 마커 반투명으로 설정
+                marker.setAlpha(0.75f); // 마커 반투명으로 설정
+                marker.setCaptionRequestedWidth(250); // 마커의 캡션 넓이(줄바꿈)
+                marker.setCaptionColor(Color.BLUE); // 마커 캡션 색상
+                marker.setCaptionHaloColor(Color.rgb(170, 255, 170)); // 마커 캡션 겉 색상
                 marker.setCaptionText("목적지 : " + callTable.destinationPlace.getRoadAddress()); // 마커 캡션 목적지 표기
+
+                final String start = callTable.startPlace.getRoadAddress();
+                final String des = callTable.destinationPlace.getRoadAddress();
+                final String id = MainActivity.memberInfo.getId();
+                final String serialNumber = callTable.getSerialNumber() + "";
+                marker.setOnClickListener(new Overlay.OnClickListener() {
+                    @Override
+                    public boolean onClick(@NonNull Overlay o) {
+                        CallDialog(start, des, id, "1",serialNumber);
+                        return true;
+                    }
+                });
 
                 marker.setPosition(latLng);  // 마커 위치 설정
                 marker.setMap(naverMap);    // 마커 맵에 표기
+
+                markers.add(marker); // 마커 관리 리스트. (갱신 시 삭제를 위해)
             }
         }
+    }
+
+    public void CallDialog(String start, String des,final String id, final String code, final String serialNumber){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("콜 선택");
+        builder.setMessage("출발지 : " + start + "\n목적지 : " + des);
+        builder.setPositiveButton("취소",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(),"취소 하셨습니다.",Toast.LENGTH_LONG).show();
+                        dialog.dismiss();
+                    }
+                });
+        builder.setNegativeButton("콜 받기",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        try {
+                            String result = new CallUpdateTask().execute(id, code, serialNumber).get();
+                            result = result.trim();
+
+                            if(result.equalsIgnoreCase("1")) {
+                                Toast.makeText(getApplicationContext(),"정상적으로 수락 됐습니다.",Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(getApplicationContext(),"수락 실패.",Toast.LENGTH_LONG).show();
+                            }
+
+                        } catch (Exception e) {
+                            Log.i("CallUpdate", e.toString());
+                        }
+                        dialog.dismiss();
+                    }
+                });
+        builder.show();
     }
 
     class CallTable {
@@ -439,5 +496,53 @@ public class MapsNaverActivity extends AppCompatActivity implements OnMapReadyCa
 
     }
 
+    class CallUpdateTask extends AsyncTask<String, Void, String> {
+        String sendMsg, receiveMsg;
+
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                String str;
+
+                // 접속할 서버 주소 (이클립스에서 android.jsp 실행시 웹브라우저 주소)
+                URL url = new URL("http://34.66.28.111:8080/DB/callUpdate.jsp");
+
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                conn.setRequestMethod("POST");
+                OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
+
+                // 전송할 데이터. GET 방식으로 작성
+//                sendMsg = "id=" + strings[0] + "&pw=" + strings[1];
+                sendMsg = String.format("id=%s&code=%s&serialNumber=%s", strings[0], strings[1], strings[2]);
+
+                osw.write(sendMsg);
+                osw.flush();
+
+                //jsp와 통신 성공 시 수행
+                if (conn.getResponseCode() == conn.HTTP_OK) {
+                    InputStreamReader tmp = new InputStreamReader(conn.getInputStream(), "UTF-8");
+                    BufferedReader reader = new BufferedReader(tmp);
+                    StringBuffer buffer = new StringBuffer();
+
+                    // jsp에서 보낸 값을 받는 부분
+                    while ((str = reader.readLine()) != null) {
+                        buffer.append(str);
+                    }
+                    receiveMsg = buffer.toString();
+                } else {
+                    // 통신 실패
+                }
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            //jsp로부터 받은 리턴 값
+            return receiveMsg;
+        }
+
+    }
 }
 
