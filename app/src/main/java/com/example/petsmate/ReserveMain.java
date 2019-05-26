@@ -337,6 +337,11 @@ public class ReserveMain extends AppCompatActivity implements OnMapReadyCallback
                                     Log.i("callPetResult",callPetResult);
                                 }
                             }
+                            Toast.makeText(getApplicationContext(),"정상적으로 콜 요청이 됐습니다.",Toast.LENGTH_SHORT).show();
+                            startPlace.clear();
+                            destinationPlace.clear();
+                            startET.setText("");
+                            destinationET.setText("");
                         } else { // -1 이라면
                             Log.i("callSelect ERROR", callSelectResult);
                         }
@@ -348,7 +353,8 @@ public class ReserveMain extends AppCompatActivity implements OnMapReadyCallback
             }
         });
 
-
+        reserveBT.setFocusableInTouchMode(true);
+        reserveBT.requestFocus(); // 첫 포커스 버튼에 두기.
     }
 
     @Override
@@ -712,5 +718,15 @@ class Place {
 
     public void setDistance(String distance) {
         this.distance = distance;
+    }
+
+    public void clear() {
+        name = null; // 장소 명
+        roadAddress = null; // 도로명 주소
+        jibunAdress = null; // 지번 주소
+        phoneNumber = null; // 전화번호
+        x = null; lon = null; // 경도 LONG
+        y = null; lat = null; // 위도 LAT
+        distance = null; // 검색 좌표로부터 거리 (미터)
     }
 }
