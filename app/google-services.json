@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "791180610990",
+    "firebase_url": "https://pets-mate.firebaseio.com",
+    "project_id": "pets-mate",
+    "storage_bucket": "pets-mate.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:791180610990:android:ae7e8e4cb2bf1eab",
+        "android_client_info": {
+          "package_name": "com.example.petsmate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "791180610990-kkoheo2tq5v6vfae8djhdi9dq7ifeoet.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAauEnaUHoD36RtEgwKKsT7uNUksY343fc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "791180610990-kkoheo2tq5v6vfae8djhdi9dq7ifeoet.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
