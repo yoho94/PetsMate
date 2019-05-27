@@ -90,7 +90,7 @@ public class DriverSignupActivity extends AppCompatActivity {
         carIv2 = (ImageView) findViewById(R.id.car2_image_up);
         carNumberEt = (EditText) findViewById(R.id.dr_car_number);
 
-        uploadURL = "http://34.66.28.111:8080/DB/driverImageUpLoad.jsp";
+        uploadURL = "http://106.10.36.239:8080//DB/driverImageUpLoad.jsp";
 
 
     }
@@ -178,7 +178,7 @@ public class DriverSignupActivity extends AppCompatActivity {
 
 //                    ImageUploadTask imageUploadTask = new ImageUploadTask();
 //                    imageUploadTask.fileName = driverImagePath;
-//                    imageUploadTask.urlString = "http://34.66.28.111:8080/DB/driverImageUpLoad.jsp";
+//                    imageUploadTask.urlString = "http://106.10.36.239:8080//DB/driverImageUpLoad.jsp";
 //                    imageUploadTask.execute().get();
 
                     new Thread() {
@@ -211,7 +211,7 @@ public class DriverSignupActivity extends AppCompatActivity {
 
 //                    ImageUploadTask imageUploadTask = new ImageUploadTask();
 //                    imageUploadTask.fileName = driverImagePath;
-//                    imageUploadTask.urlString = "http://34.66.28.111:8080/DB/driverImageUpLoad.jsp";
+//                    imageUploadTask.urlString = "http://106.10.36.239:8080//DB/driverImageUpLoad.jsp";
 //                    imageUploadTask.execute().get();
 
                     new Thread() {
@@ -244,7 +244,7 @@ public class DriverSignupActivity extends AppCompatActivity {
 
 //                    ImageUploadTask imageUploadTask = new ImageUploadTask();
 //                    imageUploadTask.fileName = driverImagePath;
-//                    imageUploadTask.urlString = "http://34.66.28.111:8080/DB/driverImageUpLoad.jsp";
+//                    imageUploadTask.urlString = "http://106.10.36.239:8080//DB/driverImageUpLoad.jsp";
 //                    imageUploadTask.execute().get();
 
                     new Thread() {
@@ -363,7 +363,7 @@ public class DriverSignupActivity extends AppCompatActivity {
                 String str;
 
                 // 접속할 서버 주소 (이클립스에서 android.jsp 실행시 웹브라우저 주소)
-                URL url = new URL("http://34.66.28.111:8080/DB/driverSignUp.jsp");
+                URL url = new URL("http://106.10.36.239:8080//DB/driverSignUp.jsp");
 
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
@@ -411,7 +411,7 @@ public class DriverSignupActivity extends AppCompatActivity {
                 String str;
 
                 // 접속할 서버 주소 (이클립스에서 android.jsp 실행시 웹브라우저 주소)
-                URL url = new URL("http://34.66.28.111:8080/DB/driverImageModify.jsp");
+                URL url = new URL("http://106.10.36.239:8080//DB/driverImageModify.jsp");
 
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
@@ -461,7 +461,7 @@ public class DriverSignupActivity extends AppCompatActivity {
                 String str;
 
                 // 접속할 서버 주소 (이클립스에서 android.jsp 실행시 웹브라우저 주소)
-                URL url = new URL("http://34.66.28.111:8080/DB/driverImage.jsp");
+                URL url = new URL("http://106.10.36.239:8080//DB/driverImage.jsp");
 
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");

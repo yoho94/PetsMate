@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.firebase.iid.FirebaseInstanceId;
+
 import java.util.ArrayList;
 
 class MemberInfo { // 회원의 정보를 저장할 클래스.
@@ -159,10 +161,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-//          TEST
-//        EditText test = (EditText) findViewById(R.id.id_input); 로그인의 ID 입력 창
-//        String id = test.getText().toString(); // 그것을 String로 바꿈 !
     }
 
 
