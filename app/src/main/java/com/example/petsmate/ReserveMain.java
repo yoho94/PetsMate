@@ -704,3 +704,16 @@ class Place {
         this.distance = distance;
     }
 }
+
+class reserve_Button extends AppCompatActivity {
+
+
+    void onCallNow(View v){ //즉시 콜하기 버튼 (클릭시 예약하기 버튼색변경, 텍스트색 변경)
+        Button reserve_btn_callnow = findViewById(R.id.reserve_btn_booking);
+        
+    }
+
+    void onBooking(View v){ //예약하기 버튼 (클릭시 콜하기 버튼색변경, 텍스트색 변경)
+        Button reserve_btn_callnow = findViewById(R.id.reserve_btn_callnow);
+    }
+}
