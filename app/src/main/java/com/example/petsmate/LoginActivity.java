@@ -83,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
                     if(info[1].equals("error")) {
                         Toast.makeText(getApplicationContext(),"서버 DB 에러.",Toast.LENGTH_SHORT).show();
                         Log.i("LoginERROR", info[0]);
-                    } else {//TODO 펫 정보 들고와서 저장하기.
+                    } else {
                         Toast.makeText(getApplicationContext(), "로그인 성공 !", Toast.LENGTH_SHORT).show();
 
                         // 회원 정보 초기화

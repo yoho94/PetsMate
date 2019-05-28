@@ -29,7 +29,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="160dp"
         android:background="#ffffff"
-        android:onClick="onLoginClick"
         android:text="로그인"
         android:textSize="30dp" />
 
@@ -40,7 +39,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="240dp"
         android:background="#ffffff"
-        android:onClick="onSignupClick"
         android:text="이용자 등록"
         android:textSize="30dp" />
 
