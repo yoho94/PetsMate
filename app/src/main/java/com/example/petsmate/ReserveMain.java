@@ -287,7 +287,7 @@ public class ReserveMain extends AppCompatActivity implements OnMapReadyCallback
                 CallTask callTask = new CallTask();
                 CallSelectTask callSelectTask = new CallSelectTask();
 
-                String guestId, driverId, isCall, code, startLat, startLon, desLat, desLon, startTime, desTime, guestCount, isShuttle, ps, placeName, placeAddr;
+                String guestId, driverId, isCall, code, startLat, startLon, desLat, desLon, startTime, desTime, guestCount, isShuttle, ps, placeName, placeAddr, placeNameStart, placeAddrStart;
                 guestId = MainActivity.memberInfo.getId(); // TODO 전부 임시 값이 아닌 사용자가 선택한 값을 받아오는 작업 필요.
                 driverId = "NULL";
                 isCall = "TRUE";
@@ -303,9 +303,11 @@ public class ReserveMain extends AppCompatActivity implements OnMapReadyCallback
                 ps = "";
                 placeName = destinationPlace.getName();
                 placeAddr = destinationPlace.getRoadAddress();
+                placeNameStart = startPlace.getName();
+                placeAddrStart = startPlace.getRoadAddress();
 
                 try {
-                    String result = callTask.execute(guestId, driverId, isCall, code, startLat, startLon, desLat, desLon, startTime, desTime, guestCount, isShuttle, ps, placeName, placeAddr).get();
+                    String result = callTask.execute(guestId, driverId, isCall, code, startLat, startLon, desLat, desLon, startTime, desTime, guestCount, isShuttle, ps, placeName, placeAddr, placeNameStart, placeAddrStart).get();
                     result = result.trim();
                     Log.i("callResult", result);
 
@@ -463,8 +465,8 @@ public class ReserveMain extends AppCompatActivity implements OnMapReadyCallback
 
                 // 전송할 데이터. GET 방식으로 작성
 //                sendMsg = "id=" + strings[0] + "&pw=" + strings[1];
-                sendMsg = String.format("guestId=%s&driverId=%s&isCall=%s&code=%s&startLat=%s&startLon=%s&desLat=%s&desLon=%s&startTime=%s&desTime=%s&guestCount=%s&isShuttle=%s&ps=%s&placeName=%s&placeAddr=%s",
-                        strings[0],strings[1],strings[2],strings[3],strings[4],strings[5],strings[6],strings[7],strings[8],strings[9],strings[10],strings[11],strings[12],strings[13],strings[14]);
+                sendMsg = String.format("guestId=%s&driverId=%s&isCall=%s&code=%s&startLat=%s&startLon=%s&desLat=%s&desLon=%s&startTime=%s&desTime=%s&guestCount=%s&isShuttle=%s&ps=%s&placeName=%s&placeAddr=%s&placeNameStart=%s&placeAddrStart=%s",
+                        strings[0],strings[1],strings[2],strings[3],strings[4],strings[5],strings[6],strings[7],strings[8],strings[9],strings[10],strings[11],strings[12],strings[13],strings[14],strings[15],strings[16]);
 
                 osw.write(sendMsg);
                 osw.flush();

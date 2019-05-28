@@ -26,8 +26,13 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         if(MainActivity.memberInfo.getIsLogin()) { // 로그인시 로그인창 안보고 바로 넘어가기
-            Intent intent = new Intent(getApplicationContext(), ReserveMain.class);
-            startActivity(intent);
+            if(MainActivity.memberInfo.isGuest()) {
+                Intent intent = new Intent(getApplicationContext(), ReserveMain.class);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(getApplicationContext(), MapsNaverActivity.class);
+                startActivity(intent);
+            }
             finish();
         }
         super.onCreate(savedInstanceState);
@@ -83,15 +88,16 @@ public class LoginActivity extends AppCompatActivity {
                     if(info[1].equals("error")) {
                         Toast.makeText(getApplicationContext(),"서버 DB 에러.",Toast.LENGTH_SHORT).show();
                         Log.i("LoginERROR", info[0]);
-                    } else {
+                    } else if(info[0].equalsIgnoreCase("GUEST")){
                         Toast.makeText(getApplicationContext(), "로그인 성공 !", Toast.LENGTH_SHORT).show();
 
                         // 회원 정보 초기화
                         MainActivity.memberInfo.clear();
 
                         // 회원 정보
-                        MainActivity.memberInfo.setName(info[0]);
-                        MainActivity.memberInfo.setPhone(info[0]);
+                        MainActivity.memberInfo.setGuest(true);
+                        MainActivity.memberInfo.setName(info[1]);
+                        MainActivity.memberInfo.setPhone(info[2]);
                         MainActivity.memberInfo.setId(id);
                         MainActivity.memberInfo.setIsLogin(true);
 
@@ -116,6 +122,22 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(intent);
 
                         finish();
+                    } else if(info[0].equalsIgnoreCase("DRIVER")) {
+                        // 회원 정보 초기화
+                        MainActivity.memberInfo.clear();
+
+                        // 회원 정보
+                        MainActivity.memberInfo.setGuest(false);
+                        MainActivity.memberInfo.setName(info[1]);
+                        MainActivity.memberInfo.setPhone(info[2]);
+                        MainActivity.memberInfo.setCarNumber(info[3]);
+                        MainActivity.memberInfo.setId(id);
+                        MainActivity.memberInfo.setIsLogin(true);
+
+                        Intent intent = new Intent(getApplicationContext(), MapsNaverActivity.class);
+                        startActivity(intent);
+
+                        finish();
                     }
 
                 }
@@ -136,7 +158,7 @@ public class LoginActivity extends AppCompatActivity {
                 String str;
 
                 // 접속할 서버 주소 (이클립스에서 android.jsp 실행시 웹브라우저 주소)
-                URL url = new URL("http://34.66.28.111:8080/DB/Login.jsp");
+                URL url = new URL("http://106.10.36.239:8080//DB/Login.jsp");
 
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
@@ -185,7 +207,7 @@ public class LoginActivity extends AppCompatActivity {
                 String str;
 
                 // 접속할 서버 주소 (이클립스에서 android.jsp 실행시 웹브라우저 주소)
-                URL url = new URL("http://34.66.28.111:8080/DB/LoginPet.jsp");
+                URL url = new URL("http://106.10.36.239:8080//DB/LoginPet.jsp");
 
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");

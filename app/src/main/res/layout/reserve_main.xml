@@ -50,6 +50,7 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/rbborder"
             android:text="즉시콜"
+            android:onClick="RB"
             android:textColor="#FFFFFF" />
 
         <Button
@@ -59,6 +60,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:background="@drawable/wgborder"
+            android:onClick="RB"
             android:text="예약하기" />
 
         <TableRow
@@ -182,6 +184,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/rbborder"
                 android:text="내 번호"
+                android:onClick="RB"
                 android:textColor="#FFFFFF" />
 
             <Button
@@ -191,6 +194,7 @@
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/wgborder"
+                android:onClick="RB"
                 android:text="다른 번호" />
 
         </TableRow>
@@ -227,6 +231,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/rbborder"
                 android:text="편도"
+                android:onClick="RB"
                 android:textColor="#FFFFFF" />
 
             <Button
@@ -236,28 +241,31 @@
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/wgborder"
+                android:onClick="RB"
                 android:text="왕복" />
         </TableRow>
 
 
 
             <Button
-                android:id="@+id/reserve_btn_callnow1"
+                android:id="@+id/reserve_btn_articledesignate"
                 android:layout_width="356dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/wgborder"
+                android:onClick="RB"
                 android:text="기사지정" />
 
             <Button
-                android:id="@+id/reserve_btn_booking1"
+                android:id="@+id/reserve_btn_finish"
                 android:layout_width="356dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/rbborder"
+                android:onClick="RB"
                 android:text="완료하기"
                 android:textColor="#FFFFFF"/>
 

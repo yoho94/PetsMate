@@ -18,14 +18,11 @@
         android:textColor="#FFFFFF"
         android:textSize="30dp" />
 
-    <com.naver.maps.map.MapView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:map="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/maps_naver"
-    android:layout_width="match_parent"
-    android:layout_height="400dp"
-    android:layout_gravity="top">
-</com.naver.maps.map.MapView>
+    <fragment
+        android:id="@+id/driver_maps"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:name="com.naver.maps.map.MapFragment" />
 
     <TextView
         android:layout_width="match_parent"
