@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <Button
+        android:id="@+id/alarm_btn"
+        android:layout_width="420dp"
+        android:layout_height="70dp"
+        android:text="알림"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="-4dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <Button
+        android:id="@+id/font_btn"
+        android:layout_width="420dp"
+        android:layout_height="70dp"
+        android:text="폰트"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="-5dp"
+        tools:layout_editor_absoluteY="61dp" />
+
+    <Button
+        android:id="@+id/information_btn"
+        android:layout_width="420dp"
+        android:layout_height="70dp"
+        android:text="개인정보"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="-3dp"
+        tools:layout_editor_absoluteY="121dp" />
+
+    <Button
+        android:id="@+id/customercenter_btn"
+        android:layout_width="420dp"
+        android:layout_height="70dp"
+        android:text="도움말"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="-3dp"
+        tools:layout_editor_absoluteY="191dp" />
+
+    <Button
+        android:id="@+id/customercenter_btn"
+        android:layout_width="420dp"
+        android:layout_height="70dp"
+        android:text="고객센터"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="-8dp"
+        tools:layout_editor_absoluteY="258dp" />
+
+    <Button
+        android:id="@+id/version_btn"
+        android:layout_width="420dp"
+        android:layout_height="70dp"
+        android:text="버전정보"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="319dp" />
+</android.support.constraint.ConstraintLayout>
