@@ -11,137 +11,188 @@
         android:id="@+id/button"
         android:layout_width="420dp"
         android:layout_height="70dp"
+        android:layout_marginBottom="35dp"
         android:background="#FFF55F5F"
         android:text="설정 > 알림"
+
         android:textColor="#FFFFFFFF"
         android:textSize="30sp"
-
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
+        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="250dp"
         android:layout_height="60dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="145dp"
         android:background="#FFF55F5F"
         android:text="알림 음"
         android:textColor="#FFFFFFFF"
         android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button"
-        app:layout_constraintVertical_chainStyle="packed"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="250dp"
         android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="145dp"
         android:background="#FFF2BDBD"
         android:text="알림 사운드"
         android:textColor="#FFFFFFFF"
         android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@+id/button4"
-        app:layout_constraintTop_toBottomOf="@+id/button2"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button2" />
 
     <Button
         android:id="@+id/button4"
         android:layout_width="250dp"
         android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="23dp"
         android:background="#FFF55F5F"
         android:text="진동"
         android:textColor="#FFFFFFFF"
         android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@+id/button5"
-        app:layout_constraintTop_toBottomOf="@+id/button3"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintEnd_toStartOf="@+id/switch1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button3" />
 
     <Button
         android:id="@+id/button5"
         android:layout_width="250dp"
         android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="23dp"
         android:background="#FFF2BDBD"
         android:text="무음 시 : 진동"
         android:textColor="#FFFFFFFF"
         android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@+id/button6"
-        app:layout_constraintTop_toBottomOf="@+id/button4"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintEnd_toStartOf="@+id/switch2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button4" />
 
     <Button
         android:id="@+id/button6"
         android:layout_width="250dp"
         android:layout_height="60dp"
+        android:layout_marginStart="16dp"
         android:background="#FFF55F5F"
         android:text="무음 시: 소리"
         android:textColor="#FFFFFFFF"
         android:textSize="40sp"
-        app:layout_constraintTop_toBottomOf="@+id/button5"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button5" />
 
     <Switch
         android:id="@+id/switch1"
         android:layout_width="90dp"
         android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="167dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="6dp"
         android:checked="true"
         android:textOff="off"
         android:textOn="on"
-        tools:layout_editor_absoluteX="289dp"
-        tools:layout_editor_absoluteY="237dp" />
+        app:layout_constraintBottom_toTopOf="@+id/switch2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button4"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
 
     <Switch
         android:id="@+id/switch2"
         android:layout_width="90dp"
         android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="8dp"
         android:checked="true"
-        tools:layout_editor_absoluteX="289dp"
-        tools:layout_editor_absoluteY="293dp" />
+        app:layout_constraintBottom_toTopOf="@+id/switch3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button5"
+        app:layout_constraintTop_toBottomOf="@+id/switch1" />
 
     <Switch
         android:id="@+id/switch3"
         android:layout_width="90dp"
         android:layout_height="50dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="29dp"
+        android:layout_marginBottom="211dp"
         android:checked="true"
-        tools:layout_editor_absoluteX="289dp"
-        tools:layout_editor_absoluteY="351dp" />
+        app:layout_constraintBottom_toTopOf="@+id/button7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button6"
+        app:layout_constraintTop_toBottomOf="@+id/switch2" />
 
     <ImageButton
         android:id="@+id/imageButton"
         android:layout_width="107dp"
         android:layout_height="102dp"
-        app:srcCompat="@drawable/btn_car"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="631dp" />
+        android:layout_marginTop="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button7"
+        app:srcCompat="@drawable/btn_car" />
 
     <ImageButton
         android:id="@+id/imageButton2"
         android:layout_width="107dp"
         android:layout_height="116dp"
-        app:srcCompat="@drawable/btn_dog"
-        tools:layout_editor_absoluteX="107dp"
-        tools:layout_editor_absoluteY="633dp" />
+        android:layout_marginTop="7dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton3"
+        app:layout_constraintStart_toEndOf="@+id/imageButton"
+        app:layout_constraintTop_toBottomOf="@+id/button7"
+        app:srcCompat="@drawable/btn_dog" />
 
     <ImageButton
         android:id="@+id/imageButton3"
         android:layout_width="99dp"
         android:layout_height="118dp"
-        app:srcCompat="@drawable/btn_chat"
-        tools:layout_editor_absoluteX="214dp"
-        tools:layout_editor_absoluteY="631dp" />
+        android:layout_marginTop="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton4"
+        app:layout_constraintStart_toEndOf="@+id/imageButton2"
+        app:layout_constraintTop_toBottomOf="@+id/button7"
+        app:srcCompat="@drawable/btn_chat" />
 
     <ImageButton
         android:id="@+id/imageButton4"
         android:layout_width="97dp"
         android:layout_height="103dp"
-        app:srcCompat="@drawable/btn_option"
-        tools:layout_editor_absoluteX="313dp"
-        tools:layout_editor_absoluteY="630dp" />
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageButton3"
+        app:layout_constraintTop_toBottomOf="@+id/button7"
+        app:srcCompat="@drawable/btn_option" />
 
     <Button
         android:id="@+id/button7"
         android:layout_width="420dp"
         android:layout_height="5dp"
+        android:layout_marginTop="215dp"
+        android:layout_marginBottom="1dp"
         android:background="@color/colorAccent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="621dp" />
+        app:layout_constraintBottom_toTopOf="@+id/imageButton3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button6" />
+</android.support.constraint.ConstraintLayout>
