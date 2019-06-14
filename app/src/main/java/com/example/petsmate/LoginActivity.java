@@ -61,6 +61,15 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        // 푸시 알림 테스트.
+//        String id = "test";
+//        String title  = "제목입니다.";
+//        String body = "본문입니다.";
+//        String type = "driver"; // 기사일 경우.
+//
+//        new PushMsgTask().execute(id, title, body, ""); // 손님일 경우
+//        new PushMsgTask().execute(id, title, body, type); // 기사일 경우
+
     }
 
     public void onLogin(View v) {
