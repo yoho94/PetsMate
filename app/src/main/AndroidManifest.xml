@@ -41,6 +41,7 @@
         <activity android:name=".PwfindActivity" />
         <activity android:name=".DriverSignupActivity" />
         <activity android:name=".MapsNaverActivity" />
+        <activity android:name=".mypage01" />
 
         <service
             android:name=".MyFirebaseMessagingService">
