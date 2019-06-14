@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.PointF;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
@@ -41,6 +42,8 @@ import com.naver.maps.map.NaverMap;
 import com.naver.maps.map.OnMapReadyCallback;
 import com.naver.maps.map.UiSettings;
 import com.naver.maps.map.overlay.LocationOverlay;
+import com.naver.maps.map.overlay.Marker;
+import com.naver.maps.map.overlay.Overlay;
 import com.naver.maps.map.util.FusedLocationSource;
 
 import org.json.JSONArray;
@@ -58,6 +61,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 public class ReserveMain extends AppCompatActivity implements OnMapReadyCallback, View.OnTouchListener {
 
@@ -71,6 +75,9 @@ public class ReserveMain extends AppCompatActivity implements OnMapReadyCallback
     MapFragment mapFragment;
     EditText startET, destinationET, anotherNumberET;
     Button callBT, reserveBT, middleBT, largeBT, myNumberBT, anotherNumberBT, oneWayBT, roundBT;
+
+    NaverMap naverMap = null;
+    Marker startMaker, desMaker; // 시작 지점, 도착 지점 표기 마커
 
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1000;
     private FusedLocationSource locationSource;
@@ -108,6 +115,8 @@ public class ReserveMain extends AppCompatActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this); // NaverMap 객체 얻기.
         locationSource = new FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE);
 
+        startMaker = new Marker();
+        desMaker = new Marker();
         // naver 지도 설정 종료
 
         /**  펫 읽어와서 띄우기 **/
@@ -351,10 +360,81 @@ public class ReserveMain extends AppCompatActivity implements OnMapReadyCallback
     }
 
     @Override
-    public void onMapReady(@NonNull NaverMap naverMap) {
+    public void onMapReady(@NonNull final NaverMap naverMap) {
         naverMap.setLocationSource(locationSource);
         UiSettings uiSettings = naverMap.getUiSettings();
         uiSettings.setLocationButtonEnabled(true);
+        this.naverMap = naverMap;
+
+        // 지도 클릭하여 시작, 도착지 설정
+        naverMap.setOnMapClickListener(new NaverMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(@NonNull PointF pointF, @NonNull LatLng latLng) {
+                try {
+                    String result = new ReverseGeocodingTask().execute(latLng.longitude,latLng.latitude).get(); // 위경도를 넘겨 네이버 API에서 검색.
+                    result = result.trim();
+//                    Log.d("RGTresult",result);
+
+                    String name = null;
+
+                    // 파싱 작업.
+                    JSONObject jsonObject = new JSONObject(result), j1, j2, j0;
+                    JSONArray jsonArray = jsonObject.getJSONArray("results");
+
+                    for(int i=0; i<jsonArray.length(); i++) {
+                        j1 = jsonArray.getJSONObject(i);
+                        name = "";
+
+                        if(!j1.isNull("region")) {
+                            j0 = j1.getJSONObject("region");
+                            for(int j=1; j<j1.length(); j++) {
+                                j2 = j0.getJSONObject("area" + j);
+                                String str = j2.getString("name");
+
+                                if(str == null || str.equalsIgnoreCase("")) {
+
+                                } else {
+                                    name += str + " ";
+                                }
+                            }
+                        }
+
+                        if(!j1.isNull("land")) {
+                            j2 = j1.getJSONObject("land");
+                            String num1, num2;
+                            num1 = j2.getString("number1");
+                            num2 = j2.getString("number2");
+
+                            if(num2 == null || num2.equalsIgnoreCase(""))
+                                name += num1;
+                            else
+                                name += num1 + "-" + num2;
+                        }
+
+                    } // 파싱 끝.
+
+                    // TODO 클릭한 곳을 시작, 도착지로 만들기.
+
+//                    Log.d("주소 : " , name);
+
+                } catch (Exception e) {
+                    Log.e("ReverseGeocodingTask",e.toString());
+                }
+
+//                final Marker marker = new Marker();
+//                marker.setPosition(latLng);
+//
+//                marker.setOnClickListener(new Overlay.OnClickListener() {
+//                    @Override
+//                    public boolean onClick(@NonNull Overlay overlay) {
+//                        marker.setMap(null);
+//                        return false;
+//                    }
+//                });
+//
+//                marker.setMap(naverMap);
+            }
+        });
 
         int permssionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
 
@@ -369,6 +449,8 @@ public class ReserveMain extends AppCompatActivity implements OnMapReadyCallback
             CameraUpdate cameraUpdate = CameraUpdate.scrollTo(new LatLng(first_Latitude, first_Longitude));
             naverMap.moveCamera(cameraUpdate); // 현재 위치로 지도 옮기기.
         }
+
+
     }
 
     private LatLng getMyGps() {

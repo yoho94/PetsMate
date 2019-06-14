@@ -1,5 +1,6 @@
 package com.example.petsmate;
 
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -35,14 +36,22 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
                 .add("Token", token)
                 .build();
 
+        // 만들어진 토큰을 저장한다!!!
+        SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString("token", token);
+        editor.commit();
+        // 여기까지!!!
+
         //request
         Request request = new Request.Builder()
-                .url("http://서버주소/fcm/register.php")
+                .url("서버에 전송할 URL")
                 .post(body)
                 .build();
 
         try {
             client.newCall(request).execute();
+            Log.d("token", token);
         } catch (IOException e) {
             e.printStackTrace();
         }
