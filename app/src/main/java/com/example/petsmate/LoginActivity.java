@@ -1,6 +1,7 @@
 package com.example.petsmate;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -11,6 +12,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -118,11 +121,21 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         }
 
+                        //파이어베이스 푸시알림 토큰 보내기
+
+                        // 저장해놨던 토큰값 가져와서 전달
+                        String token = FirebaseInstanceId.getInstance().getToken();
+                        Log.d("토큰", token);
+
+
+                        new TokenTask().execute(id, token, "guest");
+
                         Intent intent = new Intent(getApplicationContext(), ReserveMain.class);
                         startActivity(intent);
 
                         finish();
                     } else if(info[0].equalsIgnoreCase("DRIVER")) {
+                        Toast.makeText(getApplicationContext(), "로그인 성공 !", Toast.LENGTH_SHORT).show();
                         // 회원 정보 초기화
                         MainActivity.memberInfo.clear();
 
@@ -133,6 +146,13 @@ public class LoginActivity extends AppCompatActivity {
                         MainActivity.memberInfo.setCarNumber(info[3]);
                         MainActivity.memberInfo.setId(id);
                         MainActivity.memberInfo.setIsLogin(true);
+
+                        // 저장해놨던 토큰값 가져와서 전달
+                        String token = FirebaseInstanceId.getInstance().getToken();
+                        Log.d("토큰", token);
+
+
+                        new TokenTask().execute(id, token, "driver");
 
                         Intent intent = new Intent(getApplicationContext(), MapsNaverActivity.class);
                         startActivity(intent);
@@ -148,6 +168,55 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    class TokenTask extends AsyncTask<String, Void, String> {
+        String sendMsg, receiveMsg;
+
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                String str;
+
+                // 접속할 서버 주소 (이클립스에서 android.jsp 실행시 웹브라우저 주소)
+                URL url = new URL("http://106.10.36.239:8080/DB/token.jsp");
+
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                conn.setRequestMethod("POST");
+                OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
+
+                // 전송할 데이터. GET 방식으로 작성
+//                sendMsg = "id=" + strings[0] + "&pw=" + strings[1];
+                sendMsg = String.format("id=%s&token=%s&type=%s", strings[0],strings[1], strings[2]);
+
+                osw.write(sendMsg);
+                osw.flush();
+
+                //jsp와 통신 성공 시 수행
+                if (conn.getResponseCode() == conn.HTTP_OK) {
+                    InputStreamReader tmp = new InputStreamReader(conn.getInputStream(), "UTF-8");
+                    BufferedReader reader = new BufferedReader(tmp);
+                    StringBuffer buffer = new StringBuffer();
+
+                    // jsp에서 보낸 값을 받는 부분
+                    while ((str = reader.readLine()) != null) {
+                        buffer.append(str);
+                    }
+                    receiveMsg = buffer.toString();
+                } else {
+                    // 통신 실패
+                }
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            //jsp로부터 받은 리턴 값
+            return receiveMsg;
+        }
+
+    }
+
 
     class LoginTask extends AsyncTask<String, Void, String> {
         String sendMsg, receiveMsg;
@@ -158,7 +227,7 @@ public class LoginActivity extends AppCompatActivity {
                 String str;
 
                 // 접속할 서버 주소 (이클립스에서 android.jsp 실행시 웹브라우저 주소)
-                URL url = new URL("http://106.10.36.239:8080//DB/Login.jsp");
+                URL url = new URL("http://106.10.36.239:8080/DB/Login.jsp");
 
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
@@ -207,7 +276,7 @@ public class LoginActivity extends AppCompatActivity {
                 String str;
 
                 // 접속할 서버 주소 (이클립스에서 android.jsp 실행시 웹브라우저 주소)
-                URL url = new URL("http://106.10.36.239:8080//DB/LoginPet.jsp");
+                URL url = new URL("http://106.10.36.239:8080/DB/LoginPet.jsp");
 
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
