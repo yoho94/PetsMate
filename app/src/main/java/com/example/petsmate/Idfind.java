@@ -42,6 +42,7 @@ public class Idfind extends AppCompatActivity {
             String result = findTask.execute(nameStr,phoneStr).get();
             result = result.trim();
             Log.i("find result",result);
+            Log.i("name,phone", nameStr + phoneStr);
 
             if(result.equals("-1")) {
                 Toast.makeText(getApplicationContext(),"아이디가 없습니다.",Toast.LENGTH_SHORT).show();

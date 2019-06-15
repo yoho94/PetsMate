@@ -38,6 +38,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
+import java.util.regex.Pattern;
 
 public class DriverSignupActivity extends AppCompatActivity {
 
@@ -281,13 +282,25 @@ public class DriverSignupActivity extends AppCompatActivity {
         password = passwordEt.getText().toString();
         password2 = password2Et.getText().toString();
         name = nameEt.getText().toString();
-        phone = phoneEt.getText().toString(); // TODO 010-1111-2222 을 01011112222로 변경 절차 필요
+        phone = phoneEt.getText().toString();
         carNumber = carNumberEt.getText().toString();
+
+        if(id.isEmpty() || name.isEmpty() || password.isEmpty()) {
+            Toast.makeText(getApplicationContext(),"모든 항목을 기입해주세요.",Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if(!Pattern.matches("^01(?:0|1|[6-9])(?:\\d{3}|\\d{4})\\d{4}$", phone)) { // 핸드폰 정규식 검사.
+            Toast.makeText(getApplicationContext(),"올바른 핸드폰 번호가 아닙니다. -없이 기입해주세요.",Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         if (!password.equals(password2)) {
             Toast.makeText(getApplicationContext(), "비밀번호와 재확인 비밀번호를 다시 확인해주세요.", Toast.LENGTH_SHORT).show();
             return;
         }
+
+
 
         for (int i = 0; i < upLoadCheck.length; i++)
             if (!upLoadCheck[i]) {
