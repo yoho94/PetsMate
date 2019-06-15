@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.drawable.Icon;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
@@ -19,6 +20,9 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.naver.maps.geometry.LatLng;
@@ -29,9 +33,12 @@ import com.naver.maps.map.MapView;
 import com.naver.maps.map.NaverMap;
 import com.naver.maps.map.OnMapReadyCallback;
 import com.naver.maps.map.UiSettings;
+import com.naver.maps.map.overlay.Align;
+import com.naver.maps.map.overlay.InfoWindow;
 import com.naver.maps.map.overlay.LocationOverlay;
 import com.naver.maps.map.overlay.Marker;
 import com.naver.maps.map.overlay.Overlay;
+import com.naver.maps.map.overlay.OverlayImage;
 import com.naver.maps.map.util.FusedLocationSource;
 import com.naver.maps.map.util.MarkerIcons;
 
@@ -54,6 +61,7 @@ public class MapsNaverActivity extends AppCompatActivity implements OnMapReadyCa
     private FusedLocationSource locationSource;
     private ArrayList<CallTable> callTables;
     private ArrayList<Marker> markers;
+    private ImageButton refreshBtn;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -130,6 +138,16 @@ public class MapsNaverActivity extends AppCompatActivity implements OnMapReadyCa
             CameraUpdate cameraUpdate = CameraUpdate.scrollTo(new LatLng(first_Latitude, first_Longitude));
             naverMap.moveCamera(cameraUpdate); // 현재 위치로 지도 옮기기.
         }
+
+        // 새로고침 버튼
+        refreshBtn = (ImageButton) findViewById(R.id.driver_refresh_btn);
+        refreshBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getCallTable();
+                setCallMaker();
+            }
+        });
     }
 
     private void setCallMaker() {
@@ -139,7 +157,7 @@ public class MapsNaverActivity extends AppCompatActivity implements OnMapReadyCa
         }
         markers.clear();
         for (int i = 0; i < callTables.size(); i++) {
-            CallTable callTable = callTables.get(i);
+            final CallTable callTable = callTables.get(i);
 
             if (callTable.getCode() == 0) {
                 Marker marker = new Marker();
@@ -149,10 +167,20 @@ public class MapsNaverActivity extends AppCompatActivity implements OnMapReadyCa
                 marker.setIcon(MarkerIcons.BLACK); // 마커 아이콘을 블랙으로
                 marker.setIconTintColor(Color.rgb((int) (Math.random() * 255), (int) (Math.random() * 255), (int) (Math.random() * 255)));  // 마커 색상 랜덤
                 marker.setAlpha(0.75f); // 마커 반투명으로 설정
-                marker.setCaptionRequestedWidth(250); // 마커의 캡션 넓이(줄바꿈)
-                marker.setCaptionColor(Color.BLUE); // 마커 캡션 색상
-                marker.setCaptionHaloColor(Color.rgb(170, 255, 170)); // 마커 캡션 겉 색상
-                marker.setCaptionText("목적지 : " + callTable.destinationPlace.getRoadAddress()); // 마커 캡션 목적지 표기
+
+                InfoWindow infoWindow = new InfoWindow();
+                infoWindow.setAdapter(new InfoWindow.DefaultTextAdapter(mapFragment.getContext()) {
+                    @NonNull
+                    @Override
+                    public CharSequence getText(@NonNull InfoWindow infoWindow) {
+                        return "목적지 : " + callTable.destinationPlace.getRoadAddress();
+                    }
+                });
+
+//                marker.setCaptionRequestedWidth(250); // 마커의 캡션 넓이(줄바꿈)
+//                marker.setCaptionColor(Color.BLUE); // 마커 캡션 색상
+//                marker.setCaptionHaloColor(Color.rgb(170, 255, 170)); // 마커 캡션 겉 색상
+//                marker.setCaptionText("목적지 : " + callTable.destinationPlace.getRoadAddress()); // 마커 캡션 목적지 표기
 
                 final String start = callTable.startPlace.getRoadAddress();
                 final String des = callTable.destinationPlace.getRoadAddress();
@@ -170,6 +198,7 @@ public class MapsNaverActivity extends AppCompatActivity implements OnMapReadyCa
                 marker.setMap(naverMap);    // 마커 맵에 표기
 
                 markers.add(marker); // 마커 관리 리스트. (갱신 시 삭제를 위해)
+                infoWindow.open(marker);
             }
         }
     }
