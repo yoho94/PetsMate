@@ -32,7 +32,7 @@ public class ReserveButtons extends AppCompatActivity {
         finishBT = (Button) findViewById(R.id.reserve_btn_finish);
         articleBT = (Button) findViewById(R.id.reserve_btn_articledesignate);
 
-        int id = R.id.reserve_btn_callnow;
+
 
     }
     public void RB(View v){
