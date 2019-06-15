@@ -89,7 +89,7 @@
 
     <ImageButton
         android:layout_marginRight="1dp"
-        android:id="@+id/imageButton2"
+        android:id="@+id/mypet_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/btn_car" />
@@ -102,7 +102,7 @@
         app:srcCompat="@drawable/btn_car" />
     <ImageButton
         android:layout_marginRight="1dp"
-        android:id="@+id/imageButton4"
+        android:id="@+id/setting_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/btn_car" />

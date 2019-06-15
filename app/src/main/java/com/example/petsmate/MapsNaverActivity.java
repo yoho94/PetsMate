@@ -69,18 +69,19 @@ public class MapsNaverActivity extends AppCompatActivity implements OnMapReadyCa
             public void run() {
                 try {
                     while (true) {
-                        getCallTable();
 
                         if(naverMap != null) {
+                            getCallTable();
                             handler.post(new Runnable() {
                                 @Override
                                 public void run() {
                                     setCallMaker();
+
                                 }
                             });
-                        }
 
-                        Thread.sleep(10000);
+                            break;
+                        }
                     }
                 } catch (Exception e) {
                     Log.i("getCallTableThread", e.toString());
