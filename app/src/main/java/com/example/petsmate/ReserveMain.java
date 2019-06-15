@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.PointF;
@@ -15,6 +16,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.SparseBooleanArray;
@@ -338,9 +340,15 @@ public class ReserveMain extends AppCompatActivity implements OnMapReadyCallback
                             }
                         } else { // -1 이라면
                             Log.i("callSelect ERROR", callSelectResult);
+                            Toast.makeText(getApplicationContext(), "콜 요청은 성공하였으나 펫 정보를 등록하지 못했습니다.", Toast.LENGTH_SHORT).show();
+                            return;
                         }
-
+                        Toast.makeText(getApplicationContext(), "정상적으로 콜 요청이 되었습니다.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "콜 요청 실패.", Toast.LENGTH_SHORT).show();
                     }
+
+
                 }catch(Exception e) {
                     Log.i("callBT Error", e.toString());
                 }
@@ -376,6 +384,7 @@ public class ReserveMain extends AppCompatActivity implements OnMapReadyCallback
 //                    Log.d("RGTresult",result);
 
                     String name = null;
+                    String placeName = null;
 
                     // 파싱 작업.
                     JSONObject jsonObject = new JSONObject(result), j1, j2, j0;
@@ -395,6 +404,7 @@ public class ReserveMain extends AppCompatActivity implements OnMapReadyCallback
 
                                 } else {
                                     name += str + " ";
+                                    placeName = str + " ";
                                 }
                             }
                         }
@@ -405,15 +415,20 @@ public class ReserveMain extends AppCompatActivity implements OnMapReadyCallback
                             num1 = j2.getString("number1");
                             num2 = j2.getString("number2");
 
-                            if(num2 == null || num2.equalsIgnoreCase(""))
+                            if(num2 == null || num2.equalsIgnoreCase("")) {
                                 name += num1;
-                            else
+                                placeName += num1;
+                            }
+                            else {
                                 name += num1 + "-" + num2;
+                                placeName += num1 + "-" + num2;
+                            }
                         }
 
                     } // 파싱 끝.
 
-                    // TODO 클릭한 곳을 시작, 도착지로 만들기.
+                    setPlaceDialog(name, placeName, latLng);
+
 
 //                    Log.d("주소 : " , name);
 
@@ -451,6 +466,57 @@ public class ReserveMain extends AppCompatActivity implements OnMapReadyCallback
         }
 
 
+    }
+
+    public void setPlaceDialog(final String name, final String placeName, final LatLng latLng) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("출발지, 도착지 선택");
+        builder.setMessage("주소 : " + name);
+        builder.setPositiveButton("출발지",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(),"출발지로 선택하셨습니다.",Toast.LENGTH_LONG).show();
+
+                        startPlace.setName(placeName);
+                        startPlace.setJibunAdress(name);
+                        startPlace.setRoadAddress(name);
+                        startPlace.setLat(latLng.latitude+"");
+                        startPlace.setLon(latLng.longitude+"");
+                        startPlace.setX(latLng.longitude+"");
+                        startPlace.setY(latLng.latitude+"");
+
+                        startET.setText(placeName);
+
+                        dialog.dismiss();
+                    }
+                });
+        builder.setNegativeButton("도착지",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(),"도착지로 선택하셨습니다.",Toast.LENGTH_LONG).show();
+
+                        destinationPlace.setName(placeName);
+                        destinationPlace.setJibunAdress(name);
+                        destinationPlace.setRoadAddress(name);
+                        destinationPlace.setLat(latLng.latitude+"");
+                        destinationPlace.setLon(latLng.longitude+"");
+                        destinationPlace.setX(latLng.longitude+"");
+                        destinationPlace.setY(latLng.latitude+"");
+
+                        destinationET.setText(placeName);
+
+                        dialog.dismiss();
+                    }
+                });
+        builder.setNeutralButton("취소",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(),"취소하셨습니다.",Toast.LENGTH_LONG).show();
+                        dialog.dismiss();
+                    }
+                });
+        builder.show();
     }
 
     private LatLng getMyGps() {
@@ -538,7 +604,7 @@ public class ReserveMain extends AppCompatActivity implements OnMapReadyCallback
                 String str;
 
                 // 접속할 서버 주소 (이클립스에서 android.jsp 실행시 웹브라우저 주소)
-                URL url = new URL("http://34.66.28.111:8080/DB/call.jsp");
+                URL url = new URL("http://106.10.36.239:8080/DB/call.jsp");
 
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
@@ -588,7 +654,7 @@ public class ReserveMain extends AppCompatActivity implements OnMapReadyCallback
                 String str;
 
                 // 접속할 서버 주소 (이클립스에서 android.jsp 실행시 웹브라우저 주소)
-                URL url = new URL("http://34.66.28.111:8080/DB/callPet.jsp");
+                URL url = new URL("http://106.10.36.239:8080/DB/callPet.jsp");
 
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
@@ -638,7 +704,7 @@ public class ReserveMain extends AppCompatActivity implements OnMapReadyCallback
                 String str;
 
                 // 접속할 서버 주소 (이클립스에서 android.jsp 실행시 웹브라우저 주소)
-                URL url = new URL("http://34.66.28.111:8080/DB/callSelect.jsp");
+                URL url = new URL("http://106.10.36.239:8080/DB/callSelect.jsp");
 
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");

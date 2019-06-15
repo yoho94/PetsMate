@@ -50,8 +50,8 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/rbborder"
             android:text="즉시콜"
-            android:onClick="RB"
             android:textColor="#FFFFFF" />
+            <!--android:onClick="RB"-->
 
         <Button
             android:id="@+id/reserve_btn_booking"
