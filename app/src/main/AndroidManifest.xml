@@ -7,6 +7,21 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <!-- network 상태를 미리 체크하여 연결 안된 경우 다이얼로그를 보여주려면 아래 permission 추가 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- android test 돌릴 때 화면 lock 풀어야 로그인 touch 가능 -->
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+
+
+    <!--naver app을 통한 인증을 위해 필요한 permission -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+
+
     <!--WIFI 상태활용시 추가-->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <!--WIFI 상태활용시 추가-->
