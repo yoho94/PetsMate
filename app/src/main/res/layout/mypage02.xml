@@ -132,6 +132,12 @@
 
         //마진탑 500 하면 보임
     </LinearLayout>
+    <Spinner
+        android:id="@+id/alarmMelodyspinner"
+        android:layout_width="125dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="90dp" />
 
 
 </RelativeLayout>
