@@ -1,4 +1,4 @@
-package com.example.petsmate;
+package com.example.petsmate.service;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -12,6 +12,8 @@ import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+import com.example.petsmate.MainActivity;
+import com.example.petsmate.R;
 import com.google.firebase.messaging.RemoteMessage;
 
 
@@ -26,6 +28,10 @@ public class MyFirebaseMessagingService extends com.google.firebase.messaging.Fi
         Log.d("FCM-DATA", remoteMessage.getData().toString());
         if(title.equalsIgnoreCase(getString(R.string.callNoti))) { // 콜 수락 노티일 경우.
             sendNotiCall(title, messageBody);
+            String timeStr = remoteMessage.getData().get("data_time");
+            long time = Long.parseLong(timeStr);
+            String[] str = messageBody.split("\n");
+            JobSchedulerStart.start(this, time, str[0]+"\n"+str[1]); // 시간에 맞게 알림 띄우기.
         } else {
             sendNotification(messageBody, title);
         }

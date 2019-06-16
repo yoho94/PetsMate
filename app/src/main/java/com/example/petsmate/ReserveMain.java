@@ -297,6 +297,7 @@ public class ReserveMain extends AppCompatActivity implements OnMapReadyCallback
 
                 CallTask callTask = new CallTask();
                 CallSelectTask callSelectTask = new CallSelectTask();
+                DirectionsTask directionsTask = new DirectionsTask();
 
                 String guestId, driverId, isCall, code, startLat, startLon, desLat, desLon, startTime, desTime, guestCount, isShuttle, ps, placeName, placeAddr, placeNameStart, placeAddrStart;
                 guestId = MainActivity.memberInfo.getId(); // TODO 전부 임시 값이 아닌 사용자가 선택한 값을 받아오는 작업 필요.
@@ -308,7 +309,7 @@ public class ReserveMain extends AppCompatActivity implements OnMapReadyCallback
                 desLat = destinationPlace.getLat();
                 desLon = destinationPlace.getLon();
                 startTime = System.currentTimeMillis() + "";
-                desTime =  new java.util.Date().getTime() + ""; // TODO API 통해서 실제 거리 계산하기.
+                desTime =  (new java.util.Date().getTime() + directionsTask.getDuration(startLon, startLat, desLon, desLat) )+ ""; // 네이버 API로 실제 시간계산.
                 guestCount = "1"; // TODO 없애거나 xml에 추가하기.
                 isShuttle = false+"";
                 ps = "";
@@ -357,6 +358,7 @@ public class ReserveMain extends AppCompatActivity implements OnMapReadyCallback
 
 
     }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,

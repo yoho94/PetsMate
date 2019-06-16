@@ -1,4 +1,4 @@
-package com.example.petsmate;
+package com.example.petsmate.service;
 
 import android.content.SharedPreferences;
 import android.util.Log;
