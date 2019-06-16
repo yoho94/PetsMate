@@ -24,7 +24,52 @@ public class MyFirebaseMessagingService extends com.google.firebase.messaging.Fi
         String messageBody = remoteMessage.getData().get("message");
         String title = remoteMessage.getData().get("title");
         Log.d("FCM-DATA", remoteMessage.getData().toString());
-        sendNotification(messageBody, title);
+        if(title.equalsIgnoreCase(getString(R.string.callNoti))) { // 콜 수락 노티일 경우.
+            sendNotiCall(title, messageBody);
+        } else {
+            sendNotification(messageBody, title);
+        }
+    }
+
+    private void sendNotiCall(String title, String messageBody) { // TODO 채팅으로 연결해주기.
+        String channelId = "channel";
+        String channelName = "Channel Name";
+        NotificationManager notifManager
+                = (NotificationManager) getSystemService  (Context.NOTIFICATION_SERVICE);
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel mChannel = new NotificationChannel(
+                    channelId, channelName, importance);
+            notifManager.createNotificationChannel(mChannel);
+        }
+
+        NotificationCompat.Builder builder =
+                new NotificationCompat.Builder(getApplicationContext(), channelId);
+
+        Intent notificationIntent = new Intent(getApplicationContext()
+                , MainActivity.class);
+
+        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+        int requestID = (int) System.currentTimeMillis();
+        PendingIntent pendingIntent
+                = PendingIntent.getActivity(getApplicationContext()
+                , requestID
+                , notificationIntent
+                , PendingIntent.FLAG_UPDATE_CURRENT);
+
+        builder.setContentTitle(title) // required
+                .setContentText(messageBody)  // required
+                .setDefaults(Notification.DEFAULT_ALL) // 알림, 사운드 진동 설정
+                .setAutoCancel(false) // 알림 터치시 반응 후 삭제
+                .setSound(RingtoneManager
+                        .getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+                .setSmallIcon(R.drawable.noti_call_icon)
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(messageBody))
+                .setContentIntent(pendingIntent);
+        notifManager.notify(0, builder.build());
     }
 
     private void sendNotification(String messageBody,String title) {
@@ -59,10 +104,11 @@ public class MyFirebaseMessagingService extends com.google.firebase.messaging.Fi
         builder.setContentTitle(title) // required
                 .setContentText(messageBody)  // required
                 .setDefaults(Notification.DEFAULT_ALL) // 알림, 사운드 진동 설정
-                .setAutoCancel(true) // 알림 터치시 반응 후 삭제
+                .setAutoCancel(false) // 알림 터치시 반응 후 삭제
                 .setSound(RingtoneManager
                         .getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
                 .setSmallIcon(android.R.drawable.btn_star)
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(messageBody))
                 .setContentIntent(pendingIntent);
         notifManager.notify(0, builder.build());
 

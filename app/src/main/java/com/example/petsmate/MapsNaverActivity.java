@@ -71,6 +71,7 @@ public class MapsNaverActivity extends AppCompatActivity implements OnMapReadyCa
         callTables = new ArrayList<>();
         markers = new ArrayList<>();
 
+        // 처음 콜 정보 받아오기
         final Handler handler = new Handler(Looper.getMainLooper());
         new Thread() {
             @Override
@@ -78,7 +79,7 @@ public class MapsNaverActivity extends AppCompatActivity implements OnMapReadyCa
                 try {
                     while (true) {
 
-                        if(naverMap != null) {
+                        if (naverMap != null) {
                             getCallTable();
                             handler.post(new Runnable() {
                                 @Override
@@ -96,7 +97,7 @@ public class MapsNaverActivity extends AppCompatActivity implements OnMapReadyCa
                 }
             }
         }.start();
-
+        // 처음 콜 정보 받아오기 끝
 
         // naver 지도 설정 시작
         mapFragment = (MapFragment) getSupportFragmentManager().findFragmentById(R.id.driver_maps);
@@ -152,7 +153,7 @@ public class MapsNaverActivity extends AppCompatActivity implements OnMapReadyCa
 
     private void setCallMaker() {
 
-        for(int i=0; i<markers.size(); i++) { // 기존의 마커 삭제
+        for (int i = 0; i < markers.size(); i++) { // 기존의 마커 삭제
             markers.get(i).setMap(null);
         }
         markers.clear();
@@ -189,7 +190,7 @@ public class MapsNaverActivity extends AppCompatActivity implements OnMapReadyCa
                 marker.setOnClickListener(new Overlay.OnClickListener() {
                     @Override
                     public boolean onClick(@NonNull Overlay o) {
-                        CallDialog(start, des, id, "1",serialNumber);
+                        CallDialog(start, des, id, "1", serialNumber);
                         return true;
                     }
                 });
@@ -203,14 +204,14 @@ public class MapsNaverActivity extends AppCompatActivity implements OnMapReadyCa
         }
     }
 
-    public void CallDialog(String start, String des,final String id, final String code, final String serialNumber){
+    public void CallDialog(final String start, final String des, final String id, final String code, final String serialNumber) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("콜 선택");
         builder.setMessage("출발지 : " + start + "\n목적지 : " + des);
         builder.setPositiveButton("취소",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getApplicationContext(),"취소 하셨습니다.",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "취소 하셨습니다.", Toast.LENGTH_LONG).show();
                         dialog.dismiss();
                     }
                 });
@@ -221,11 +222,23 @@ public class MapsNaverActivity extends AppCompatActivity implements OnMapReadyCa
                         try {
                             String result = new CallUpdateTask().execute(id, code, serialNumber).get();
                             result = result.trim();
+                            String[] results = result.split("@!@");
 
-                            if(result.equalsIgnoreCase("1")) {
-                                Toast.makeText(getApplicationContext(),"정상적으로 수락 됐습니다.",Toast.LENGTH_LONG).show();
+                            if (results[0].equalsIgnoreCase("1")) {
+                                Toast.makeText(getApplicationContext(), "정상적으로 수락 됐습니다.", Toast.LENGTH_LONG).show();
+                                // 푸시 알림 보내기.
+                                String id;
+                                String title = getString(R.string.callNoti);
+                                String body = "출발지 : " + start + "\n목적지 : " + des;
+                                String type = "guest";
+                                if(results[1].isEmpty())
+                                    id = null;
+                                else
+                                    id = results[1];
+
+                                new PushMsgTask().execute(id, title, body, type); // 푸시 알림 전송
                             } else {
-                                Toast.makeText(getApplicationContext(),"수락 실패.",Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "수락 실패.", Toast.LENGTH_LONG).show();
                             }
 
                         } catch (Exception e) {

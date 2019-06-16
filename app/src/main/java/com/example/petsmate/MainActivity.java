@@ -140,7 +140,7 @@ class MemberInfo { // 회원의 정보를 저장할 클래스.
 public class MainActivity extends AppCompatActivity {
 
     private static String OAUTH_CLIENT_ID="7nlmp3_oTZszqdkLgv2u";
-    private static String OAUTH_CLIENT_SECRET="e8WuNOzDTI";
+    private static String OAUTH_CLIENT_SECRET="e8WuNOzDTl";
     private static String OAUTH_CLIENT_NAME="네이버 아이디로 로그인";
 
     public static OAuthLoginButton mOAuthLoginButton;
@@ -167,6 +167,12 @@ public class MainActivity extends AppCompatActivity {
         //2.로그인버튼셋팅
         mOAuthLoginButton = (OAuthLoginButton) findViewById(R.id.buttonNaverLogin);
         mOAuthLoginButton.setOAuthLoginHandler(mOAuthLoginHandler);
+        mOAuthLoginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mOAuthLoginInstance.startOauthLoginActivity(MainActivity.this, mOAuthLoginHandler);
+            }
+        });
 
 
         Intent intent = getIntent();
