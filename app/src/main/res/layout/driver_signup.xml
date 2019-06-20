@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.example.petsmate.CustomScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.design.widget.CoordinatorLayout android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/driver_CustomScrollView">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <com.example.petsmate.CustomScrollView
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".MainActivity"
-        android:background="#f06464">
+        android:id="@+id/driver_CustomScrollView">
+
+        <RelativeLayout
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:context=".MainActivity"
+            android:background="#f06464">
 
 
             <TextView
@@ -145,140 +150,155 @@
                 android:layout_marginLeft="270dp"
                 android:layout_marginTop="300dp"/>
 
-        <ImageView
-            android:id="@+id/dr_image_up"
-            android:layout_width="160dp"
-            android:layout_height="160dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="360dp"
-            android:background="#ffffff"
-            android:onClick="onDriverImage" />
+            <ImageView
+                android:id="@+id/dr_image_up"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="360dp"
+                android:background="#ffffff"
+                android:onClick="onDriverImage" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="지역번호"
-            android:textStyle="bold"
-            android:textSize="15dp"
-            android:layout_marginLeft="220dp"
-            android:layout_marginTop="360dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="지역번호"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                android:layout_marginLeft="220dp"
+                android:layout_marginTop="360dp"/>
 
-        <EditText
-            android:layout_width="90dp"
-            android:layout_height="wrap_content"
-            android:hint="(지역)"
-            android:textAlignment="center"
-            android:background="#ffffff"
-            android:textColor="#000000"
-            android:layout_marginLeft="220dp"
-            android:layout_marginTop="380dp"/>
+            <EditText
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:hint="(지역)"
+                android:textAlignment="center"
+                android:background="#ffffff"
+                android:textColor="#000000"
+                android:layout_marginLeft="220dp"
+                android:layout_marginTop="380dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="220dp"
-            android:layout_marginTop="415dp"
-            android:text="차종"
-            android:textSize="15dp"
-            android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="220dp"
+                android:layout_marginTop="415dp"
+                android:text="차종"
+                android:textSize="15dp"
+                android:textStyle="bold" />
 
-        <EditText
-            android:layout_width="90dp"
-            android:layout_height="wrap_content"
-            android:hint="(선택)"
-            android:textAlignment="center"
-            android:background="#ffffff"
-            android:textColor="#000000"
-            android:layout_marginLeft="220dp"
-            android:layout_marginTop="440dp"/>
+            <EditText
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:hint="(선택)"
+                android:textAlignment="center"
+                android:background="#ffffff"
+                android:textColor="#000000"
+                android:layout_marginLeft="220dp"
+                android:layout_marginTop="440dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="220dp"
-            android:layout_marginTop="475dp"
-            android:text="번호"
-            android:textSize="15dp"
-            android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="220dp"
+                android:layout_marginTop="475dp"
+                android:text="번호"
+                android:textSize="15dp"
+                android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/dr_car_number"
-            android:layout_width="90dp"
-            android:layout_height="wrap_content"
-            android:hint="(입력)"
-            android:textAlignment="center"
-            android:background="#ffffff"
-            android:textColor="#000000"
-            android:layout_marginLeft="220dp"
-            android:layout_marginTop="500dp"/>
+            <EditText
+                android:id="@+id/dr_car_number"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:hint="(입력)"
+                android:textAlignment="center"
+                android:background="#ffffff"
+                android:textColor="#000000"
+                android:layout_marginLeft="220dp"
+                android:layout_marginTop="500dp"/>
 
-        <ImageView
-            android:id="@+id/car_image_up"
-            android:layout_width="160dp"
-            android:layout_height="160dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="550dp"
-            android:background="#ffffff"
-            android:onClick="onCarImage1" />
+            <ImageView
+                android:id="@+id/car_image_up"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="550dp"
+                android:background="#ffffff"
+                android:onClick="onCarImage1" />
 
-        <ImageView
-            android:id="@+id/car2_image_up"
-            android:layout_width="160dp"
-            android:layout_height="160dp"
-            android:layout_marginLeft="220dp"
-            android:layout_marginTop="550dp"
-            android:layout_marginRight="30dp"
-            android:background="#ffffff"
-            android:onClick="onCarImage2" />
+            <ImageView
+                android:id="@+id/car2_image_up"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:layout_marginLeft="220dp"
+                android:layout_marginTop="550dp"
+                android:layout_marginRight="30dp"
+                android:background="#ffffff"
+                android:onClick="onCarImage2" />
 
-        <TextView
-        android:layout_width="300dp"
+            <TextView
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:text="기사 인증까지 "
+                android:textSize="30dp"
+                android:textColor="#f06464"
+                android:background="#ffa7a7"
+                android:textAlignment="center"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="750dp"
+                android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:text="2~3일 정도 소요됩니다. "
+                android:textAlignment="center"
+                android:textSize="30dp"
+                android:textColor="#f000"
+                android:background="#ffa7a7"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="790dp"
+                android:layout_centerHorizontal="true"/>
+
+            <Button
+                android:id="@+id/dr_signup_BTN"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="90dp"
+                android:layout_marginTop="840dp"
+                android:background="#ffa7a7"
+                android:onClick="onSignup"
+                android:text="확인"
+                android:textColor="#000000"
+                android:textSize="25dp" />
+
+            <Button
+                android:id="@+id/dr_cancel_BTN"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="취소"
+                android:background="#ffa7a7"
+                android:textColor="#000000"
+                android:textSize="25dp"
+                android:layout_marginTop="840dp"
+                android:layout_marginLeft="220dp"
+                android:layout_marginRight="80dp"/>
+
+        </RelativeLayout>
+
+    </com.example.petsmate.CustomScrollView>
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="기사 인증까지 "
-        android:textSize="30dp"
-        android:textColor="#f06464"
-        android:background="#ffa7a7"
-        android:textAlignment="center"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="750dp"
-        android:layout_centerHorizontal="true"/>
+        android:layout_gravity="bottom"
+        android:background="#FFFFFF"
+        app:itemIconSize="30dp"
+        app:labelVisibilityMode="unlabeled"
+        app:menu="@menu/bottombar_menu">
 
-        <TextView
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:text="2~3일 정도 소요됩니다. "
-            android:textAlignment="center"
-            android:textSize="30dp"
-            android:textColor="#f000"
-            android:background="#ffa7a7"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="790dp"
-            android:layout_centerHorizontal="true"/>
+    </android.support.design.widget.BottomNavigationView>
 
-        <Button
-            android:id="@+id/dr_signup_BTN"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="90dp"
-            android:layout_marginTop="840dp"
-            android:background="#ffa7a7"
-            android:onClick="onSignup"
-            android:text="확인"
-            android:textColor="#000000"
-            android:textSize="25dp" />
+</android.support.design.widget.CoordinatorLayout>
 
-        <Button
-            android:id="@+id/dr_cancel_BTN"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="취소"
-            android:background="#ffa7a7"
-            android:textColor="#000000"
-            android:textSize="25dp"
-            android:layout_marginTop="840dp"
-            android:layout_marginLeft="220dp"
-            android:layout_marginRight="80dp"/>
-
-    </RelativeLayout>
-
-</com.example.petsmate.CustomScrollView>

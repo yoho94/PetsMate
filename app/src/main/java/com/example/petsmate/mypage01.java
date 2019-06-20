@@ -2,11 +2,14 @@ package com.example.petsmate;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-public class mypage01 extends AppCompatActivity {
+public class mypage01 extends BaseActivity {
+
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,5 +65,12 @@ public class mypage01 extends AppCompatActivity {
                     }
                 }
         );
+
+
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNav);
+        configBottomNavigation(this, bottomNavigationView);
+
+
     }
+
 }

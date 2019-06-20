@@ -18,6 +18,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -58,7 +59,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.Executor;
 
-public class MapsNaverActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class MapsNaverActivity extends BaseActivity implements OnMapReadyCallback {
 
     private MapFragment mapFragment;
     private NaverMap naverMap;
@@ -76,6 +77,10 @@ public class MapsNaverActivity extends AppCompatActivity implements OnMapReadyCa
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps_naver);
+
+        BottomNavigationView bottomNavigationView;
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNav);
+        configBottomNavigation(this, bottomNavigationView);
 
         callTables = new ArrayList<>();
         markers = new ArrayList<>();

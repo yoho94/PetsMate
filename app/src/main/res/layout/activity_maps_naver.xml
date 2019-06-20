@@ -1,75 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+
+<android.support.design.widget.CoordinatorLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#FFFFFF"
-    android:orientation="vertical">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:id="@+id/_textview"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="46dp"
-        android:layout_gravity="top"
-        android:background="#f06464"
-        android:text="실시간 콜받기"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="30dp" />
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <fragment
-            android:id="@+id/driver_maps"
-            android:layout_width="match_parent"
-            android:layout_height="400dp"
-            android:name="com.naver.maps.map.MapFragment" />
-
-        <ImageButton
-            android:id="@+id/driver_refresh_btn"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="right|bottom"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="8dp"
-            app:srcCompat="@drawable/ic_redo_alt"
-            android:backgroundTint="#FFFFFFFF"/>
-
-    </FrameLayout>
-
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="69dp"
-        android:text=" ㆍ현재 내위치"
-        android:textSize="25dp" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="117dp"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/location_button"
+            android:id="@+id/_textview"
             android:layout_width="match_parent"
-            android:layout_height="57dp"
-            android:text="ㆍ 내위치 중심"
-            android:textColor="#f06464"
+            android:layout_height="46dp"
+            android:layout_gravity="top"
+            android:background="#f06464"
+            android:text="실시간 콜받기"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="30dp" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <fragment
+                android:id="@+id/driver_maps"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:name="com.naver.maps.map.MapFragment" />
+
+            <ImageButton
+                android:id="@+id/driver_refresh_btn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="right|bottom"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="8dp"
+                app:srcCompat="@drawable/ic_redo_alt"
+                android:backgroundTint="#FFFFFFFF"/>
+
+        </FrameLayout>
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="69dp"
+            android:text=" ㆍ현재 내위치"
             android:textSize="25dp" />
 
-        <Button
-            android:id="@+id/accuracy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/location_button"
-            android:layout_alignRight="@+id/location_button"
-            android:background="@drawable/wgborder"
-            android:text="정확도 순 ▼"
-            android:textColor="#000000" />
-    </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="117dp"
+            android:orientation="horizontal">
 
-</LinearLayout>
+            <TextView
+                android:id="@+id/location_button"
+                android:layout_width="match_parent"
+                android:layout_height="57dp"
+                android:text="ㆍ 내위치 중심"
+                android:textColor="#f06464"
+                android:textSize="25dp" />
+
+            <Button
+                android:id="@+id/accuracy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/location_button"
+                android:layout_alignRight="@+id/location_button"
+                android:background="@drawable/wgborder"
+                android:text="정확도 순 ▼"
+                android:textColor="#000000" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="#FFFFFF"
+        app:itemIconSize="30dp"
+        app:labelVisibilityMode="unlabeled"
+        app:menu="@menu/bottombar_menu">
+
+    </android.support.design.widget.BottomNavigationView>
+
+</android.support.design.widget.CoordinatorLayout>
+

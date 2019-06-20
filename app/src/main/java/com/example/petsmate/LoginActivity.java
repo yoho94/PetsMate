@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -23,11 +24,18 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
     EditText idET, pwET;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.home_login);
+
+        BottomNavigationView bottomNavigationView;
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNav);
+        configBottomNavigation(this, bottomNavigationView);
+
         if(MainActivity.memberInfo.getIsLogin()) { // 로그인시 로그인창 안보고 바로 넘어가기
             if(MainActivity.memberInfo.isGuest()) {
                 Intent intent = new Intent(getApplicationContext(), ReserveMain.class);
@@ -38,8 +46,7 @@ public class LoginActivity extends AppCompatActivity {
             }
             finish();
         }
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_login);
+
         idET = (EditText) findViewById(R.id.id_input);
         pwET = (EditText) findViewById(R.id.pw_input);
         Button findButton = (Button)findViewById(R.id.idserch_btn);
@@ -69,6 +76,8 @@ public class LoginActivity extends AppCompatActivity {
 //
 //        new PushMsgTask().execute(id, title, body, ""); // 손님일 경우
 //        new PushMsgTask().execute(id, title, body, type); // 기사일 경우
+
+
 
     }
 

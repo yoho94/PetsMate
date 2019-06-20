@@ -13,6 +13,7 @@ import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -65,7 +66,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
-public class ReserveMain extends AppCompatActivity implements OnMapReadyCallback, View.OnTouchListener {
+public class ReserveMain extends BaseActivity implements OnMapReadyCallback, View.OnTouchListener {
 
     Place startPlace, destinationPlace;
     LinkedHashMap<Integer, Boolean> petClick; // 펫 체크리스트 클릭 확인
@@ -88,6 +89,10 @@ public class ReserveMain extends AppCompatActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.reserve_main);
+
+        BottomNavigationView bottomNavigationView;
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNav);
+        configBottomNavigation(this, bottomNavigationView);
 
         customScrollView = (CustomScrollView) findViewById(R.id.reserve_CustomScrollView);
         startET = (EditText) findViewById(R.id.reserve_text_startsearch);

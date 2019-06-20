@@ -3,6 +3,7 @@ package com.example.petsmate;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -17,7 +18,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class PwfindActivity extends AppCompatActivity {
+public class PwfindActivity extends BaseActivity {
     EditText nameET, idET, phoneET;
 
     @Override
@@ -29,6 +30,10 @@ public class PwfindActivity extends AppCompatActivity {
         nameET = (EditText) findViewById(R.id.pwfind_name_ET);
         idET = (EditText) findViewById(R.id.pwfind_id_ET);
         phoneET = (EditText) findViewById(R.id.pwfind_phone_ET);
+
+        BottomNavigationView bottomNavigationView;
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNav);
+        configBottomNavigation(this, bottomNavigationView);
     }
 
     public void onFindPW(View v) {

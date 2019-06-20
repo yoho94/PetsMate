@@ -141,7 +141,7 @@ class MemberInfo { // 회원의 정보를 저장할 클래스.
     }
 }
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private static String OAUTH_CLIENT_ID="7nlmp3_oTZszqdkLgv2u";
     private static String OAUTH_CLIENT_SECRET="e8WuNOzDTl";
@@ -206,35 +206,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         BottomNavigationView bottomNavigationView;
-
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNav);
-
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                int id = menuItem.getItemId();
-                Class clas = null;
-
-                switch (id) {
-                    case R.id.tab_main:
-                        clas = MainActivity.class;
-                        break;
-                    case R.id.tab_msg:
-                        break;
-                    case R.id.tab_mypage:
-                        clas = mypage01.class;
-                        break;
-                    case R.id.tab_pet:
-                        break;
-                }
-
-                if(clas != null)
-                    startActivity(new Intent(getApplicationContext(), clas));
-
-                return false;
-            }
-        });
-
+        configBottomNavigation(this, bottomNavigationView);
     }
     static private OAuthLoginHandler mOAuthLoginHandler = new OAuthLoginHandler() {
         @Override

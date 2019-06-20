@@ -69,7 +69,7 @@
         android:background="#FFFFFF"
         app:itemIconSize="30dp"
         app:labelVisibilityMode="unlabeled"
-        app:menu="@xml/bottombar_tabs">
+        app:menu="@menu/bottombar_menu">
 
     </android.support.design.widget.BottomNavigationView>
 

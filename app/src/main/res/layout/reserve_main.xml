@@ -1,302 +1,307 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.example.petsmate.CustomScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<android.support.design.widget.CoordinatorLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/reserve_CustomScrollView">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <com.example.petsmate.CustomScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".MainActivity">
+        android:id="@+id/reserve_CustomScrollView">
 
-        <fragment
-            android:id="@+id/reserve_map_fragment"
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:name="com.naver.maps.map.MapFragment" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:context=".MainActivity">
 
-        <EditText
-            android:id="@+id/reserve_text_startsearch"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@drawable/wgborder"
-            android:ems="10"
-            android:hint="출발지 검색"
-            android:inputType="text"
-            android:textAlignment="center"
-            android:textSize="30dp" />
+            <fragment
+                android:id="@+id/reserve_map_fragment"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:name="com.naver.maps.map.MapFragment" />
 
-        <EditText
-            android:id="@+id/reserve_text_arrival"
-            android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/wgborder"
-            android:ems="10"
-            android:hint="도착지 검색"
-            android:inputType="text"
-            android:textAlignment="center"
-            android:textSize="30dp" />
+            <EditText
+                android:id="@+id/reserve_text_startsearch"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/wgborder"
+                android:ems="10"
+                android:hint="출발지 검색"
+                android:inputType="text"
+                android:textAlignment="center"
+                android:textSize="30dp" />
 
-        <Button
-            android:id="@+id/reserve_btn_callnow"
-            android:layout_width="356dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/rbborder"
-            android:text="즉시콜"
-            android:onClick="RB"
-            android:textColor="#FFFFFF" />
+            <EditText
+                android:id="@+id/reserve_text_arrival"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/wgborder"
+                android:ems="10"
+                android:hint="도착지 검색"
+                android:inputType="text"
+                android:textAlignment="center"
+                android:textSize="30dp" />
+
+            <Button
+                android:id="@+id/reserve_btn_callnow"
+                android:layout_width="356dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/rbborder"
+                android:text="즉시콜"
+                android:onClick="RB"
+                android:textColor="#FFFFFF" />
             <!--android:onClick="RB"-->
 
-        <Button
-            android:id="@+id/reserve_btn_booking"
-            android:layout_width="356dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/wgborder"
-
-            android:text="예약하기" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
-
-            <TextView
-                android:id="@+id/reserve_text_carsize"
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/reserve_btn_booking"
+                android:layout_width="356dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:text="차종"
-                android:textSize="20dp" />
+                android:layout_marginTop="10dp"
+                android:background="@drawable/wgborder"
 
-            <LinearLayout
+                android:text="예약하기" />
+
+            <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="horizontal">
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/reserve_text_carsize"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:text="차종"
+                    android:textSize="20dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/reserve_btn_medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/rbborder"
+                        android:text="중형"
+
+                        android:textColor="#FFFFFF" />
+
+                    <Button
+                        android:id="@+id/reserve_btn_large"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+
+                        android:background="@drawable/wgborder"
+                        android:text="대형" />
+
+                </LinearLayout>
+
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
+
+                <TextView
+                    android:id="@+id/reserve_text_choicePet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="펫 선택" />
+
+
+                <!--<ScrollView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="100dp"-->
+                <!--android:fillViewport="true">-->
+
+                <ListView
+                    android:id="@+id/reserve_petListView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:background="@drawable/wgborder"
+                    android:choiceMode="multipleChoice">
+
+                </ListView>
+                <!--</ScrollView>-->
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
 
                 <Button
-                    android:id="@+id/reserve_btn_medium"
+                    android:id="@+id/reserve_pluspet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="60dp"
+                    android:layout_marginLeft="39dp"
+                    android:background="@drawable/peachborder"
+                    android:layout_weight="1"
+                    android:text="미등록 펫 추가"
+                    android:textColor="#000000" />
+
+                <Button
+                    android:id="@+id/reserve_pluspetnum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/peachborder"
+                    android:text="미등록 펫(n)"
+                    android:textColor="#000000" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
+
+                <TextView
+                    android:id="@+id/reserve_text_petWeight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="80dp"
+                    android:layout_marginLeft="39dp"
+                    android:text="반려동물 무게" />
+            </TableRow>
+
+            <TextView
+                android:id="@+id/reserve_text_petWeightText"
+                android:layout_width="161dp"
+                android:layout_height="43dp"
+                android:layout_marginStart="80dp"
+                android:layout_marginLeft="39dp"
+                android:background="@drawable/wgborder"
+                android:ems="10"
+                android:hint="(선택)"
+                android:inputType="phone"
+                android:textAlignment="center" />
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
+
+                <TextView
+                    android:id="@+id/reserve_text_specialNote"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="80dp"
+                    android:layout_marginLeft="39dp"
+                    android:text="특이사항 (선택입력)" />
+            </TableRow>
+
+            <EditText
+                android:id="@+id/reserve_text_specialNoteText"
+                android:layout_width="wrap_content"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:background="@drawable/wgborder"
+                android:ems="12"
+                android:hint="(특이사항 입력)"
+                android:inputType="phone"
+                android:textAlignment="center" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
+
+                <TextView
+                    android:id="@+id/reserve_text_phonenum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="연락처" />
+
+                <Button
+                    android:id="@+id/reserve_btn_mynum"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:background="@drawable/rbborder"
-                    android:text="중형"
+                    android:text="내 번호"
 
                     android:textColor="#FFFFFF" />
 
                 <Button
-                    android:id="@+id/reserve_btn_large"
+                    android:id="@+id/reserve_btn_anothernum"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
-
                     android:background="@drawable/wgborder"
-                    android:text="대형" />
 
-            </LinearLayout>
+                    android:text="다른 번호" />
 
-        </TableRow>
+            </TableRow>
 
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp">
-
-            <TextView
-                android:id="@+id/reserve_text_choicePet"
+            <EditText
+                android:id="@+id/reserve_text_inputphonenumber"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="펫 선택" />
-
-
-            <!--<ScrollView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="100dp"-->
-            <!--android:fillViewport="true">-->
-
-            <ListView
-                android:id="@+id/reserve_petListView"
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
                 android:background="@drawable/wgborder"
-                android:choiceMode="multipleChoice">
+                android:ems="12"
+                android:hint="(다른 번호 입력)"
+                android:inputType="phone"
+                android:textAlignment="center" />
 
-            </ListView>
-            <!--</ScrollView>-->
-        </TableRow>
 
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp">
-
-            <Button
-                android:id="@+id/reserve_pluspet"
-                android:layout_width="wrap_content"
+            <TableRow
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="60dp"
-                android:layout_marginLeft="39dp"
-                android:background="@drawable/peachborder"
-                android:layout_weight="1"
-                android:text="미등록 펫 추가"
-                android:textColor="#000000" />
+                android:layout_margin="10dp">
 
-            <Button
-                android:id="@+id/reserve_pluspetnum"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/peachborder"
-                android:text="미등록 펫(n)"
-                android:textColor="#000000" />
-        </TableRow>
+                <TextView
+                    android:id="@+id/reserve_text_road"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="  경로  " />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp">
+                <Button
+                    android:id="@+id/reserve_btn_oneway"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rbborder"
+                    android:text="편도"
 
-        <TextView
-            android:id="@+id/reserve_text_petWeight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="80dp"
-            android:layout_marginLeft="39dp"
-            android:text="반려동물 무게" />
-        </TableRow>
+                    android:textColor="#FFFFFF" />
 
-        <TextView
-            android:id="@+id/reserve_text_petWeightText"
-            android:layout_width="161dp"
-            android:layout_height="43dp"
-            android:layout_marginStart="80dp"
-            android:layout_marginLeft="39dp"
-            android:background="@drawable/wgborder"
-            android:ems="10"
-            android:hint="(선택)"
-            android:inputType="phone"
-            android:textAlignment="center" />
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp">
+                <Button
+                    android:id="@+id/reserve_btn_roundtrip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/wgborder"
 
-            <TextView
-                android:id="@+id/reserve_text_specialNote"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="80dp"
-                android:layout_marginLeft="39dp"
-                android:text="특이사항 (선택입력)" />
-        </TableRow>
-
-        <EditText
-            android:id="@+id/reserve_text_specialNoteText"
-            android:layout_width="wrap_content"
-            android:layout_height="34dp"
-            android:layout_gravity="center"
-            android:background="@drawable/wgborder"
-            android:ems="12"
-            android:hint="(특이사항 입력)"
-            android:inputType="phone"
-            android:textAlignment="center" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp">
-
-            <TextView
-                android:id="@+id/reserve_text_phonenum"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="연락처" />
-
-            <Button
-                android:id="@+id/reserve_btn_mynum"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/rbborder"
-                android:text="내 번호"
-
-                android:textColor="#FFFFFF" />
-
-            <Button
-                android:id="@+id/reserve_btn_anothernum"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/wgborder"
-
-                android:text="다른 번호" />
-
-        </TableRow>
-
-        <EditText
-            android:id="@+id/reserve_text_inputphonenumber"
-            android:layout_width="wrap_content"
-            android:layout_height="34dp"
-            android:layout_gravity="center"
-            android:background="@drawable/wgborder"
-            android:ems="12"
-            android:hint="(다른 번호 입력)"
-            android:inputType="phone"
-            android:textAlignment="center" />
-
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp">
-
-            <TextView
-                android:id="@+id/reserve_text_road"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="  경로  " />
-
-            <Button
-                android:id="@+id/reserve_btn_oneway"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/rbborder"
-                android:text="편도"
-
-                android:textColor="#FFFFFF" />
-
-            <Button
-                android:id="@+id/reserve_btn_roundtrip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/wgborder"
-
-                android:text="왕복" />
-        </TableRow>
+                    android:text="왕복" />
+            </TableRow>
 
 
 
@@ -322,6 +327,22 @@
                 android:text="완료하기"
                 android:textColor="#FFFFFF"/>
 
-    </LinearLayout>
+        </LinearLayout>
 
-</com.example.petsmate.CustomScrollView>
+
+
+    </com.example.petsmate.CustomScrollView>
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFF"
+        app:itemIconSize="30dp"
+        app:labelVisibilityMode="unlabeled"
+        app:menu="@menu/bottombar_menu">
+
+    </android.support.design.widget.BottomNavigationView>
+</android.support.design.widget.CoordinatorLayout>

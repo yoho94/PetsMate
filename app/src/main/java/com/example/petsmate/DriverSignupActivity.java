@@ -15,6 +15,7 @@ import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -40,7 +41,7 @@ import java.net.URI;
 import java.net.URL;
 import java.util.regex.Pattern;
 
-public class DriverSignupActivity extends AppCompatActivity {
+public class DriverSignupActivity extends BaseActivity {
 
     ImageView driverIv, carIv1, carIv2;
     String driverImagePath, carImagePath1, carImagePath2, uploadURL;
@@ -93,6 +94,10 @@ public class DriverSignupActivity extends AppCompatActivity {
 
         uploadURL = "http://106.10.36.239:8080//DB/driverImageUpLoad.jsp";
 
+
+        BottomNavigationView bottomNavigationView;
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNav);
+        configBottomNavigation(this, bottomNavigationView);
 
     }
 

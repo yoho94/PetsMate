@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -85,7 +86,7 @@ class PetInfo {
     }
 }
 
-public class SignupPetActivity extends AppCompatActivity {
+public class SignupPetActivity extends BaseActivity {
 
     static ArrayList<PetInfo> petInfoArrayList = new ArrayList<>();
     EditText name, weight, comment;
@@ -124,7 +125,9 @@ public class SignupPetActivity extends AppCompatActivity {
             }
         });//취소 버튼 누르면 알림창뜨는거.
 
-
+        BottomNavigationView bottomNavigationView;
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNav);
+        configBottomNavigation(this, bottomNavigationView);
 
     }
 
