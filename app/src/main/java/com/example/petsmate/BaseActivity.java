@@ -72,11 +72,13 @@ public class BaseActivity extends AppCompatActivity {
     private int getContextIndex(Context context) {
 
         if (context instanceof MainActivity || context instanceof LoginActivity || context instanceof DriverSignupActivity || context instanceof Idfind || context instanceof MapsNaverActivity || context instanceof  PwfindActivity || context instanceof ReserveMain || context instanceof SignupPetActivity || context instanceof SignupActivity) {
-            return INDEX_HOME_ACTIVITY;
+            return INDEX_HOME_ACTIVITY; // 메뉴바 첫번째 버튼. (홈 화면)
 //        } else if (context instanceof DashboardActivity) {
-//            return INDEX_DASHBOARD_ACTIVITY;
+//            return INDEX_DASHBOARD_ACTIVITY; // 메뉴바 두번째 버튼. (펫 화면)
+//        } else if () {
+//            return INDEX_MSG_ACTIVITY; // 메뉴바 세번째 버튼. (메세지 화면)
         } else if (context instanceof mypage01 || context instanceof mypage02 || context instanceof mypage03 || context instanceof mypage04 || context instanceof mypage06 || context instanceof mypage07) {
-            return INDEX_MYPAGE_ACTIVITY;
+            return INDEX_MYPAGE_ACTIVITY; // 메뉴바 네번째 버튼 (설정, 마이페이지)
         }
 
         return 0;
