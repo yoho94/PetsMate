@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +16,8 @@ import com.nhn.android.naverlogin.OAuthLoginHandler;
 import com.nhn.android.naverlogin.ui.view.OAuthLoginButton;
 
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.roughike.bottombar.BottomBar;
+import com.roughike.bottombar.OnTabSelectListener;
 
 import java.util.ArrayList;
 
@@ -148,9 +151,9 @@ public class MainActivity extends AppCompatActivity {
 
     public static Context mContext;
 
-
-
     static MemberInfo memberInfo = new MemberInfo();
+
+    BottomBar bottomBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -175,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         Button loginButton = (Button) findViewById(R.id.login);
         Button userjoinButton = (Button) findViewById(R.id.user_join);
         Button driverjoinButton = (Button) findViewById(R.id.driver_join);
@@ -202,6 +205,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        bottomBar = (BottomBar) findViewById(R.id.bottomBar);
+        bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
+            @Override
+            public void onTabSelected(int tabId) {
+                Log.d("bottomBar", tabId + "");
+                Class clas = null;
+
+                if(clas != null) {
+                    Intent intent1 = new Intent(getApplicationContext(), clas);
+                    startActivity(intent);
+                }
+            }
+        });
+
     }
     static private OAuthLoginHandler mOAuthLoginHandler = new OAuthLoginHandler() {
         @Override
@@ -225,16 +242,4 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    // 액티비티 띄우기
-    public void onSignupClick(View v) { // 이용자등록 클릭
-        Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
-        startActivity(intent);
-    }
-
-    public void onLoginClick(View v) { // 로그인 클릭
-        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-        startActivity(intent);
-    }
-
 }
-

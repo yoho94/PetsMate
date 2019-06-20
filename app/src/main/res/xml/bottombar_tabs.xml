@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<menu xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:andriod="http://schemas.android.com/apk/res-auto">-->
+
+    <!--<item-->
+        <!--android:id="@+id/tab_main"-->
+        <!--andriod:icon="@drawable/ic_car_side" />-->
+    <!--<item-->
+        <!--android:id="@+id/tab_pet"-->
+        <!--android:icon="@drawable/ic_dog" />-->
+    <!--<item-->
+        <!--android:id="@+id/tab_msg"-->
+        <!--android:icon="@drawable/ic_comments" />-->
+    <!--<item-->
+        <!--android:id="@+id/tab_mypage"-->
+        <!--android:icon="@drawable/ic_cog" />-->
+
+<!--</menu>-->
+
+<tabs>
+    <tab
+        id="@+id/tab_main"
+        icon="@drawable/ic_car_side" />
+    <tab
+        id="@+id/tab_pet"
+        icon="@drawable/ic_dog" />
+    <tab
+        id="@+id/tab_msg"
+        icon="@drawable/ic_comments" />
+    <tab
+        id="@+id/tab_mypage"
+        icon="@drawable/ic_cog" />
+</tabs>
