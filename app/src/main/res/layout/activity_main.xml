@@ -60,13 +60,18 @@
         android:layout_marginTop="50dp"
         xmlns:android="http://schemas.android.com/apk/res/android" />
 
-    <com.roughike.bottombar.BottomBar
-        android:id="@+id/bottomBar"
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottomNav"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        app:bb_tabXmlResource="@xml/bottombar_tabs"
-        />
+        android:background="#FFFFFF"
+        app:itemIconSize="30dp"
+        app:labelVisibilityMode="unlabeled"
+        app:menu="@xml/bottombar_tabs">
+
+    </android.support.design.widget.BottomNavigationView>
 
 
 </RelativeLayout>

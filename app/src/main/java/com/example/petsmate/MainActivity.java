@@ -3,8 +3,11 @@ package com.example.petsmate;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,8 +19,6 @@ import com.nhn.android.naverlogin.OAuthLoginHandler;
 import com.nhn.android.naverlogin.ui.view.OAuthLoginButton;
 
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.roughike.bottombar.BottomBar;
-import com.roughike.bottombar.OnTabSelectListener;
 
 import java.util.ArrayList;
 
@@ -153,7 +154,6 @@ public class MainActivity extends AppCompatActivity {
 
     static MemberInfo memberInfo = new MemberInfo();
 
-    BottomBar bottomBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -205,17 +205,33 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        bottomBar = (BottomBar) findViewById(R.id.bottomBar);
-        bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
+        BottomNavigationView bottomNavigationView;
+
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNav);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onTabSelected(int tabId) {
-                Log.d("bottomBar", tabId + "");
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                int id = menuItem.getItemId();
                 Class clas = null;
 
-                if(clas != null) {
-                    Intent intent1 = new Intent(getApplicationContext(), clas);
-                    startActivity(intent);
+                switch (id) {
+                    case R.id.tab_main:
+                        clas = MainActivity.class;
+                        break;
+                    case R.id.tab_msg:
+                        break;
+                    case R.id.tab_mypage:
+                        clas = mypage01.class;
+                        break;
+                    case R.id.tab_pet:
+                        break;
                 }
+
+                if(clas != null)
+                    startActivity(new Intent(getApplicationContext(), clas));
+
+                return false;
             }
         });
 
