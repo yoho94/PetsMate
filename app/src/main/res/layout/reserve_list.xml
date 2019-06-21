@@ -29,12 +29,19 @@
         android:layout_marginTop="0dp"
         android:textAlignment="center"/>
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="20dp"
+        android:src="@drawable/wait"/>
     <EditText
         android:id="@+id/reserve_wait"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="30dp"
         android:text="예약대기"
+        android:textColor="#ffffff"
         android:layout_marginTop="60dp"
         android:layout_marginLeft="40dp"
         android:backgroundTint="#00fffff"
@@ -55,7 +62,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="25dp"
-        android:text="2019.06.30 / 14:20"
+        android:text="2019.06.24 / 14:20"
         android:layout_marginTop="110dp"
         android:layout_marginLeft="150dp"
         android:textColor="#000000"
@@ -127,15 +134,23 @@
         android:backgroundTint="#fffff"
         />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="300dp"
+        android:layout_marginLeft="20dp"
+        android:src="@drawable/ok"/>
+
     <EditText
         android:id="@+id/reserve_wait2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="30dp"
         android:text="예약승인"
+        android:textColor="#ffffff"
         android:layout_marginTop="280dp"
         android:layout_marginLeft="40dp"
-        android:backgroundTint="#00fffff"
+        android:backgroundTint="#00fff"
         />
 
     <TextView
@@ -174,7 +189,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="25dp"
-        android:text="김우진 010-1111-1111"
+        android:text="홍길동 010-1111-1111"
         android:layout_marginTop="360dp"
         android:layout_marginLeft="150dp"
         android:textColor="#000000"
@@ -196,7 +211,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="25dp"
-        android:text="북구 복현동 81"
+        android:text="동구 율하동 81"
         android:layout_marginTop="400dp"
         android:layout_marginLeft="150dp"
         android:textColor="#000000"
@@ -218,12 +233,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="25dp"
-        android:text="동구 신천동 23"
+        android:text="칠곡 동물병원"
         android:layout_marginTop="440dp"
         android:layout_marginLeft="150dp"
         android:textColor="#000000"
         android:backgroundTint="#fffff"
         />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="520dp"
+        android:layout_marginLeft="20dp"
+        android:src="@drawable/x"/>
 
     <EditText
         android:id="@+id/reserve_wait3"
@@ -231,6 +252,7 @@
         android:layout_height="wrap_content"
         android:textSize="30dp"
         android:text="예약거절"
+        android:textColor="#ffffff"
         android:layout_marginTop="500dp"
         android:layout_marginLeft="40dp"
         android:backgroundTint="#00fffff"
@@ -251,7 +273,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="25dp"
-        android:text="2019.06.30 / 14:20"
+        android:text="2019.06.25 / 14:20"
         android:layout_marginTop="540dp"
         android:layout_marginLeft="150dp"
         android:textColor="#000000"
@@ -272,7 +294,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="25dp"
-        android:text="김우진 010-1111-1111"
+        android:text="김경북 010-1111-1111"
         android:layout_marginTop="580dp"
         android:layout_marginLeft="150dp"
         android:textColor="#000000"
@@ -294,7 +316,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="25dp"
-        android:text="북구 복현동 81"
+        android:text="북구 산격동 81"
         android:layout_marginTop="620dp"
         android:layout_marginLeft="150dp"
         android:textColor="#000000"
@@ -316,7 +338,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="25dp"
-        android:text="동구 신천동 23"
+        android:text="동구 신암동 23"
         android:layout_marginTop="660dp"
         android:layout_marginLeft="150dp"
         android:textColor="#000000"
