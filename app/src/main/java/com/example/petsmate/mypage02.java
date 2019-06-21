@@ -1,6 +1,7 @@
 package com.example.petsmate;
 
 import android.os.Bundle;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,7 +11,9 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class mypage02 extends AppCompatActivity {
+public class mypage02 extends BaseActivity {
+
+    BottomNavigationView bottomNavigationView;
     private Spinner spinner2;
     ArrayList<String> arrayList;
     ArrayAdapter<String> arrayAdapter;
@@ -44,5 +47,7 @@ public class mypage02 extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNav);
+        configBottomNavigation(this, bottomNavigationView);
     }
 }
