@@ -109,12 +109,13 @@
 
 
     </LinearLayout>
+
     <Spinner
         android:id="@+id/alarmMelodyspinner"
         android:layout_width="125dp"
         android:layout_height="30dp"
         android:layout_marginLeft="280dp"
-        android:layout_marginTop="90dp" />
+        android:layout_marginTop="100dp" />
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottomNav"
@@ -128,6 +129,14 @@
         app:menu="@menu/bottombar_menu">
 
     </android.support.design.widget.BottomNavigationView>
+
+    <SeekBar
+        android:id="@+id/sb"
+        android:layout_width="125dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="150dp"
+        android:visibility="visible" />
 
 
 </RelativeLayout>
