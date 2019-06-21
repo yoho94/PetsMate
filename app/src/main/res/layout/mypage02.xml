@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -106,31 +107,7 @@
         android:orientation="horizontal"
         android:layout_marginTop="635dp">
 
-        <ImageButton
-            android:id="@+id/driver_btn"
-            android:layout_width="105dp"
-            android:layout_height="96dp"
-            android:src="@drawable/btn_car"/>
 
-        <ImageButton
-            android:id="@+id/mypet_btn"
-            android:layout_width="115dp"
-            android:layout_height="96dp"
-            android:src="@drawable/btn_dog"/>
-
-        <ImageButton
-            android:id="@+id/chatting_btn"
-            android:layout_width="95dp"
-            android:layout_height="106dp"
-            android:src="@drawable/btn_chat"/>
-
-        <ImageButton
-            android:id="@+id/setting_btn"
-            android:layout_width="97dp"
-            android:layout_height="103dp"
-            android:src="@drawable/btn_option"/>
-
-        //마진탑 500 하면 보임
     </LinearLayout>
     <Spinner
         android:id="@+id/alarmMelodyspinner"
@@ -138,6 +115,19 @@
         android:layout_height="30dp"
         android:layout_marginLeft="280dp"
         android:layout_marginTop="90dp" />
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFF"
+        app:itemIconSize="30dp"
+        app:labelVisibilityMode="unlabeled"
+        app:menu="@menu/bottombar_menu">
+
+    </android.support.design.widget.BottomNavigationView>
 
 
 </RelativeLayout>
