@@ -58,6 +58,7 @@
         <activity android:name=".MapsNaverActivity" />
         <activity android:name=".mypage01" />
 
+
         <service
             android:name=".service.MyFirebaseMessagingService"
             android:exported="false">
