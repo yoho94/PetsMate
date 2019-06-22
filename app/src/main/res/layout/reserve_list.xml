@@ -35,6 +35,7 @@
         android:layout_marginTop="80dp"
         android:layout_marginLeft="20dp"
         android:src="@drawable/wait"/>
+
     <EditText
         android:id="@+id/reserve_wait"
         android:layout_width="wrap_content"
@@ -108,7 +109,6 @@
         android:layout_marginTop="190dp"
         android:layout_marginLeft="150dp"
         android:textColor="#000000"
-        android:backgroundTint="#00fffff"
         />
 
     <TextView
