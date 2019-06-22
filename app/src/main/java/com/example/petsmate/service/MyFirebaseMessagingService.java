@@ -28,10 +28,17 @@ public class MyFirebaseMessagingService extends com.google.firebase.messaging.Fi
         Log.d("FCM-DATA", remoteMessage.getData().toString());
         if(title.equalsIgnoreCase(getString(R.string.callNoti))) { // 콜 수락 노티일 경우.
             sendNotiCall(title, messageBody);
-            String timeStr = remoteMessage.getData().get("data_time");
-            long time = Long.parseLong(timeStr);
-            String[] str = messageBody.split("\n");
-            JobSchedulerStart.start(this, time, str[0]+"\n"+str[1]); // 시간에 맞게 알림 띄우기.
+//            String timeStr = remoteMessage.getData().get("data_time");
+//            long time = Long.parseLong(timeStr);
+//            String[] str = messageBody.split("\n");
+//            JobSchedulerStart.start(this, time, str[0]+"\n"+str[1]); // 시간에 맞게 알림 띄우기.
+        } else if (title.equalsIgnoreCase(getString(R.string.arriveStart))) {
+            sendNotification(messageBody, title);
+            String[] latlng = remoteMessage.getData().get("data_latlng").split(",");
+            String des = remoteMessage.getData().get("data_time");
+            double lat = Double.parseDouble(latlng[0]);
+            double lng = Double.parseDouble(latlng[1]);
+            JobSchedulerStart.start(this, des, lat, lng);
         } else {
             sendNotification(messageBody, title);
         }
@@ -113,7 +120,7 @@ public class MyFirebaseMessagingService extends com.google.firebase.messaging.Fi
                 .setAutoCancel(false) // 알림 터치시 반응 후 삭제
                 .setSound(RingtoneManager
                         .getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
-                .setSmallIcon(android.R.drawable.btn_star)
+                .setSmallIcon(R.drawable.noti_call_icon)
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(messageBody))
                 .setContentIntent(pendingIntent);
         notifManager.notify(0, builder.build());

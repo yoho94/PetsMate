@@ -15,13 +15,14 @@ import com.firebase.jobdispatcher.Trigger;
 public class JobSchedulerStart {
     private static final int JOB_ID = 1111;
 
-    public static void start(Context context, long time, String des) {
+    public static void start(Context context, String des,double lat, double lng) {
 
         FirebaseJobDispatcher dispatcher = new FirebaseJobDispatcher(new GooglePlayDriver(context));
 
         Bundle bundle = new Bundle();
-        bundle.putLong("time",time);
-        bundle.putString("des",des);
+        bundle.putString("des", des);
+        bundle.putDouble("lat", lat);
+        bundle.putDouble("lng", lng);
 
         Job myJob = dispatcher.newJobBuilder()
                 .setService(NotificationJobFireBaseService.class) // 잡서비스 등록

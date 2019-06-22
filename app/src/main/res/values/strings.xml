@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">PetsMate</string>
     <string name="callNoti">기사님이 콜을 수락하셨습니다.</string>
+    <string name="arriveStart">기사님이 출발지에 도착했습니다.</string>
 </resources>

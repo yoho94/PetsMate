@@ -7,6 +7,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.petsmate.GpsTracker;
+import com.example.petsmate.LocationDistance;
 import com.firebase.jobdispatcher.JobParameters;
 import com.firebase.jobdispatcher.JobService;
 
@@ -19,11 +21,12 @@ public class NotificationJobFireBaseService extends JobService {
         AlarmManager manager = (AlarmManager) getSystemService(ALARM_SERVICE);
         Bundle bundle = job.getExtras();
 
-        long time = bundle.getLong("time");
+        double lat = bundle.getDouble("lat");
+        double lng = bundle.getDouble("lng");
         String des = bundle.getString("des");
 
-        Log.d("NotificationJobService", "onStartJob Time = "+ time);
-        Log.d("NotificationJobService", "currentTimeMillis() = "+ System.currentTimeMillis());
+        Log.d("NotificationJobService", "latlng="+ lat +","+ lng);
+        Log.d("NotificationJobService", "des="+ des);
 
         Intent intent = new Intent(this, ReviewAlarmReceiver.class);
         intent.putExtra("des", des);
@@ -36,14 +39,26 @@ public class NotificationJobFireBaseService extends JobService {
          *    FLAG_UPDATE_CURRENT : 실행중인 PendingIntent가 있다면  Extra Data만 교체함
          */
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, time, pendingIntent);
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            manager.setExact(AlarmManager.RTC_WAKEUP, time, pendingIntent);
-        } else {
-            manager.set(AlarmManager.RTC_WAKEUP, time, pendingIntent);
-        }
+        GpsTracker gpsTracker = new GpsTracker(this);
 
+        double myLat = gpsTracker.getLocation().getLatitude();
+        double myLng = gpsTracker.getLocation().getLongitude();
+
+        double distance = LocationDistance.distance(lat, lng, myLat, myLng, "meter");
+
+        Log.d("NotificationJobService", "distance="+distance);
+
+        if(distance <= 50) {
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), pendingIntent);
+            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                manager.setExact(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), pendingIntent);
+            } else {
+                manager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), pendingIntent);
+            }
+
+        }
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { // TEST.
 //            manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 10000, pendingIntent); //10초뒤 알람
 //        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {

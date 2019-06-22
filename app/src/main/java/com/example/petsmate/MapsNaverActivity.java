@@ -418,6 +418,9 @@ public class MapsNaverActivity extends BaseActivity implements OnMapReadyCallbac
                     public void onClick(DialogInterface dialog, int which) {
                         Toast.makeText(getApplicationContext(), "취소 하셨습니다.", Toast.LENGTH_LONG).show();
                         dialog.dismiss();
+
+                        getCallTable();
+                        setCallMaker();
                     }
                 });
         builder.setNegativeButton("콜 받기",
@@ -425,38 +428,86 @@ public class MapsNaverActivity extends BaseActivity implements OnMapReadyCallbac
                     public void onClick(DialogInterface dialog, int which) {
 
                         try {
+                            if (new IsCallTask().execute(id).get()) {
+                                Toast.makeText(getApplicationContext(), "이미 수락하신 콜(예약)이 있습니다.", Toast.LENGTH_LONG).show();
+                                getCallTable();
+                                setCallMaker();
+                                dialog.dismiss();
+                                return;
+                            }
+
                             String result = new CallUpdateTask().execute(id, code, serialNumber).get();
                             result = result.trim();
                             String[] results = result.split("@!@");
 
                             if (results[0].equalsIgnoreCase("1")) {
+
                                 Toast.makeText(getApplicationContext(), "정상적으로 수락 됐습니다.", Toast.LENGTH_LONG).show();
-                                long duration = new DirectionsTask().getDuration(myLng+"", myLat+"", callTable.getStartPlace().getLon(), callTable.getStartPlace().getLat());
+                                long duration = new DirectionsTask().getDuration(myLng + "", myLat + "", callTable.getStartPlace().getLon(), callTable.getStartPlace().getLat());
                                 Timestamp timestamp = new Timestamp(duration + System.currentTimeMillis());
                                 long startToDes = callTable.getDestinationTime().getTime() - callTable.getStartTime().getTime();
-                                String sendTime = (timestamp.getTime()+duration+startToDes)+"";
+                                String sendTime = (timestamp.getTime() + duration + startToDes) + "";
 
-                                String updateResult = new CallDesTimeUpdateTask().execute(callTable.getSerialNumber()+"", sendTime).get();
+                                String lat = callTable.destinationPlace.getLat();
+                                String lng = callTable.destinationPlace.getLon();
+                                final String latlng = lat + "," + lng;
+
+                                String updateResult = new CallDesTimeUpdateTask().execute(callTable.getSerialNumber() + "", sendTime).get();
                                 Log.d("updateResult", updateResult);
 
                                 // 푸시 알림 보내기.
-                                String id;
+                                final String guest_id;
                                 String title = getString(R.string.callNoti);
-                                String body = "출발지 : " + start + "\n목적지 : " + des +"\n기사 예상 도착시간 : " + timestamp.toString();
+                                String body = "출발지 : " + start + "\n목적지 : " + des + "\n기사 예상 도착시간 : " + timestamp.toString();
                                 String type = "guest";
                                 if (results[1].isEmpty())
-                                    id = null;
+                                    guest_id = null;
                                 else
-                                    id = results[1];
+                                    guest_id = results[1];
 
-                                new PushMsgTimeTask().execute(id, title, body, type, sendTime); // 푸시 알림 전송
+                                new PushMsgTask().execute(guest_id, title, body, type); // 푸시 알림 전송
+
+                                new Thread() {
+                                    @Override
+                                    public void run() {
+                                        try {
+                                            boolean loop = true;
+                                            double lat, lng, distance;
+                                            double myLat, myLng;
+
+                                            lat = Double.parseDouble(callTable.startPlace.getLat());
+                                            lng = Double.parseDouble(callTable.startPlace.getLon());
+
+                                            while (loop) {
+                                                myLat = gpsTracker.getLocation().getLatitude();
+                                                myLng = gpsTracker.getLocation().getLongitude();
+
+                                                distance = LocationDistance.distance(lat, lng, myLat, myLng, "meter");
+                                                Log.d("distance", distance+"");
+
+                                                if(distance <= 25) {
+                                                    new PushMsgDataTask().execute(guest_id, getString(R.string.arriveStart), "출발지 : " + callTable.getStartPlace().getRoadAddress(), "guest", "목적지 : " + des, latlng);
+                                                    loop = false;
+                                                }
+
+                                                Thread.sleep(3 * 1000);
+                                            }
+                                        } catch (Exception e) {
+                                            Log.e("SendGPSThread", e.toString());
+                                        }
+                                    }
+                                }.start();
+
                             } else {
-                                Toast.makeText(getApplicationContext(), "수락 실패.", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "수락 실패. 다른 기사님이 먼저 수락했습니다.", Toast.LENGTH_LONG).show();
                             }
+
 
                         } catch (Exception e) {
                             Log.i("CallUpdate", e.toString());
                         }
+                        getCallTable();
+                        setCallMaker();
                         dialog.dismiss();
                     }
                 });
@@ -801,7 +852,62 @@ public class MapsNaverActivity extends BaseActivity implements OnMapReadyCallbac
 
     }
 
-    class PushMsgTimeTask extends AsyncTask<String, Void, String> {
+    class IsCallTask extends AsyncTask<String, Void, Boolean> {
+        String sendMsg, receiveMsg;
+
+        @Override
+        protected Boolean doInBackground(String... strings) {
+            try {
+                String str;
+
+                // 접속할 서버 주소 (이클립스에서 android.jsp 실행시 웹브라우저 주소)
+                URL url = new URL("http://106.10.36.239:8080/DB/isCall.jsp");
+
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                conn.setRequestMethod("POST");
+                OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
+
+                // 전송할 데이터. GET 방식으로 작성
+//                sendMsg = "id=" + strings[0] + "&pw=" + strings[1];
+                sendMsg = String.format("id=%s", strings[0]);
+
+                osw.write(sendMsg);
+                osw.flush();
+
+                //jsp와 통신 성공 시 수행
+                if (conn.getResponseCode() == conn.HTTP_OK) {
+                    InputStreamReader tmp = new InputStreamReader(conn.getInputStream(), "UTF-8");
+                    BufferedReader reader = new BufferedReader(tmp);
+                    StringBuffer buffer = new StringBuffer();
+
+                    // jsp에서 보낸 값을 받는 부분
+                    while ((str = reader.readLine()) != null) {
+                        buffer.append(str);
+                    }
+                    receiveMsg = buffer.toString();
+                } else {
+                    // 통신 실패
+                }
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            //jsp로부터 받은 리턴 값
+
+            receiveMsg = receiveMsg.trim();
+
+            if (Boolean.parseBoolean(receiveMsg))
+                return true;
+            else
+                return false;
+        }
+
+    }
+
+    class PushMsgDataTask extends AsyncTask<String, Void, String> {
 
         String sendMsg, receiveMsg;
 
@@ -820,7 +926,7 @@ public class MapsNaverActivity extends BaseActivity implements OnMapReadyCallbac
 
                 // 전송할 데이터. GET 방식으로 작성
 //                sendMsg = "id=" + strings[0] + "&pw=" + strings[1];
-                sendMsg = String.format("id=%s&title=%s&body=%s&type=%s&data_time=%s", strings[0],strings[1], strings[2], strings[3], strings[4]);
+                sendMsg = String.format("id=%s&title=%s&body=%s&type=%s&data_time=%s&data_latlng=%s", strings[0], strings[1], strings[2], strings[3], strings[4], strings[5]);
 
                 osw.write(sendMsg);
                 osw.flush();
@@ -847,6 +953,44 @@ public class MapsNaverActivity extends BaseActivity implements OnMapReadyCallbac
 
             //jsp로부터 받은 리턴 값
             return receiveMsg;
+        }
+    }
+
+    class SendGPSTask extends AsyncTask<String, Void, Boolean> {
+        double lat, lng, distance;
+        double myLat, myLng;
+        String id, title, body, type;
+
+        @Override
+        protected Boolean doInBackground(String... strings) {
+            lat = Double.parseDouble(strings[0]);
+            lng = Double.parseDouble(strings[1]);
+            id = strings[2];
+            title = strings[3];
+            body = strings[4];
+            type = "guest";
+
+
+            try {
+                myLat = gpsTracker.getLatitude();
+                myLng = gpsTracker.getLongitude();
+
+                distance = LocationDistance.distance(lat, lng, myLat, myLng, "meter");
+
+                Log.d("SendGPSTask", "dis=" + distance);
+
+                if (distance <= 20) {
+                    new PushMsgTask().execute(id, title, body, type);
+
+                    return true;
+                } else {
+                    return false;
+                }
+
+            } catch (Exception e) {
+                Log.e("sendGPSTask", e.toString());
+                return false;
+            }
         }
     }
 }
