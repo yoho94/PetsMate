@@ -44,7 +44,6 @@
         android:textColor="#ffffff"
         android:layout_marginTop="60dp"
         android:layout_marginLeft="40dp"
-        android:backgroundTint="#00fffff"
         />
 
     <TextView
@@ -66,7 +65,7 @@
         android:layout_marginTop="110dp"
         android:layout_marginLeft="150dp"
         android:textColor="#000000"
-        android:backgroundTint="#00fffff"
+
         />
     <TextView
         android:layout_width="wrap_content"
@@ -87,7 +86,7 @@
         android:layout_marginTop="150dp"
         android:layout_marginLeft="150dp"
         android:textColor="#000000"
-        android:backgroundTint="#00fffff"
+
         />
 
     <TextView
@@ -131,7 +130,7 @@
         android:layout_marginTop="230dp"
         android:layout_marginLeft="150dp"
         android:textColor="#000000"
-        android:backgroundTint="#fffff"
+
         />
 
     <ImageView
@@ -150,7 +149,7 @@
         android:textColor="#ffffff"
         android:layout_marginTop="280dp"
         android:layout_marginLeft="40dp"
-        android:backgroundTint="#00fff"
+
         />
 
     <TextView
@@ -172,7 +171,7 @@
         android:layout_marginTop="320dp"
         android:layout_marginLeft="150dp"
         android:textColor="#000000"
-        android:backgroundTint="#00fffff"
+
         />
     <TextView
         android:layout_width="wrap_content"
@@ -193,7 +192,7 @@
         android:layout_marginTop="360dp"
         android:layout_marginLeft="150dp"
         android:textColor="#000000"
-        android:backgroundTint="#00fffff"
+
         />
 
     <TextView
@@ -215,7 +214,6 @@
         android:layout_marginTop="400dp"
         android:layout_marginLeft="150dp"
         android:textColor="#000000"
-        android:backgroundTint="#00fffff"
         />
 
     <TextView
@@ -237,7 +235,7 @@
         android:layout_marginTop="440dp"
         android:layout_marginLeft="150dp"
         android:textColor="#000000"
-        android:backgroundTint="#fffff"
+
         />
     <ImageView
         android:layout_width="wrap_content"
@@ -255,7 +253,7 @@
         android:textColor="#ffffff"
         android:layout_marginTop="500dp"
         android:layout_marginLeft="40dp"
-        android:backgroundTint="#00fffff"
+
         />
 
     <TextView
@@ -277,7 +275,7 @@
         android:layout_marginTop="540dp"
         android:layout_marginLeft="150dp"
         android:textColor="#000000"
-        android:backgroundTint="#00fffff"
+
         />
     <TextView
         android:layout_width="wrap_content"
@@ -298,7 +296,7 @@
         android:layout_marginTop="580dp"
         android:layout_marginLeft="150dp"
         android:textColor="#000000"
-        android:backgroundTint="#00fffff"
+
         />
 
     <TextView
@@ -320,7 +318,6 @@
         android:layout_marginTop="620dp"
         android:layout_marginLeft="150dp"
         android:textColor="#000000"
-        android:backgroundTint="#00fffff"
         />
 
     <TextView
@@ -342,7 +339,6 @@
         android:layout_marginTop="660dp"
         android:layout_marginLeft="150dp"
         android:textColor="#000000"
-        android:backgroundTint="#fffff"
         />
 
 
