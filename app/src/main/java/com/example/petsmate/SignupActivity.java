@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.petsmate.task.SignupPetTask;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

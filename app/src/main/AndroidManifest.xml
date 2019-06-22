@@ -57,6 +57,7 @@
         <activity android:name=".DriverSignupActivity" />
         <activity android:name=".MapsNaverActivity" />
         <activity android:name=".mypage01" />
+        <activity android:name=".CallListPage"/>
 
 
         <service

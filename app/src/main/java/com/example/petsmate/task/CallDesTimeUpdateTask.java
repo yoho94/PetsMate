@@ -1,4 +1,4 @@
-package com.example.petsmate;
+package com.example.petsmate.task;
 
 import android.os.AsyncTask;
 
@@ -10,8 +10,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class PushMsgTask extends AsyncTask<String, Void, String> {
-
+public class CallDesTimeUpdateTask extends AsyncTask<String, Void, String> {
     String sendMsg, receiveMsg;
 
     @Override
@@ -20,7 +19,7 @@ public class PushMsgTask extends AsyncTask<String, Void, String> {
             String str;
 
             // 접속할 서버 주소 (이클립스에서 android.jsp 실행시 웹브라우저 주소)
-            URL url = new URL("http://106.10.36.239:8080/DB/sendPushMsg.jsp");
+            URL url = new URL("http://106.10.36.239:8080/DB/callDesTimeUpdate.jsp");
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
@@ -29,7 +28,7 @@ public class PushMsgTask extends AsyncTask<String, Void, String> {
 
             // 전송할 데이터. GET 방식으로 작성
 //                sendMsg = "id=" + strings[0] + "&pw=" + strings[1];
-            sendMsg = String.format("id=%s&title=%s&body=%s&type=%s", strings[0],strings[1], strings[2], strings[3]);
+            sendMsg = String.format("serialNumber=%s&time=%s", strings[0], strings[1]);
 
             osw.write(sendMsg);
             osw.flush();
@@ -57,4 +56,5 @@ public class PushMsgTask extends AsyncTask<String, Void, String> {
         //jsp로부터 받은 리턴 값
         return receiveMsg;
     }
+
 }

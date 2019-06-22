@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.petsmate.table.PetInfo;
 import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.io.BufferedReader;

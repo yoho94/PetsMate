@@ -1,16 +1,12 @@
 package com.example.petsmate;
 
 import android.Manifest;
-import android.app.Activity;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.graphics.drawable.Icon;
 import android.location.Address;
 import android.location.Geocoder;
-import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -22,28 +18,25 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.petsmate.table.CallTable;
+import com.example.petsmate.table.Place;
+import com.example.petsmate.task.CallDesTimeUpdateTask;
 import com.example.petsmate.task.CallUpdateCodeTask;
+import com.example.petsmate.task.PushMsgTask;
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.CameraUpdate;
-import com.naver.maps.map.LocationTrackingMode;
 import com.naver.maps.map.MapFragment;
-import com.naver.maps.map.MapView;
 import com.naver.maps.map.NaverMap;
 import com.naver.maps.map.OnMapReadyCallback;
 import com.naver.maps.map.UiSettings;
-import com.naver.maps.map.overlay.Align;
 import com.naver.maps.map.overlay.InfoWindow;
-import com.naver.maps.map.overlay.LocationOverlay;
 import com.naver.maps.map.overlay.Marker;
 import com.naver.maps.map.overlay.Overlay;
-import com.naver.maps.map.overlay.OverlayImage;
 import com.naver.maps.map.util.FusedLocationSource;
 import com.naver.maps.map.util.MarkerIcons;
 
@@ -58,7 +51,6 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.Executor;
 
 public class MapsNaverActivity extends BaseActivity implements OnMapReadyCallback {
 
@@ -362,7 +354,7 @@ public class MapsNaverActivity extends BaseActivity implements OnMapReadyCallbac
 
             if (callTable.getCode() == 0) {
                 Marker marker = new Marker();
-                LatLng latLng = new LatLng(Double.parseDouble(callTable.startPlace.getLat()), Double.parseDouble(callTable.startPlace.getLon()));
+                LatLng latLng = new LatLng(Double.parseDouble(callTable.getStartPlace().getLat()), Double.parseDouble(callTable.getStartPlace().getLon()));
                 Log.i("Marker", latLng.toString());
 
                 marker.setIcon(MarkerIcons.BLACK); // 마커 아이콘을 블랙으로
@@ -374,7 +366,7 @@ public class MapsNaverActivity extends BaseActivity implements OnMapReadyCallbac
                     @NonNull
                     @Override
                     public CharSequence getText(@NonNull InfoWindow infoWindow) {
-                        return "목적지 : " + callTable.destinationPlace.getRoadAddress();
+                        return "목적지 : " + callTable.getDestinationPlace().getRoadAddress();
                     }
                 });
 
@@ -402,8 +394,8 @@ public class MapsNaverActivity extends BaseActivity implements OnMapReadyCallbac
     }
 
     public void CallDialog(final CallTable callTable) {
-        final String start = callTable.startPlace.getRoadAddress();
-        final String des = callTable.destinationPlace.getRoadAddress();
+        final String start = callTable.getStartPlace().getRoadAddress();
+        final String des = callTable.getDestinationPlace().getRoadAddress();
         final String serialNumber = callTable.getSerialNumber() + "";
         final String id = MainActivity.memberInfo.getId();
         final String start_time = callTable.getStartTime().toString();
@@ -449,8 +441,8 @@ public class MapsNaverActivity extends BaseActivity implements OnMapReadyCallbac
                                 long startToDes = callTable.getDestinationTime().getTime() - callTable.getStartTime().getTime();
                                 String sendTime = (timestamp.getTime() + duration + startToDes) + "";
 
-                                String lat = callTable.destinationPlace.getLat();
-                                String lng = callTable.destinationPlace.getLon();
+                                String lat = callTable.getDestinationPlace().getLat();
+                                String lng = callTable.getDestinationPlace().getLon();
                                 final String latlng = lat + "," + lng;
 
                                 String updateResult = new CallDesTimeUpdateTask().execute(callTable.getSerialNumber() + "", sendTime).get();
@@ -476,8 +468,8 @@ public class MapsNaverActivity extends BaseActivity implements OnMapReadyCallbac
                                             double lat, lng, distance;
                                             double myLat, myLng;
 
-                                            lat = Double.parseDouble(callTable.startPlace.getLat());
-                                            lng = Double.parseDouble(callTable.startPlace.getLon());
+                                            lat = Double.parseDouble(callTable.getStartPlace().getLat());
+                                            lng = Double.parseDouble(callTable.getStartPlace().getLon());
 
                                             while (loop) {
                                                 myLat = gpsTracker.getLocation().getLatitude();
@@ -516,134 +508,6 @@ public class MapsNaverActivity extends BaseActivity implements OnMapReadyCallbac
         builder.show();
     }
 
-    class CallTable {
-        private Place startPlace, destinationPlace;
-        private int serialNumber, code;
-        private String guestId, driverId, ps;
-        private boolean isCall, isShuttle;
-        private Timestamp startTime, destinationTime, generateTime;
-
-        public CallTable() {
-        }
-
-        public CallTable(Place startPlace, Place destinationPlace, int serialNumber, int code, String guestId, String driverId, String ps, boolean isCall, boolean isShuttle) {
-            this.startPlace = startPlace;
-            this.destinationPlace = destinationPlace;
-            this.serialNumber = serialNumber;
-            this.code = code;
-            this.guestId = guestId;
-            this.driverId = driverId;
-            this.ps = ps;
-            this.isCall = isCall;
-            this.isShuttle = isShuttle;
-        }
-
-        public CallTable(Place startPlace, Place destinationPlace, int serialNumber, int code, String guestId, String driverId, boolean isCall) {
-            this.startPlace = startPlace;
-            this.destinationPlace = destinationPlace;
-            this.serialNumber = serialNumber;
-            this.code = code;
-            this.guestId = guestId;
-            this.driverId = driverId;
-            this.isCall = isCall;
-        }
-
-        public Timestamp getStartTime() {
-            return startTime;
-        }
-
-        public void setStartTime(Timestamp startTime) {
-            this.startTime = startTime;
-        }
-
-        public Timestamp getDestinationTime() {
-            return destinationTime;
-        }
-
-        public void setDestinationTime(Timestamp destinationTime) {
-            this.destinationTime = destinationTime;
-        }
-
-        public Timestamp getGenerateTime() {
-            return generateTime;
-        }
-
-        public void setGenerateTime(Timestamp generateTime) {
-            this.generateTime = generateTime;
-        }
-
-        public Place getStartPlace() {
-            return startPlace;
-        }
-
-        public void setStartPlace(Place startPlace) {
-            this.startPlace = startPlace;
-        }
-
-        public Place getDestinationPlace() {
-            return destinationPlace;
-        }
-
-        public void setDestinationPlace(Place destinationPlace) {
-            this.destinationPlace = destinationPlace;
-        }
-
-        public int getSerialNumber() {
-            return serialNumber;
-        }
-
-        public void setSerialNumber(int serialNumber) {
-            this.serialNumber = serialNumber;
-        }
-
-        public int getCode() {
-            return code;
-        }
-
-        public void setCode(int code) {
-            this.code = code;
-        }
-
-        public String getGuestId() {
-            return guestId;
-        }
-
-        public void setGuestId(String guestId) {
-            this.guestId = guestId;
-        }
-
-        public String getDriverId() {
-            return driverId;
-        }
-
-        public void setDriverId(String driverId) {
-            this.driverId = driverId;
-        }
-
-        public String getPs() {
-            return ps;
-        }
-
-        public void setPs(String ps) {
-            this.ps = ps;
-        }
-
-        public boolean isCall() {
-            return isCall;
-        }
-
-        public void setCall(boolean call) {
-            isCall = call;
-        }
-
-        public boolean isShuttle() {
-            return isShuttle;
-        }
-
-        public void setShuttle(boolean shuttle) {
-            isShuttle = shuttle;
-        }
-    }
 
 
     private void getCallTable() {

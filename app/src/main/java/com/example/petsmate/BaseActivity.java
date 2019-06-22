@@ -12,7 +12,8 @@ public class BaseActivity extends AppCompatActivity {
     public static final int INDEX_HOME_ACTIVITY = 0;
     public static final int INDEX_PET_ACTIVITY = 1;
     public static final int INDEX_MSG_ACTIVITY = 2;
-    public static final int INDEX_MYPAGE_ACTIVITY = 3;
+    public static final int INDEX_LIST_ACTIVITY = 3;
+    public static final int INDEX_MYPAGE_ACTIVITY = 4;
 
     private Context context;
     private BottomNavigationView bottomNavigationView;
@@ -55,6 +56,14 @@ public class BaseActivity extends AppCompatActivity {
 //                            overridePendingTransition(0, 0);
                         }
                         return true;
+                    case R.id.tab_list:
+                        if(contextIndex != INDEX_LIST_ACTIVITY) {
+                            intent = new Intent(context, CallListPage.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            startActivity(intent);
+                            overridePendingTransition(0, 0);
+                        }
+                        return true;
                     case R.id.tab_mypage:
                         if (contextIndex != INDEX_MYPAGE_ACTIVITY) {
                             intent = new Intent(context, mypage01.class);
@@ -78,7 +87,9 @@ public class BaseActivity extends AppCompatActivity {
 //        } else if () {
 //            return INDEX_MSG_ACTIVITY; // 메뉴바 세번째 버튼. (메세지 화면)
         } else if (context instanceof mypage01 || context instanceof mypage02 || context instanceof mypage03 || context instanceof mypage04 || context instanceof mypage06 || context instanceof mypage07) {
-            return INDEX_MYPAGE_ACTIVITY; // 메뉴바 네번째 버튼 (설정, 마이페이지)
+            return INDEX_MYPAGE_ACTIVITY; // 메뉴바 다섯번째 버튼 (설정, 마이페이지)
+        } else if (context instanceof CallListPage) {
+            return INDEX_LIST_ACTIVITY;
         }
 
         return 0;

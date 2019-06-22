@@ -48,9 +48,9 @@
 
         android:layout_centerHorizontal="true"
         android:layout_marginTop="109dp"
-        android:background="@drawable/rbborder"
+        android:background="@color/colorPrimary"
         android:text="즉시콜"
-        android:textColor="#FFFFFF" />
+        android:textColor="@color/colorPrimaryDark" />
 
     <Button
         android:id="@+id/reserve_btn_medium"

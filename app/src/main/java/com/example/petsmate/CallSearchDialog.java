@@ -14,6 +14,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.petsmate.table.Place;
+
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
