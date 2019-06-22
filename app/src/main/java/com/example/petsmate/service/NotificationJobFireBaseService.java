@@ -9,6 +9,7 @@ import android.util.Log;
 
 import com.example.petsmate.GpsTracker;
 import com.example.petsmate.LocationDistance;
+import com.example.petsmate.task.CallUpdateCodeTask;
 import com.firebase.jobdispatcher.JobParameters;
 import com.firebase.jobdispatcher.JobService;
 
@@ -24,6 +25,7 @@ public class NotificationJobFireBaseService extends JobService {
         double lat = bundle.getDouble("lat");
         double lng = bundle.getDouble("lng");
         String des = bundle.getString("des");
+        String serialNumber = bundle.getString("serialNumber");
 
         Log.d("NotificationJobService", "latlng="+ lat +","+ lng);
         Log.d("NotificationJobService", "des="+ des);
@@ -57,7 +59,7 @@ public class NotificationJobFireBaseService extends JobService {
             } else {
                 manager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), pendingIntent);
             }
-
+            new CallUpdateCodeTask().execute("13",serialNumber);
         }
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { // TEST.
 //            manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 10000, pendingIntent); //10초뒤 알람

@@ -29,6 +29,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.petsmate.task.CallUpdateCodeTask;
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.CameraUpdate;
 import com.naver.maps.map.LocationTrackingMode;
@@ -486,7 +487,8 @@ public class MapsNaverActivity extends BaseActivity implements OnMapReadyCallbac
                                                 Log.d("distance", distance+"");
 
                                                 if(distance <= 25) {
-                                                    new PushMsgDataTask().execute(guest_id, getString(R.string.arriveStart), "출발지 : " + callTable.getStartPlace().getRoadAddress(), "guest", "목적지 : " + des, latlng);
+                                                    new PushMsgDataTask().execute(guest_id, getString(R.string.arriveStart), "출발지 : " + callTable.getStartPlace().getRoadAddress(), "guest", "목적지 : " + des, latlng+","+serialNumber);
+                                                    new CallUpdateCodeTask().execute("10",serialNumber);
                                                     loop = false;
                                                 }
 

@@ -14,6 +14,7 @@ import android.util.Log;
 
 import com.example.petsmate.MainActivity;
 import com.example.petsmate.R;
+import com.example.petsmate.task.CallUpdateCodeTask;
 import com.google.firebase.messaging.RemoteMessage;
 
 
@@ -38,7 +39,8 @@ public class MyFirebaseMessagingService extends com.google.firebase.messaging.Fi
             String des = remoteMessage.getData().get("data_time");
             double lat = Double.parseDouble(latlng[0]);
             double lng = Double.parseDouble(latlng[1]);
-            JobSchedulerStart.start(this, des, lat, lng);
+            String serialNumber = latlng[2];
+            JobSchedulerStart.start(this, des, lat, lng, serialNumber);
         } else {
             sendNotification(messageBody, title);
         }
