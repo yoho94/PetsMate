@@ -19,6 +19,7 @@ public class mypage01 extends BaseActivity {
         Button info = (Button) findViewById(R.id.info_btn);
         info.setOnClickListener(
                 new Button.OnClickListener() {
+                    @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(getApplicationContext(), mypage04.class);
                         startActivity(intent);
@@ -29,6 +30,7 @@ public class mypage01 extends BaseActivity {
         Button version = (Button) findViewById(R.id.call_btn);
         version.setOnClickListener(
                 new Button.OnClickListener() {
+                    @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(getApplicationContext(), mypage07.class);
                         startActivity(intent);
@@ -39,6 +41,7 @@ public class mypage01 extends BaseActivity {
         Button call = (Button) findViewById(R.id.call_btn);
         call.setOnClickListener(
                 new Button.OnClickListener() {
+                    @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(getApplicationContext(), mypage06.class);
                         startActivity(intent);
@@ -48,6 +51,7 @@ public class mypage01 extends BaseActivity {
         Button help = (Button) findViewById(R.id.help_btn);
         help.setOnClickListener(
                 new Button.OnClickListener() {
+                    @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(getApplicationContext(), mypage03.class);
                         startActivity(intent);
@@ -58,7 +62,9 @@ public class mypage01 extends BaseActivity {
 
         Button alarm =(Button)findViewById(R.id.alarm_btn);
         alarm.setOnClickListener(
+
                 new Button.OnClickListener(){
+                    @Override
                     public void onClick(View v){
                         Intent intent= new Intent(getApplicationContext(), mypage02.class);
                         startActivity(intent);
