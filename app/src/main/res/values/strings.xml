@@ -2,4 +2,9 @@
     <string name="app_name">PetsMate</string>
     <string name="callNoti">기사님이 콜을 수락하셨습니다.</string>
     <string name="arriveStart">기사님이 출발지에 도착했습니다.</string>
+    <string name="help1"></string>
+    <string name="help2">정확한 해결을 위해 마이페이지 고객센터창을 참조하세요</string>
+    <string name="help3">정확한 요금 계산 방법이 궁금합니다.</string>
+    <string name="help4">아이폰 서비스는 어떻게 되나요?</string>
+    <string name="help5">기사님의 위치는 어떻게 볼수있나요??</string>
 </resources>
