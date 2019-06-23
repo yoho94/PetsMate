@@ -4,14 +4,15 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="#f06464">
+    android:background="#ffffff">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:text="반려동물 등록"
         android:textStyle="bold"
-        android:textColor="#ffffff"
+        android:textColor="#000000"
+        android:background="#f06464"
         android:textSize="30dp"
         android:textAlignment="center"/>
 
@@ -19,7 +20,7 @@
         android:id="@+id/image_up"
         android:layout_width="160dp"
         android:layout_height="160dp"
-        android:background="#ffffff"
+        android:background="#EAEAEA"
         android:layout_marginTop="80dp"
         android:layout_marginLeft="30dp"/>
 
@@ -39,7 +40,7 @@
         android:hint="1~6자"
         android:textSize="20dp"
         android:textColor="#ffa6a6a6"
-        android:background="#ffffff"
+        android:background="#EAEAEA"
         android:layout_marginLeft="200dp"
         android:layout_marginTop="115dp"
         android:textAlignment="center"/>
@@ -61,7 +62,7 @@
         android:hint="선택"
         android:textSize="20dp"
         android:textColor="#ffa6a6a6"
-        android:background="#ffffff"
+        android:background="#EAEAEA"
         android:layout_marginLeft="200dp"
         android:layout_marginTop="200dp"
         android:textAlignment="center"/>
@@ -69,7 +70,7 @@
     <ImageButton
         android:layout_width="40dp"
         android:layout_height="30dp"
-        android:background="#ffffff"
+        android:background="#EAEAEA"
         android:layout_marginTop="200dp"
         android:layout_marginLeft="330dp"/>
 
@@ -88,7 +89,7 @@
         android:layout_height="140dp"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="300dp"
-        android:background="#ffffff"/>
+        android:background="#EAEAEA"/>
 
 
     <Button

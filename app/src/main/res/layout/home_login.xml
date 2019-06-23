@@ -4,13 +4,14 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="#f06464">
+    android:background="#ffffff">
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:text="로그인"
-        android:textColor="#ffffff"
+        android:textColor="#000000"
+        android:background="#f06464"
         android:textSize="30dp"
         android:textStyle="bold"
         android:textAlignment="center"/>
@@ -22,7 +23,7 @@
         android:hint="아이디"
         android:layout_centerHorizontal="true"
         android:textColor="#000000"
-        android:background="#ffffff"
+        android:background="#EAEAEA"
         android:layout_marginTop="120dp"
         android:textAlignment="center"/>
 
@@ -34,7 +35,7 @@
         android:hint="패스워드"
         android:password="true"
         android:textColor="#000000"
-        android:background="#ffffff"
+        android:background="#EAEAEA"
         android:layout_marginTop="165dp"
         android:textAlignment="center"/>
 
@@ -88,7 +89,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:layout_alignParentBottom="true"
-        android:background="#FFFFFF"
+        android:background="#EAEAEA"
         app:itemIconSize="30dp"
         app:labelVisibilityMode="unlabeled"
         app:menu="@menu/bottombar_menu">
