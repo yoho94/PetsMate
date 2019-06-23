@@ -6,23 +6,14 @@ public class CallListViewItem {
     private Drawable iconDrawable;
     private String titleStr;
     private String str1,str2,str3,str4,str5;
-    private int SERIAL_NUMBER;
-    private String serialNumber;
+    private CallTable callTable;
 
-    public String getSerialNumber() {
-        return serialNumber;
+    public CallTable getCallTable() {
+        return callTable;
     }
 
-    public void setSerialNumber(String serialNumber) {
-        this.serialNumber = serialNumber;
-    }
-
-    public int getSERIAL_NUMBER() {
-        return SERIAL_NUMBER;
-    }
-
-    public void setSERIAL_NUMBER(int SERIAL_NUMBER) {
-        this.SERIAL_NUMBER = SERIAL_NUMBER;
+    public void setCallTable(CallTable callTable) {
+        this.callTable = callTable;
     }
 
     public Drawable getIconDrawable() {

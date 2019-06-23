@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.petsmate.R;
 import com.example.petsmate.table.CallListViewItem;
+import com.example.petsmate.table.CallTable;
 
 import java.util.ArrayList;
 
@@ -63,7 +64,7 @@ public class CallListViewAdapter extends BaseAdapter {
         return listViewItems.get(position);
     }
 
-    public void addItem(Drawable icon, String title, String str1, String str2, String str3, String str4, String str5, String serialNumber) {
+    public void addItem(Drawable icon, String title, String str1, String str2, String str3, String str4, String str5, CallTable callTable) {
         CallListViewItem item = new CallListViewItem();
 
         item.setIconDrawable(icon);
@@ -73,24 +74,7 @@ public class CallListViewAdapter extends BaseAdapter {
         item.setStr3(str3);
         item.setStr4(str4);
         item.setStr5(str5);
-        item.setSerialNumber(serialNumber);
-        item.setSERIAL_NUMBER(Integer.parseInt(serialNumber));
-
-        listViewItems.add(item);
-    }
-
-    public void addItem(Drawable icon, String title, String str1, String str2, String str3, String str4, String str5, int serialNumber) {
-        CallListViewItem item = new CallListViewItem();
-
-        item.setIconDrawable(icon);
-        item.setTitleStr(title);
-        item.setStr1(str1);
-        item.setStr2(str2);
-        item.setStr3(str3);
-        item.setStr4(str4);
-        item.setStr5(str5);
-        item.setSERIAL_NUMBER(serialNumber);
-        item.setSerialNumber(serialNumber+"");
+        item.setCallTable(callTable);
 
         listViewItems.add(item);
     }

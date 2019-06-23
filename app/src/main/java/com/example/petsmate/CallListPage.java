@@ -6,6 +6,7 @@ import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.content.ContextCompat;
+import android.telecom.Call;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,6 +15,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.petsmate.service.CallListViewAdapter;
+import com.example.petsmate.table.CallListViewItem;
 import com.example.petsmate.table.CallTable;
 import com.example.petsmate.table.MemberInfo;
 import com.example.petsmate.table.Place;
@@ -60,7 +62,18 @@ public class CallListPage extends BaseActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() { // TODO 예약 수락, 거절 등 기능 넣기.
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                CallListViewItem item = (CallListViewItem) parent.getItemAtPosition(position);
 
+                CallTable callTable = item.getCallTable();
+
+                if(MainActivity.memberInfo.isGuest()) {
+                    switch (callTable.getCode()) {
+                        case 0:
+
+                    }
+                } else {
+
+                }
             }
         });
 
@@ -72,6 +85,10 @@ public class CallListPage extends BaseActivity {
                 listView.invalidateViews();
             }
         });
+
+    }
+
+    public void modifyDialog() {
 
     }
 
@@ -227,7 +244,7 @@ public class CallListPage extends BaseActivity {
             str4 += callTable.getStartPlace().getRoadAddress();
             str5 += callTable.getDestinationPlace().getRoadAddress();
 
-            adapter.addItem(icon, title, str1, str2, str3, str4, str5, callTable.getSerialNumber());
+            adapter.addItem(icon, title, str1, str2, str3, str4, str5, callTable);
         }
     }
 }
