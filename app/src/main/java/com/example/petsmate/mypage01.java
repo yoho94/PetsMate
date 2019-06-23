@@ -27,16 +27,7 @@ public class mypage01 extends BaseActivity {
                 }
         );
 
-        Button version = (Button) findViewById(R.id.call_btn);
-        version.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getApplicationContext(), mypage07.class);
-                        startActivity(intent);
-                    }
-                }
-        );
-
+       
         Button call = (Button) findViewById(R.id.call_btn);
         call.setOnClickListener(new View.OnClickListener() {
                     @Override
