@@ -176,7 +176,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:layout_alignParentBottom="true"
-        android:background="#FFFFFF"
+        android:background="#EAEAEA"
         app:itemIconSize="30dp"
         app:labelVisibilityMode="unlabeled"
         app:menu="@menu/bottombar_menu">
