@@ -33,6 +33,7 @@ public class MemberInfo { // 회원의 정보를 저장할 클래스.
     }
 
     public MemberInfo() {
+        isLogin = false;
     }
 
 //    public void setGuest(String id, String name, String phone) {

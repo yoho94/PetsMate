@@ -129,4 +129,22 @@ public class CallTable {
     public void setShuttle(boolean shuttle) {
         isShuttle = shuttle;
     }
+
+    @Override
+    public String toString() {
+        return "CallTable{" +
+                "startPlace=" + startPlace +
+                ", destinationPlace=" + destinationPlace +
+                ", serialNumber=" + serialNumber +
+                ", code=" + code +
+                ", guestId='" + guestId + '\'' +
+                ", driverId='" + driverId + '\'' +
+                ", ps='" + ps + '\'' +
+                ", isCall=" + isCall +
+                ", isShuttle=" + isShuttle +
+                ", startTime=" + startTime +
+                ", destinationTime=" + destinationTime +
+                ", generateTime=" + generateTime +
+                '}';
+    }
 }

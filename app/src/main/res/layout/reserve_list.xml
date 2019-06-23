@@ -5,333 +5,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.example.petsmate.CustomScrollView
-        android:id="@+id/driver_CustomScrollView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="top">
+        android:orientation="vertical">
 
-        <RelativeLayout
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="0dp"
+            android:background="#f06E6E"
+            android:text="예약 현황"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textSize="35dp"
+            android:textStyle="bold" />
+
+        <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center|top"
-            android:background="#f06464">
+            android:id="@+id/callListView"
+            android:layout_marginBottom="?attr/actionBarSize"></ListView>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="0dp"
-                android:background="#f06E6E"
-                android:text="예약 현황"
-                android:textAlignment="center"
-                android:textColor="#ffffff"
-                android:textSize="35dp"
-                android:textStyle="bold" />
+    </LinearLayout>
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="80dp"
-                android:src="@drawable/wait" />
-
-            <EditText
-                android:id="@+id/reserve_wait"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="60dp"
-                android:text="예약대기"
-                android:textColor="#ffffff"
-                android:textSize="30dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="120dp"
-                android:text="[예약일시]"
-                android:textColor="#000000"
-                android:textSize="25dp" />
-
-            <EditText
-                android:id="@+id/reserve_day"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="150dp"
-                android:layout_marginTop="110dp"
-                android:text="2019.06.24 / 14:20"
-                android:textColor="#000000"
-                android:textSize="25dp"
-
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="160dp"
-                android:text="[  기사님  ]"
-                android:textColor="#000000"
-                android:textSize="25dp" />
-
-            <EditText
-                android:id="@+id/reserve_driver"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="150dp"
-                android:layout_marginTop="150dp"
-                android:text="김우진 010-1111-1111"
-                android:textColor="#000000"
-                android:textSize="25dp"
-
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="200dp"
-                android:text="[  출발지  ]"
-                android:textColor="#000000"
-                android:textSize="25dp" />
-
-            <EditText
-                android:id="@+id/reserve_start"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="150dp"
-                android:layout_marginTop="190dp"
-                android:text="북구 복현동 81"
-                android:textColor="#000000"
-                android:textSize="25dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="240dp"
-                android:text="[  도착지  ]"
-                android:textColor="#000000"
-                android:textSize="25dp" />
-
-            <EditText
-                android:id="@+id/reserve_destination"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="150dp"
-                android:layout_marginTop="230dp"
-                android:text="동구 신천동 23"
-                android:textColor="#000000"
-                android:textSize="25dp"
-
-                />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="300dp"
-                android:src="@drawable/ok" />
-
-            <EditText
-                android:id="@+id/reserve_wait2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="280dp"
-                android:text="예약승인"
-                android:textColor="#ffffff"
-                android:textSize="30dp"
-
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="330dp"
-                android:text="[예약일시]"
-                android:textColor="#000000"
-                android:textSize="25dp" />
-
-            <EditText
-                android:id="@+id/reserve_day2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="150dp"
-                android:layout_marginTop="320dp"
-                android:text="2019.06.30 / 14:20"
-                android:textColor="#000000"
-                android:textSize="25dp"
-
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="370dp"
-                android:text="[  기사님  ]"
-                android:textColor="#000000"
-                android:textSize="25dp" />
-
-            <EditText
-                android:id="@+id/reserve_driver2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="150dp"
-                android:layout_marginTop="360dp"
-                android:text="홍길동 010-1111-1111"
-                android:textColor="#000000"
-                android:textSize="25dp"
-
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="410dp"
-                android:text="[  출발지  ]"
-                android:textColor="#000000"
-                android:textSize="25dp" />
-
-            <EditText
-                android:id="@+id/reserve_start2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="150dp"
-                android:layout_marginTop="400dp"
-                android:text="동구 율하동 81"
-                android:textColor="#000000"
-                android:textSize="25dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="450dp"
-                android:text="[  도착지  ]"
-                android:textColor="#000000"
-                android:textSize="25dp" />
-
-            <EditText
-                android:id="@+id/reserve_destination2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="150dp"
-                android:layout_marginTop="440dp"
-                android:text="칠곡 동물병원"
-                android:textColor="#000000"
-                android:textSize="25dp"
-
-                />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="520dp"
-                android:src="@drawable/x" />
-
-            <EditText
-                android:id="@+id/reserve_wait3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="500dp"
-                android:text="예약거절"
-                android:textColor="#ffffff"
-                android:textSize="30dp"
-
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="550dp"
-                android:text="[예약일시]"
-                android:textColor="#000000"
-                android:textSize="25dp" />
-
-            <EditText
-                android:id="@+id/reserve_day3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="150dp"
-                android:layout_marginTop="540dp"
-                android:text="2019.06.25 / 14:20"
-                android:textColor="#000000"
-                android:textSize="25dp"
-
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="590dp"
-                android:text="[  기사님  ]"
-                android:textColor="#000000"
-                android:textSize="25dp" />
-
-            <EditText
-                android:id="@+id/reserve_driver3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="150dp"
-                android:layout_marginTop="580dp"
-                android:text="김경북 010-1111-1111"
-                android:textColor="#000000"
-                android:textSize="25dp"
-
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="630dp"
-                android:text="[  출발지  ]"
-                android:textColor="#000000"
-                android:textSize="25dp" />
-
-            <EditText
-                android:id="@+id/reserve_start3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="150dp"
-                android:layout_marginTop="620dp"
-                android:text="북구 산격동 81"
-                android:textColor="#000000"
-                android:textSize="25dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="670dp"
-                android:text="[  도착지  ]"
-                android:textColor="#000000"
-                android:textSize="25dp" />
-
-            <EditText
-                android:id="@+id/reserve_destination3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="150dp"
-                android:layout_marginTop="660dp"
-                android:text="동구 신암동 23"
-                android:textColor="#000000"
-                android:textSize="25dp" />
+    <ImageButton
+        android:id="@+id/callListRefreshBtn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="right|top"
+        app:srcCompat="@drawable/ic_redo_alt"
+        android:backgroundTint="#FFFFFFFF"/>
 
 
-        </RelativeLayout>
 
-    </com.example.petsmate.CustomScrollView>
+
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottomNav"
