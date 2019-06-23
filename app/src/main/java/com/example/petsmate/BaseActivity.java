@@ -26,7 +26,8 @@ public class BaseActivity extends AppCompatActivity {
 
     public void configBottomNavigation(final Context context, BottomNavigationView navigation) {
         final int contextIndex = getContextIndex(context);
-        this.context = context; this.bottomNavigationView = navigation;
+        this.context = context;
+        this.bottomNavigationView = navigation;
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -34,7 +35,13 @@ public class BaseActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.tab_home:
                         if (contextIndex != INDEX_HOME_ACTIVITY) {
-                            intent = new Intent(context, MainActivity.class);
+                            if (MainActivity.memberInfo.getIsLogin())
+                                if(MainActivity.memberInfo.isGuest())
+                                    intent = new Intent(context, ReserveMain.class);
+                                else
+                                    intent = new Intent(context, MapsNaverActivity.class);
+                            else
+                                intent = new Intent(context, MainActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                             startActivity(intent);
                             overridePendingTransition(0, 0);
@@ -57,7 +64,7 @@ public class BaseActivity extends AppCompatActivity {
                         }
                         return true;
                     case R.id.tab_list:
-                        if(contextIndex != INDEX_LIST_ACTIVITY) {
+                        if (contextIndex != INDEX_LIST_ACTIVITY) {
                             intent = new Intent(context, CallListPage.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                             startActivity(intent);
@@ -80,7 +87,7 @@ public class BaseActivity extends AppCompatActivity {
 
     private int getContextIndex(Context context) {
 
-        if (context instanceof MainActivity || context instanceof LoginActivity || context instanceof DriverSignupActivity || context instanceof Idfind || context instanceof MapsNaverActivity || context instanceof  PwfindActivity || context instanceof ReserveMain || context instanceof SignupPetActivity || context instanceof SignupActivity) {
+        if (context instanceof MainActivity || context instanceof LoginActivity || context instanceof DriverSignupActivity || context instanceof Idfind || context instanceof MapsNaverActivity || context instanceof PwfindActivity || context instanceof ReserveMain || context instanceof SignupPetActivity || context instanceof SignupActivity) {
             return INDEX_HOME_ACTIVITY; // 메뉴바 첫번째 버튼. (홈 화면)
 //        } else if (context instanceof DashboardActivity) {
 //            return INDEX_DASHBOARD_ACTIVITY; // 메뉴바 두번째 버튼. (펫 화면)
@@ -104,7 +111,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if(context != null && bottomNavigationView != null)
+        if (context != null && bottomNavigationView != null)
             updateBottomMenu(context, bottomNavigationView);
     }
 }
