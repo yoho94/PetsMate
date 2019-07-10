@@ -13,8 +13,8 @@ import java.net.URL;
 
 class ReverseGeocodingTask extends AsyncTask<Double, Void, String> {
     String sendMsg, receiveMsg;
-    String api_key = "asFGcIrUvqf2ee3esvh6G6KW5ZT6iWqJ0fYAzy3v";
-    String api_id = "krakspsq17";
+    String api_key = "nAvzIZvaB0J3lQQ9pmHmxMtGYdSKgPIB6lfUyrSn";
+    String api_id = "jhqn1qq7oo";
     @Override
     protected String doInBackground(Double... doubles) {
         try {
@@ -27,8 +27,8 @@ class ReverseGeocodingTask extends AsyncTask<Double, Void, String> {
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 //            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
 //            conn.setRequestProperty("Accept", "application/json");
-            conn.setRequestProperty("X-NCP-APIGW-API-KEY-ID", "krakspsq17");
-            conn.setRequestProperty("X-NCP-APIGW-API-KEY", "asFGcIrUvqf2ee3esvh6G6KW5ZT6iWqJ0fYAzy3v");
+            conn.setRequestProperty("X-NCP-APIGW-API-KEY-ID", "jhqn1qq7oo");
+            conn.setRequestProperty("X-NCP-APIGW-API-KEY", "nAvzIZvaB0J3lQQ9pmHmxMtGYdSKgPIB6lfUyrSn");
 //            conn.setRequestMethod("GET");
 //            conn.setDoInput(true);
 //                conn.setDoOutput(true);

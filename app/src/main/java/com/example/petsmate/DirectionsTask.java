@@ -15,8 +15,8 @@ import java.net.URL;
 
 public class DirectionsTask extends AsyncTask<Double, Void, String> {
     String sendMsg, receiveMsg;
-    String api_key = "asFGcIrUvqf2ee3esvh6G6KW5ZT6iWqJ0fYAzy3v";
-    String api_id = "krakspsq17";
+    String api_key = "nAvzIZvaB0J3lQQ9pmHmxMtGYdSKgPIB6lfUyrSn";
+    String api_id = "jhqn1qq7oo";
 
     @Override
     protected String doInBackground(Double... doubles) {

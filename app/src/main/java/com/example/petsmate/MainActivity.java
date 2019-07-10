@@ -29,6 +29,8 @@ import static com.nhn.android.naverlogin.OAuthLogin.mOAuthLoginHandler;
 
 public class MainActivity extends BaseActivity {
 
+    public static String serverIP = "http://101.101.160.93:8080/DB/";
+
     private static String OAUTH_CLIENT_ID="7nlmp3_oTZszqdkLgv2u";
     private static String OAUTH_CLIENT_SECRET="e8WuNOzDTl";
     private static String OAUTH_CLIENT_NAME="네이버 아이디로 로그인";
