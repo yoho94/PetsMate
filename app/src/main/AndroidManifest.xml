@@ -64,6 +64,7 @@
         <activity android:name=".mypage07"/>
         <activity android:name=".CallListPage"/>
         <activity android:name=".iotgps"/>
+        <activity android:name=".StartActivity"/>
 
 
         <service
