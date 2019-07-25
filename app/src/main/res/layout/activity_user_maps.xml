@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.design.widget.CoordinatorLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/_textview"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:layout_gravity="top"
+            android:background="#f06464"
+            android:text="택시 콜하기"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="30dp" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <fragment
+                android:id="@+id/user_maps"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:name="com.naver.maps.map.MapFragment" />
+
+            <ImageButton
+                android:id="@+id/driver_refresh_btn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="right|bottom"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="8dp"
+                app:srcCompat="@drawable/ic_redo_alt"
+                android:backgroundTint="#FFFFFFFF"/>
+
+        </FrameLayout>
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="69dp"
+            android:text=" ㆍ현재 내위치"
+            android:textSize="25dp" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="69dp"
+            android:text=" ㆍ출발지 검색"
+            android:textSize="25dp" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="69dp"
+            android:text=" ㆍ도착지 검색"
+            android:textSize="25dp" />
+
+
+    </LinearLayout>
+
+
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="#FFFFFF"
+        app:itemIconSize="30dp"
+        app:labelVisibilityMode="unlabeled"
+        app:menu="@menu/bottombar_menu">
+
+    </android.support.design.widget.BottomNavigationView>
+
+</android.support.design.widget.CoordinatorLayout>
