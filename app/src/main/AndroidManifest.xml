@@ -47,7 +47,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".ChatActivity"/>
         <activity android:name=".SignupActivity" />
         <activity android:name=".SignupPetActivity" />
         <activity android:name=".ReserveMain" />
