@@ -57,7 +57,7 @@ public class BaseActivity extends AppCompatActivity {
                         return true;
                     case R.id.tab_msg:
                         if (contextIndex != INDEX_MSG_ACTIVITY) {
-                            intent = new Intent(context, ChatActivity.class);
+                            intent = new Intent(context, StartActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                             startActivity(intent);
                             overridePendingTransition(0, 0);
@@ -91,7 +91,7 @@ public class BaseActivity extends AppCompatActivity {
             return INDEX_HOME_ACTIVITY; // 메뉴바 첫번째 버튼. (홈 화면)
         } else if (context instanceof iotgps) {
             return INDEX_PET_ACTIVITY; // 메뉴바 두번째 버튼. (펫 화면)
-        } else if (context instanceof ChatActivity) {
+        } else if (context instanceof ChatActivity || context instanceof StartActivity) {
             return INDEX_MSG_ACTIVITY; // 메뉴바 세번째 버튼. (메세지 화면)
         } else if (context instanceof mypage01 || context instanceof mypage02 || context instanceof mypage03 || context instanceof mypage04 || context instanceof mypage06 || context instanceof mypage07) {
             return INDEX_MYPAGE_ACTIVITY; // 메뉴바 다섯번째 버튼 (설정, 마이페이지)
