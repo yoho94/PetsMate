@@ -115,9 +115,18 @@ public class CallListPage extends BaseActivity {
                 startPlace.setLon(callTableField[6]);
                 desPlace.setLat(callTableField[7]);
                 desPlace.setLon(callTableField[8]);
-                Timestamp startTime = Timestamp.valueOf(callTableField[9]);
-                Timestamp desTime = Timestamp.valueOf(callTableField[10]);
-                Timestamp genTime = Timestamp.valueOf(callTableField[11]);
+
+                Timestamp startTime = null;
+                Timestamp desTime = null;
+                Timestamp genTime = null;
+
+                if(callTableField[9] != null && !callTableField[9].isEmpty() && !callTableField[9].equalsIgnoreCase("null"))
+                    startTime = Timestamp.valueOf(callTableField[9]);
+                if(callTableField[10] != null && !callTableField[10].isEmpty() && !callTableField[10].equalsIgnoreCase("null"))
+                    desTime = Timestamp.valueOf(callTableField[10]);
+                if(callTableField[11] != null && !callTableField[11].isEmpty() && !callTableField[11].equalsIgnoreCase("null"))
+                    genTime = Timestamp.valueOf(callTableField[11]);
+
                 boolean isShuttle = Boolean.parseBoolean(callTableField[12]);
                 desPlace.setName(callTableField[13]);
                 desPlace.setRoadAddress(callTableField[14]);
@@ -141,6 +150,7 @@ public class CallListPage extends BaseActivity {
 
         } catch (Exception e) {
             Log.i("getCallTable", e.toString());
+            Log.i("getCallTable", e.getLocalizedMessage());
         }
     }
 
