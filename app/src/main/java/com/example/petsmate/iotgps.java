@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
+import android.widget.Toast;
 
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.MapFragment;
@@ -22,9 +23,15 @@ public class iotgps extends BaseActivity implements OnMapReadyCallback{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.iotgps);
 
-        mapFragment = (MapFragment) getSupportFragmentManager().findFragmentById(R.id.pet_map);
+        if (!MainActivity.memberInfo.getIsLogin()) {
+            Toast.makeText(this, "로그인을 하셔야 GPS 기능 보기가 가능합니다.", Toast.LENGTH_SHORT).show();
+            finish();
+        }
 
+        mapFragment = (MapFragment) getSupportFragmentManager().findFragmentById(R.id.pet_map);
         mapFragment.getMapAsync(this);
+
+
 
         BottomNavigationView bottomNavigationView;
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNav);

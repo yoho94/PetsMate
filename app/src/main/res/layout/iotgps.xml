@@ -17,7 +17,7 @@
             android:layout_height="46dp"
             android:layout_gravity="top"
             android:background="#f06464"
-            android:text="실시간 콜받기"
+            android:text="내 펫 체크하기"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textSize="30dp" />
