@@ -41,6 +41,4 @@ public class iotgps extends BaseActivity implements OnMapReadyCallback{
         marker.setMap(naverMap);
 
     }
-
-
 }
