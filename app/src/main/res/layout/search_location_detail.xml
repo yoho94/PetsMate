@@ -35,24 +35,121 @@
         </FrameLayout>
 
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:id="@+id/location_name"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="20dp"
+                android:text="Location Name"
+                android:textSize="40dp"
+                android:textColor="#000000" />
+
+            <ImageView
+                android:id="@+id/marker_address"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_below="@id/location_name"
+                android:layout_marginLeft="25dp"
+                app:srcCompat="@drawable/marker"
+                android:backgroundTint="#FFFFFFFF"/>
+
+            <TextView
+                android:id="@+id/detail_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/location_name"
+                android:layout_toRightOf="@id/marker_address"
+                android:layout_marginLeft="5dp"
+                android:text="대구 중구 동성로 6길 2-1 // ex. 주소DB값 필요함"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/detail_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/detail_address"
+                android:layout_toRightOf="@id/marker_address"
+                android:layout_marginLeft="5dp"
+                android:text="053-xxx-xxxx // ex. 번호DB값 필요함"
+                android:textSize="15dp"
+                android:textColor="#2E64FE"
+                android:layout_marginBottom="25dp" />
+
+        </RelativeLayout>
+
+
+
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:id="@+id/location_name"
-            android:text="Location Name"
-            android:textSize="45dp" />
+            android:layout_height="20dp"
+            android:background="#f06464" />
+
+
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:text="n.n km"
+            android:text="별점을 남겨주세요!"
+            android:layout_marginTop="25dp"
+            android:gravity="center"
             android:textSize="15dp" />
 
+        <RatingBar
+            android:id="@+id/ratingbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="25dp"
+            android:stepSize="1.0" />
 
 
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="#f06464" />
 
 
+
+        <RelativeLayout
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="25dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
+            tools:context=".ReviewCrawling" >
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Naver 데이터 가져오기"
+                android:id="@+id/btn_crawling"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:text="Naver 크롤링 공간"
+                android:id="@+id/review_crawling"
+                android:maxLines="10"
+                android:scrollbars="vertical"
+                android:layout_marginTop="15dp"
+                android:layout_below="@id/btn_crawling" />
+
+
+
+        </RelativeLayout>
 
 
 
