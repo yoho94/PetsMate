@@ -30,7 +30,7 @@ public class iotgps extends BaseActivity implements OnMapReadyCallback{
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNav);
         configBottomNavigation(this, bottomNavigationView);
 
-        
+
     }
     @Override
     public void onMapReady(@Nullable NaverMap naverMap) {
