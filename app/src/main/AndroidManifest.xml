@@ -63,6 +63,7 @@
         <activity android:name=".mypage06"/>
         <activity android:name=".mypage07"/>
         <activity android:name=".CallListPage"/>
+        <activity android:name=".iotgps"/>
 
 
 
