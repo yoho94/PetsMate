@@ -17,7 +17,7 @@
             android:layout_height="46dp"
             android:layout_gravity="top"
             android:background="#f06464"
-            android:text="내 펫체크하기"
+            android:text="실시간 콜받기"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textSize="30dp" />
@@ -28,9 +28,9 @@
 
             <fragment
                 android:id="@+id/pet_map"
-                android:name="com.naver.maps.map.MapFragment"
                 android:layout_width="match_parent"
-                android:layout_height="354dp" />
+                android:layout_height="400dp"
+                android:name="com.naver.maps.map.MapFragment" />
 
             <ImageButton
                 android:id="@+id/driver_refresh_btn"
@@ -44,7 +44,9 @@
 
         </FrameLayout>
 
+
     </LinearLayout>
+
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottomNav"
