@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.design.widget.CoordinatorLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/_textview"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:layout_gravity="top"
+            android:background="#f06464"
+            android:text="기사 리뷰"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="30dp" />
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <fragment
+                android:id="@+id/driver_profile"
+                android:layout_width="match_parent"
+                android:layout_height="150dp" />
+
+        </FrameLayout>
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/driver_name"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="20dp"
+                android:text="김ㅁㅁ 기사 // DB값 필요"
+                android:textSize="30dp"
+                android:textColor="#000000" />
+
+            <ImageView
+                android:id="@+id/marker_address"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_below="@id/driver_name"
+                android:layout_marginLeft="25dp"
+                app:srcCompat="@drawable/marker"
+                android:backgroundTint="#FFFFFFFF"/>
+
+            <TextView
+                android:id="@+id/destination"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/driver_name"
+                android:layout_toRightOf="@id/marker_address"
+                android:layout_marginLeft="5dp"
+                android:text="대구 중구 동성로 6길 2-1 (도착지) // ex. DB값 필요"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/destination"
+                android:layout_toRightOf="@id/marker_address"
+                android:layout_marginLeft="5dp"
+                android:text="2019.08.06 | 13:24 (도착일시) // ex. DB값 필요"
+                android:textSize="15dp"
+                android:textColor="#2E64FE"
+                android:layout_marginBottom="25dp" />
+
+        </RelativeLayout>
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="#f06464" />
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:text="별점을 남겨주세요!"
+            android:layout_marginTop="25dp"
+            android:gravity="center"
+            android:textSize="15dp" />
+
+        <RatingBar
+            android:id="@+id/ratingbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="25dp"
+            android:stepSize="1.0" />
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="#f06464" />
+
+
+
+
+
+    </LinearLayout>
+
+
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="#FFFFFF"
+        app:itemIconSize="30dp"
+        app:labelVisibilityMode="unlabeled"
+        app:menu="@menu/bottombar_menu">
+
+    </android.support.design.widget.BottomNavigationView>
+
+</android.support.design.widget.CoordinatorLayout>
