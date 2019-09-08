@@ -1,5 +1,6 @@
 package com.example.petsmate;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +16,8 @@ import android.widget.Toast;
 
 
 import com.example.petsmate.table.MemberInfo;
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
 import com.nhn.android.naverlogin.OAuthLogin;
 import com.nhn.android.naverlogin.OAuthLoginHandler;
 import com.nhn.android.naverlogin.ui.view.OAuthLoginButton;
@@ -22,6 +25,7 @@ import com.nhn.android.naverlogin.ui.view.OAuthLoginButton;
 import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.nhn.android.naverlogin.OAuthLogin.mOAuthLoginHandler;
 
@@ -29,7 +33,8 @@ import static com.nhn.android.naverlogin.OAuthLogin.mOAuthLoginHandler;
 
 public class MainActivity extends BaseActivity {
 
-    public static String serverIP = "http://101.101.160.93:8080/DB/";
+    // public static String serverIP = "http://101.101.160.93:8080/DB/";
+    public static String serverIP = "http://14.63.193.91:8080/DB/";
 
     private static String OAUTH_CLIENT_ID="7nlmp3_oTZszqdkLgv2u";
     private static String OAUTH_CLIENT_SECRET="e8WuNOzDTl";
@@ -41,6 +46,7 @@ public class MainActivity extends BaseActivity {
     public static Context mContext;
 
     static MemberInfo memberInfo = new MemberInfo();
+
 
 
     @Override
@@ -96,6 +102,30 @@ public class MainActivity extends BaseActivity {
         BottomNavigationView bottomNavigationView;
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNav);
         configBottomNavigation(this, bottomNavigationView);
+
+        // 권한 설정.
+        // https://gun0912.tistory.com/61
+        PermissionListener permissionlistener = new PermissionListener() {
+            @Override
+            public void onPermissionGranted() {
+            }
+
+            @Override
+            public void onPermissionDenied(List<String> deniedPermissions) {
+                Toast.makeText(MainActivity.this, "권한 거부\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show();
+            }
+
+
+        };
+
+        TedPermission.with(this)
+                .setPermissionListener(permissionlistener)
+                .setRationaleMessage("Pets&Mate 앱 사용을 위해선 다음과 같은 권한이 필요합니다.")
+                .setDeniedMessage("권한을 거부하시면 이용이 불가능합니다. [설정] > [권한] 에서 권한을 허용해주세요.")
+                .setPermissions(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
+                .check();
+
+
     }
     static private OAuthLoginHandler mOAuthLoginHandler = new OAuthLoginHandler() {
         @Override

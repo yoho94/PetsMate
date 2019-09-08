@@ -33,7 +33,7 @@
                 android:name="com.naver.maps.map.MapFragment" />
 
             <ImageButton
-                android:id="@+id/driver_refresh_btn"
+                android:id="@+id/iotgps_refresh_btn"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="right|bottom"

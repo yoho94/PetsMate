@@ -523,6 +523,9 @@ public class MapsNaverActivity extends BaseActivity implements OnMapReadyCallbac
                 Place startPlace = new Place(), desPlace = new Place();
                 CallTable callTable = new CallTable();
                 String[] callTableField = callTableStr[i].split("//");
+
+                Timestamp desTime;
+
                 int serialNumber = Integer.parseInt(callTableField[0]);
                 String guestId = callTableField[1];
                 String driverId = callTableField[2];
@@ -533,7 +536,10 @@ public class MapsNaverActivity extends BaseActivity implements OnMapReadyCallbac
                 desPlace.setLat(callTableField[7]);
                 desPlace.setLon(callTableField[8]);
                 Timestamp startTime = Timestamp.valueOf(callTableField[9]);
-                Timestamp desTime = Timestamp.valueOf(callTableField[10]);
+                if(callTableField[10].equalsIgnoreCase("NULL"))
+                    desTime = null;
+                else
+                    desTime = Timestamp.valueOf(callTableField[10]);
                 Timestamp genTime = Timestamp.valueOf(callTableField[11]);
                 boolean isShuttle = Boolean.parseBoolean(callTableField[12]);
                 desPlace.setName(callTableField[13]);
