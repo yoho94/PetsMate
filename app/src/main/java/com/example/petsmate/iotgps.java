@@ -2,13 +2,16 @@ package com.example.petsmate;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
+import android.graphics.PointF;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -16,6 +19,7 @@ import com.example.petsmate.table.CallTable;
 import com.example.petsmate.table.IotTable;
 import com.example.petsmate.table.Place;
 import com.example.petsmate.task.SelectIotTask;
+import com.github.florent37.singledateandtimepicker.dialog.DoubleDateAndTimePickerDialog;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 import com.naver.maps.geometry.LatLng;
@@ -28,12 +32,15 @@ import com.naver.maps.map.UiSettings;
 import com.naver.maps.map.overlay.InfoWindow;
 import com.naver.maps.map.overlay.Marker;
 import com.naver.maps.map.overlay.Overlay;
+import com.naver.maps.map.overlay.OverlayImage;
 import com.naver.maps.map.util.FusedLocationSource;
 import com.naver.maps.map.util.MarkerIcons;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 public class iotgps extends BaseActivity implements OnMapReadyCallback{
@@ -43,6 +50,11 @@ public class iotgps extends BaseActivity implements OnMapReadyCallback{
     private ArrayList<Marker> markers;
     private ArrayList<IotTable> iotTables;
     private ImageButton refreshBtn;
+    private InfoWindow infoWindow;
+
+    private Button pickerBtn;
+    private Context context;
+    private Date startDate, lastDate;
 
     private FusedLocationSource locationSource;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1000;
@@ -51,6 +63,7 @@ public class iotgps extends BaseActivity implements OnMapReadyCallback{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.iotgps);
+        context = this;
 
         if (!MainActivity.memberInfo.getIsLogin()) {
             Toast.makeText(this, "로그인을 하셔야 GPS 기능 보기가 가능합니다.", Toast.LENGTH_SHORT).show();
@@ -93,9 +106,20 @@ public class iotgps extends BaseActivity implements OnMapReadyCallback{
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNav);
         configBottomNavigation(this, bottomNavigationView);
 
+        // 마커의 정보창
+        infoWindow = new InfoWindow();
+        infoWindow.setAdapter(new InfoWindow.DefaultTextAdapter(mapFragment.getContext()) {
+            @NonNull
+            @Override
+            public CharSequence getText(@NonNull InfoWindow infoWindow) {
+                return  (CharSequence)infoWindow.getMarker().getTag();
+            }
+        });
 
+        startDate = new Date(0);
+        lastDate = new Date(System.currentTimeMillis());
 
-
+        pickerBtn = (Button) findViewById(R.id.iotgps_picker);
 
 
     }
@@ -128,13 +152,37 @@ public class iotgps extends BaseActivity implements OnMapReadyCallback{
             }
         });
 
-        GpsTracker gpsTracker = new GpsTracker(this);
+        naverMap.setOnMapClickListener(new NaverMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(@NonNull PointF pointF, @NonNull LatLng latLng) {
+                infoWindow.close();
+            }
+        });
 
-        double first_Latitude = gpsTracker.getLatitude();
-        double first_Longitude = gpsTracker.getLongitude();
+        pickerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new DoubleDateAndTimePickerDialog.Builder(context)
+                        //.bottomSheet()
+                        //.curved()
+                        .dayFormatter(new SimpleDateFormat("MMM d일 EEE"))
+                        //.minutesStep(15)
+                        .title("시간설정")
+                        .tab0Text("여기부터")
+                        .tab1Text("여기까지")
+                        .listener(new DoubleDateAndTimePickerDialog.Listener() {
+                            @Override
+                            public void onDateSelected(List<Date> dates) {
+                                startDate = dates.get(0);
+                                lastDate = dates.get(1);
 
-        CameraUpdate cameraUpdate = CameraUpdate.scrollTo(new LatLng(first_Latitude, first_Longitude));
-        naverMap.moveCamera(cameraUpdate); // 현재 위치로 지도 옮기기.
+                                getIotTable();
+                                setIotMarker();
+                            }
+                        }).display();
+
+            }
+        });
 
     }
 
@@ -149,22 +197,27 @@ public class iotgps extends BaseActivity implements OnMapReadyCallback{
             final IotTable iotTable = iotTables.get(i);
 
 
-                Marker marker = new Marker();
+                final Marker marker = new Marker();
                 LatLng latLng = new LatLng(Double.parseDouble(iotTable.getLatitude()), Double.parseDouble(iotTable.getLongitude()));
                 Log.i("Marker", latLng.toString());
 
-                marker.setIcon(MarkerIcons.BLACK); // 마커 아이콘을 블랙으로
+                if(i == iotTables.size() -1)
+                    marker.setIcon(OverlayImage.fromResource(R.drawable.ic_dog_marker));
+                else {
+                    marker.setIcon(MarkerIcons.BLACK); // 마커 아이콘을 블랙으로
+                    marker.setCaptionText(i+1+"");
+                }
                 marker.setIconTintColor(Color.rgb((int) (Math.random() * 255), (int) (Math.random() * 255), (int) (Math.random() * 255)));  // 마커 색상 랜덤
                 marker.setAlpha(0.75f); // 마커 반투명으로 설정
+            marker.setTag("시간 : " + iotTable.getGenerate_time() + "\n" + "심박수 : " + iotTable.getHeart_rate());
+            marker.setOnClickListener(new Overlay.OnClickListener() {
+                @Override
+                public boolean onClick(@NonNull Overlay overlay) {
+                    infoWindow.open(marker);
+                    return true;
+                }
+            });
 
-                InfoWindow infoWindow = new InfoWindow();
-                infoWindow.setAdapter(new InfoWindow.DefaultTextAdapter(mapFragment.getContext()) {
-                    @NonNull
-                    @Override
-                    public CharSequence getText(@NonNull InfoWindow infoWindow) {
-                        return "시간 : " + iotTable.getGenerate_time() + "\n" + "심박수 : " + iotTable.getHeart_rate();
-                    }
-                });
 
 //                marker.setCaptionRequestedWidth(250); // 마커의 캡션 넓이(줄바꿈)
 //                marker.setCaptionColor(Color.BLUE); // 마커 캡션 색상
@@ -210,6 +263,15 @@ public class iotgps extends BaseActivity implements OnMapReadyCallback{
                 iotTable.setLatitude(tempArr[2]);
                 iotTable.setLongitude(tempArr[3]);
                 iotTable.setHeart_rate(Integer.parseInt(tempArr[4]));
+
+                // 앞 변수가 크면 1, 작으면 -1, 같으면 0
+                int start = iotTable.getGenerate_time().compareTo(startDate);
+                int last = iotTable.getGenerate_time().compareTo(lastDate);
+
+                Log.i("startlast", start + ":" + last);
+
+                if(start < 0 || last > 0)
+                    continue;
 
                 iotTables.add(iotTable);
 
