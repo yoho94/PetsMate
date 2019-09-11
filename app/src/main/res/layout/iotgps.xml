@@ -44,6 +44,15 @@
 
         </FrameLayout>
 
+        <ListView
+            android:id="@+id/iotgps_petListView"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:background="@drawable/wgborder"
+            android:choiceMode="multipleChoice">
+
+        </ListView>
+
         <Button
             android:id="@+id/iotgps_picker"
             android:layout_width="wrap_content"

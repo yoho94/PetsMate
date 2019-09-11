@@ -10,13 +10,20 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.example.petsmate.table.CallTable;
 import com.example.petsmate.table.IotTable;
+import com.example.petsmate.table.PetInfo;
 import com.example.petsmate.table.Place;
 import com.example.petsmate.task.SelectIotTask;
 import com.github.florent37.singledateandtimepicker.dialog.DoubleDateAndTimePickerDialog;
@@ -41,6 +48,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class iotgps extends BaseActivity implements OnMapReadyCallback{
@@ -58,6 +66,10 @@ public class iotgps extends BaseActivity implements OnMapReadyCallback{
 
     private FusedLocationSource locationSource;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1000;
+
+    private ArrayList<PetInfo> petInfos;
+    private ListView listView;
+    private SparseBooleanArray sparseBooleanArray;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -120,6 +132,50 @@ public class iotgps extends BaseActivity implements OnMapReadyCallback{
         lastDate = new Date(System.currentTimeMillis());
 
         pickerBtn = (Button) findViewById(R.id.iotgps_picker);
+
+
+        /**  펫 읽어와서 띄우기 **/
+        petInfos = MainActivity.memberInfo.getPetInfos();
+//        petClick = new LinkedHashMap<>();
+        final ArrayList<String> arrayList = new ArrayList<>();
+
+        for (int i = 0; i < petInfos.size(); i++) {
+            arrayList.add(petInfos.get(i).getName());
+//            petClick.put(petInfos.get(i).getCodeInt(), Boolean.FALSE);
+            Log.i("PetArrayList", petInfos.get(i).getName());
+        }
+
+        listView = (ListView) findViewById(R.id.iotgps_petListView);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_single_choice,
+                android.R.id.text1, arrayList);
+
+        listView.setAdapter(adapter);
+        listView.setTranscriptMode(ListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
+        listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+//        listView.setSelection(0);
+//        listView.getSelectedView().setSelected(true);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                sparseBooleanArray = listView.getCheckedItemPositions();
+
+                String ValueHolder = "";
+
+                int i = 0;
+                while (i < sparseBooleanArray.size()) {
+                    if (sparseBooleanArray.valueAt(i)) {
+                        ValueHolder += arrayList.get(sparseBooleanArray.keyAt(i)) + ",";
+                        int code = petInfos.get(sparseBooleanArray.keyAt(i)).getCodeInt();
+                    }
+                    i++;
+                }
+                ValueHolder = ValueHolder.replaceAll("(,)*$", "");
+                Toast.makeText(getApplicationContext(), ValueHolder +"를 선택 했습니다.", Toast.LENGTH_LONG).show();
+            }
+        });
 
 
     }
