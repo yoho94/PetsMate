@@ -20,7 +20,9 @@
     <!--naver app을 통한 인증을 위해 필요한 permission -->
     <uses-permission android:name="android.permission.INTERNET"/>
 
-
+    <!--블루투스 사용을 위한 권환 추가-->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <!--WIFI 상태활용시 추가-->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
