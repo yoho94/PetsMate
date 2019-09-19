@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.petsmate.ble.DeviceScanActivity;
 import com.example.petsmate.table.MemberInfo;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
@@ -117,11 +116,11 @@ public class MainActivity extends BaseActivity {
 
 
         //Test
-        Intent intent1 = new Intent(this, DeviceScanActivity.class);
-
-        intent1.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        startActivity(intent1);
-        overridePendingTransition(0, 0);
+//        Intent intent1 = new Intent(this, DeviceScanActivity.class);
+//
+//        intent1.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//        startActivity(intent1);
+//        overridePendingTransition(0, 0);
     }
     static private OAuthLoginHandler mOAuthLoginHandler = new OAuthLoginHandler() {
         @Override
