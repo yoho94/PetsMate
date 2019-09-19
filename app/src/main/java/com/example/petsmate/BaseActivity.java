@@ -8,6 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.petsmate.ble.DeviceControlActivity;
+import com.example.petsmate.ble.DeviceScanActivity;
+
 public class BaseActivity extends AppCompatActivity {
     public static final int INDEX_HOME_ACTIVITY = 0;
     public static final int INDEX_PET_ACTIVITY = 1;
@@ -49,7 +52,13 @@ public class BaseActivity extends AppCompatActivity {
                         return true;
                     case R.id.tab_pet:
                         if (contextIndex != INDEX_PET_ACTIVITY) {
-                            intent = new Intent(context, iotgps.class);
+
+                            if(MainActivity.memberInfo.isGuest())
+                                intent = new Intent(context, iotgps.class);
+                            else
+                                intent = new Intent(context, DeviceScanActivity.class);
+//                                intent = new Intent(context, DriverIot.class);
+
                             intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                             startActivity(intent);
                             overridePendingTransition(0, 0);
@@ -89,7 +98,7 @@ public class BaseActivity extends AppCompatActivity {
 
         if (context instanceof MainActivity || context instanceof LoginActivity || context instanceof DriverSignupActivity || context instanceof Idfind || context instanceof MapsNaverActivity || context instanceof PwfindActivity || context instanceof ReserveMain || context instanceof SignupPetActivity || context instanceof SignupActivity) {
             return INDEX_HOME_ACTIVITY; // 메뉴바 첫번째 버튼. (홈 화면)
-        } else if (context instanceof iotgps) {
+        } else if (context instanceof iotgps || context instanceof DriverIot || context instanceof DeviceScanActivity || context instanceof DeviceControlActivity) {
             return INDEX_PET_ACTIVITY; // 메뉴바 두번째 버튼. (펫 화면)
         } else if (context instanceof ChatActivity || context instanceof StartActivity) {
             return INDEX_MSG_ACTIVITY; // 메뉴바 세번째 버튼. (메세지 화면)

@@ -4,17 +4,12 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
-
+import com.example.petsmate.ble.DeviceScanActivity;
 import com.example.petsmate.table.MemberInfo;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
@@ -22,12 +17,7 @@ import com.nhn.android.naverlogin.OAuthLogin;
 import com.nhn.android.naverlogin.OAuthLoginHandler;
 import com.nhn.android.naverlogin.ui.view.OAuthLoginButton;
 
-import com.google.firebase.iid.FirebaseInstanceId;
-
-import java.util.ArrayList;
 import java.util.List;
-
-import static com.nhn.android.naverlogin.OAuthLogin.mOAuthLoginHandler;
 
 
 
@@ -126,6 +116,12 @@ public class MainActivity extends BaseActivity {
                 .check();
 
 
+        //Test
+        Intent intent1 = new Intent(this, DeviceScanActivity.class);
+
+        intent1.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent1);
+        overridePendingTransition(0, 0);
     }
     static private OAuthLoginHandler mOAuthLoginHandler = new OAuthLoginHandler() {
         @Override

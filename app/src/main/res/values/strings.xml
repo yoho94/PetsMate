@@ -7,4 +7,36 @@
     <string name="help3">정확한 요금 계산 방법이 궁금합니다.</string>
     <string name="help4">아이폰 서비스는 어떻게 되나요?</string>
     <string name="help5">기사님의 위치는 어떻게 볼수있나요??</string>
+
+    <!--ble-->
+    <string name="intro_message">
+        <![CDATA[
+
+
+            This sample demonstrates how to use the Bluetooth LE Generic Attribute Profile (GATT)
+            to transmit arbitrary data between devices.
+
+
+        ]]>
+    </string>
+    <string name="ble_not_supported">BLE is not supported</string>
+    <string name="label_data">Data:</string>
+    <string name="label_device_address">Device address:</string>
+    <string name="label_state">State:</string>
+    <string name="no_data">No data</string>
+    <string name="connected">Connected</string>
+    <string name="disconnected">Disconnected</string>
+    <string name="title_devices">BLE Device Scan</string>
+    <string name="error_bluetooth_not_supported">Bluetooth not supported.</string>
+
+    <string name="unknown_device">Unknown device</string>
+    <string name="unknown_characteristic">Unknown characteristic</string>
+    <string name="unknown_service">Unknown service</string>
+
+    <!-- Menu items -->
+    <string name="menu_connect">Connect</string>
+    <string name="menu_disconnect">Disconnect</string>
+    <string name="menu_scan">Scan</string>
+    <string name="menu_stop">Stop</string>
+
 </resources>
