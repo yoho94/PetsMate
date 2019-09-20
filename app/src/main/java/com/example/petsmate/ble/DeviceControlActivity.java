@@ -67,6 +67,8 @@ public class DeviceControlActivity extends Activity {
     private final String LIST_NAME = "NAME";
     private final String LIST_UUID = "UUID";
 
+    String data = "";
+
     // Code to manage Service lifecycle.
     private final ServiceConnection mServiceConnection = new ServiceConnection() {
 
@@ -111,6 +113,22 @@ public class DeviceControlActivity extends Activity {
                 displayGattServices(mBluetoothLeService.getSupportedGattServices());
             } else if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action)) {
                 displayData(intent.getStringExtra(BluetoothLeService.EXTRA_DATA));
+
+                //TODO 데이터를 전부 받은 다음 파싱하기.
+                String tmp = intent.getStringExtra(BluetoothLeService.EXTRA_DATA);
+                data += data + tmp;
+
+                if(data.startsWith("@@GPS_START@@")) {
+
+                } else if (data.startsWith("@@BPM_START@@")) {
+
+                } else {
+                    for(int i=0; i<data.length(); i++) {
+                        if(data.startsWith("@@",i)) {
+
+                        }
+                    }
+                }
             }
         }
     };

@@ -156,13 +156,19 @@ public class BluetoothLeService extends Service {
 //            intent.putExtra(EXTRA_DATA, String.valueOf(heartRate));
         } else {
             // For all other profiles, writes the data formatted in HEX.
+//            final byte[] data = characteristic.getValue();
+//            if (data != null && data.length > 0) {
+//                final StringBuilder stringBuilder = new StringBuilder(data.length);
+//                for(byte byteChar : data)
+//                    stringBuilder.append(String.format("%02X ", byteChar));
+//                intent.putExtra(EXTRA_DATA, new String(data) + "\n" + stringBuilder.toString());
+//                Log.d("DATA : ", new String(data) + "\n" + stringBuilder.toString()); // TODO 파싱하기.
+//            }
+
             final byte[] data = characteristic.getValue();
             if (data != null && data.length > 0) {
-                final StringBuilder stringBuilder = new StringBuilder(data.length);
-                for(byte byteChar : data)
-                    stringBuilder.append(String.format("%02X ", byteChar));
-                intent.putExtra(EXTRA_DATA, new String(data) + "\n" + stringBuilder.toString());
-                Log.d("DATA : ", new String(data) + "\n" + stringBuilder.toString()); // TODO 파싱하기.
+                intent.putExtra(EXTRA_DATA, new String(data));
+                sendBroadcast(intent);
             }
         }
         sendBroadcast(intent);

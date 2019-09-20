@@ -75,6 +75,7 @@
         <activity android:name=".iotgps"/>
         <activity android:name=".StartActivity"/>
         <activity android:name=".DriverIot"/>
+        <activity android:name=".BluetoothActivity"/>
 
         <!--ble-->
         <activity android:name=".ble.DeviceScanActivity"/>
