@@ -17,12 +17,39 @@
             android:layout_height="46dp"
             android:layout_gravity="top"
             android:background="#f06464"
-            android:text="내 펫 체크하기"
+            android:text="손님 펫 확인"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textSize="30dp" />
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
+            <fragment
+                android:id="@+id/driver_iot_map"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:name="com.naver.maps.map.MapFragment" />
+
+            <ImageButton
+                android:id="@+id/driver_iot_refresh_btn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="right|bottom"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="8dp"
+                app:srcCompat="@drawable/ic_redo_alt"
+                android:backgroundTint="#FFFFFFFF"/>
+
+        </FrameLayout>
+
+        <ImageButton
+            android:id="@+id/driver_iot_bluetooth_btn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:srcCompat="@drawable/ic_bluetooth_searching_black_24dp"
+            android:backgroundTint="#FFFFFFFF"/>
 
 
 

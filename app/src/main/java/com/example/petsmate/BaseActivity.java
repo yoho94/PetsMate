@@ -45,7 +45,8 @@ public class BaseActivity extends AppCompatActivity {
                                     intent = new Intent(context, MapsNaverActivity.class);
                             else
                                 intent = new Intent(context, MainActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//                            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                             startActivity(intent);
                             overridePendingTransition(0, 0);
                         }
@@ -56,10 +57,11 @@ public class BaseActivity extends AppCompatActivity {
                             if(MainActivity.memberInfo.isGuest())
                                 intent = new Intent(context, iotgps.class);
                             else
-                                intent = new Intent(context, DeviceScanActivity.class);
-//                                intent = new Intent(context, DriverIot.class);
+//                                intent = new Intent(context, DeviceScanActivity.class);
+                                intent = new Intent(context, DriverIot.class);
 
-                            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//                            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                             startActivity(intent);
                             overridePendingTransition(0, 0);
                         }
@@ -67,7 +69,8 @@ public class BaseActivity extends AppCompatActivity {
                     case R.id.tab_msg:
                         if (contextIndex != INDEX_MSG_ACTIVITY) {
                             intent = new Intent(context, StartActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//                            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                             startActivity(intent);
                             overridePendingTransition(0, 0);
                         }
@@ -75,7 +78,8 @@ public class BaseActivity extends AppCompatActivity {
                     case R.id.tab_list:
                         if (contextIndex != INDEX_LIST_ACTIVITY) {
                             intent = new Intent(context, CallListPage.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//                            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                             startActivity(intent);
                             overridePendingTransition(0, 0);
                         }
@@ -83,7 +87,8 @@ public class BaseActivity extends AppCompatActivity {
                     case R.id.tab_mypage:
                         if (contextIndex != INDEX_MYPAGE_ACTIVITY) {
                             intent = new Intent(context, mypage01.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//                            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                             startActivity(intent);
                             overridePendingTransition(0, 0);
                         }
@@ -122,5 +127,11 @@ public class BaseActivity extends AppCompatActivity {
         super.onStart();
         if (context != null && bottomNavigationView != null)
             updateBottomMenu(context, bottomNavigationView);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        overridePendingTransition(0, 0);
     }
 }

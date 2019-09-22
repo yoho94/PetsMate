@@ -78,8 +78,8 @@
         <activity android:name=".BluetoothActivity"/>
 
         <!--ble-->
-        <activity android:name=".ble.DeviceScanActivity"/>
-        <activity android:name=".ble.DeviceControlActivity"/>
+        <activity android:name=".ble.DeviceScanActivity" android:theme="@android:style/Theme.Dialog"/>
+        <activity android:name=".ble.DeviceControlActivity" android:theme="@android:style/Theme.Dialog"/>
         <service android:name=".ble.BluetoothLeService" android:enabled="true"/>
 
         <service
