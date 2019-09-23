@@ -116,9 +116,7 @@ public class MainActivity extends BaseActivity {
 
 
         //Test
-//        Intent intent1 = new Intent(this, DeviceScanActivity.class);
-//
-//        intent1.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//        Intent intent1 = new Intent(this, BluetoothActivity.class);
 //        startActivity(intent1);
 //        overridePendingTransition(0, 0);
     }

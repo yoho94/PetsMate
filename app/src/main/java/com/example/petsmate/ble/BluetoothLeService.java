@@ -191,9 +191,13 @@ public class BluetoothLeService extends Service {
                                 String query = String.format("INSERT INTO `IOT`(`ID`, `PET_CODE`, `GENERATE_TIME`, `LATITUDE`, `LONGITUDE`, `HEART_RATE`) VALUES (\'%s\',%s,TIMESTAMP(\'%s\'),\'%s\',\'%s\',%s)",
                                         iotTable.getId(), iotTable.getPet_code(), iotTable.getGenerate_time(), iotTable.getLatitude(), iotTable.getLongitude(), iotTable.getHeart_rate());
                                 Log.i("iotQuery", query);
-                                String result = new InsertIotTask().execute(query).get();
 
-                                Log.i("insertIot", result);
+                                if(iotTable.getLatitude().isEmpty() || iotTable.getLongitude().isEmpty()) {
+                                    Log.i("insertIot", "gps isEmpty");
+                                } else {
+                                    String result = new InsertIotTask().execute(query).get();
+                                    Log.i("insertIot", result);
+                                }
 
 //                                Toast.makeText(getApplicationContext(), iotTable.toString(), Toast.LENGTH_SHORT).show();
 
