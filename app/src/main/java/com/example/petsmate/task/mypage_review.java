@@ -15,7 +15,6 @@ public class mypage_review extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mypage_review);
-
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNav);
         configBottomNavigation(this, bottomNavigationView);
     }
