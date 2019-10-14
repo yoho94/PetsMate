@@ -41,8 +41,8 @@ public class ReviewAlarmReceiver extends BroadcastReceiver {
 
 
         // 푸시용 인텐트 추가
-        Intent resultIntent = new Intent(getApplicationContext(), ReviewPush.class);
-        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+        Intent resultIntent = new Intent(context, ReviewPush.class);
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
         stackBuilder.addParentStack(ReviewPush.class);
         stackBuilder.addNextIntent(resultIntent);
 
